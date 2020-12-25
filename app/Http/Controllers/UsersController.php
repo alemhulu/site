@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Role;
 use App\Models\Post;
-use App\Models\Resource;
 
 class UsersController extends Controller
 {
@@ -21,7 +20,7 @@ class UsersController extends Controller
     {
         $users = User::orderBy('id', 'desc')->get();
         // dd($users[2]->id);
-        $post = Resource::where('user_id', $users[0]->id )->get();
+        $post = Post::where('userId', $users[0]->id )->get();
         
         return view('admin.users.index', ['users' => $users], ['post' => $post]);
     }

@@ -95,7 +95,7 @@ class PostsController extends Controller
         $post->title = request('title');
         $post->content = request('post_content');
         $post->image_url = $newFileName;
-        $post->user_id = $user->id;
+        $post->userId = $user->id;
 
         $post->save();
 

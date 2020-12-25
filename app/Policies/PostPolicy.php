@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Models\Resource;
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -42,7 +42,7 @@ class PostPolicy
      * @param  \App\Post  $post
      * @return mixed
      */
-    public function view(User $user, Resource $post)
+    public function view(User $user, Post $post)
     {
         //
     }
@@ -70,7 +70,7 @@ class PostPolicy
      * @param Post $post
      * @return void
      */
-    public function edit(User $user, Resource $post)
+    public function edit(User $user, Post $post)
     {
         if($user->permissions->contains('slug', 'edit')) {
             return true;
@@ -87,13 +87,13 @@ class PostPolicy
      * @param  \App\Post  $post
      * @return mixed
      */
-    public function update(User $user, Resource $post)
+    public function update(User $user, Post $post)
     {
         if($user->roles->contains('slug', 'content-editor')){
             return true;
         } elseif($user->permissions->contains('slug', 'edit')) {
             return true;
-        } elseif($post->user_id == $user->id) {
+        } elseif($post->userId == $user->id) {
             return true;
         }
 
@@ -107,7 +107,7 @@ class PostPolicy
      * @param  \App\Post  $post
      * @return mixed
      */
-    public function delete(User $user, Resource $post)
+    public function delete(User $user, Post $post)
     {
         if($user->permissions->contains('slug', 'delete')) {
             return true;
@@ -124,7 +124,7 @@ class PostPolicy
      * @param  \App\Post  $post
      * @return mixed
      */
-    public function restore(User $user, Resource $post)
+    public function restore(User $user, Post $post)
     {
         //
     }
@@ -136,7 +136,7 @@ class PostPolicy
      * @param  \App\Post  $post
      * @return mixed
      */
-    public function forceDelete(User $user, Resource $post)
+    public function forceDelete(User $user, Post $post)
     {
         //
     }
