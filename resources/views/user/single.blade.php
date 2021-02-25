@@ -1,10 +1,16 @@
-@extends('layouts.app3')
+@extends('layouts.app3')  
 @section('content')
 @section('singleStyle')
 <link rel="stylesheet" type="text/css" href="/fonts/style.css">
 <link rel="stylesheet" type="text/css" href="/assets/css/singleStyle.css"> 
 @endsection
-<div id="wrapper"  >
+@if($resource->media->name == "Document" )
+<div id="load"></div>
+    <div id="contents">
+      
+    </div>
+    @endif
+<div id="wrapper m-0 p-0" >
 <div class="view" style="display:none;"><h2>Alemhulu Awekelgne Asfaw</h2></div>
         <nav class="navbar navbar-light align-items-start sidebar sidebar-dark shadow accordion p-0 sidenav" style="background-color: white;" id="sideMenu" >
             <div class="container-fluid d-flex flex-column p-0 ">
@@ -12,21 +18,24 @@
               <div class="text-center d-none d-md-inline "><button class="btn rounded-circle dblue border-0 " id="sidebarToggle" type="button"></button></div>
             </div>
         </nav>
-
+       
   <div id="filter"></div>
         <div class="container-fluid" id="singleMainContainer">
-          <div class="row mt-3"> 
+          <div class="row m-0 p-0 mt-3"> 
+          
               <div class="col-lg-8 col-md-12 " id="singleDisplay">
-                  <div class="row" id="description_like_dislike">              
+              <h2 id="test_status"></h2>
+              <div  id="test"></div>
+                  <div class="row mx-5" id="description_like_dislike">              
                                     <input type="number" id="fileId" value="{{$resource->id}}" hidden>
                                     <input type="text" id="path" value="{{$resource->fileLocation}}" hidden>
                                     <input type="text" id="content" value="{{$resource->media->name}}" hidden>
-                     <div class="col-lg-7 align-self-center py-1">
+                     <div class="col-7 align-self-center py-1">
                         <p class="h5">{{$resource->description}} </p>
                      </div>
-                      <div class="col-lg-5 text-right px-3 align-self-center h4 text-secondary">
-                        <button class="btn btn-sm"><span class="icon icon-thumbs-up text-secondary h4"></span><span class="h5 text-secondary"> {{$resource->like}}</span></button>
-                        <button class="btn btn-sm"><span class="icon icon-thumbs-down text-secondary h4"></span><span class="h5 text-secondary"> {{$resource->deslike}}</span></button>
+                      <div class="col-5 text-right px-3 align-self-center h4 text-secondary">
+                        <button class="btn btn-sm" ><span class="icon icon-thumbs-up text-secondary h4 " id="likeButton"></span><span class="h5 text-secondary" id="likeCount"> {{$resource->like}}</span></button>
+                        <button class="btn btn-sm "><span class="icon icon-thumbs-down text-secondary h4 " id="dislikeButton"></span><span class="h5 text-secondary" id="dislikeCount"> {{$resource->deslike}}</span></button>
                         <a href="{{$resource->fileLocation}}" download >
                         <button class="btn btn-sm download" id="download" onclick="download()">                          
                           <span class="icon icon-download text-secondary h4"></span><span class="h5 text-secondary" id="downloadCount"> {{$resource->download}}</span>                         
@@ -34,8 +43,9 @@
                         </a> 
                       </div>
                   </div> 
-                  <div class=" p-0 shadow-sm" >
+                  <div class=" p-0 shadow-sm " id="singleViewDiv">
                    @if($resource->media->name == "Document" )
+                        <div id="single-main-pdf">
                           <div class="top-bar  d-flex justify-content-between" id="navPdf">
                               <div>
                                      <button class="btn1 zoom" id="prev-page">
@@ -46,13 +56,13 @@
                                      <button class="btn1 zoom" id="next-page">
                                      <img src="/buttons/next.png">
                                      </button>
-                                      <span class="page-info" style="color:white;" id="page-info" >
-                                    Page <span id="page-num" style="color:white;"></span> of <span id="page-count"style="color:white;"></span>
+                                      <span class="page-info" style="color:white; font-size: 10px;" id="page-info" >
+                                    Page <span id="page-num" style="color:white; font-size: 10px;"></span> of <span id="page-count"style="color:white; font-size: 10px;"></span>
                                     </span>
                               </div>
                   
                               <div id="zoom_controls">  
-                               <button class="btn1 border-right zoom" id="zoom_in">
+                               <button class="btn zoom" id="zoom_in">
                                    <img src="/buttons/zoomIn.png">
                                    </button>
                                    <button class="btn1 zoom" id="zoom_out">
@@ -63,49 +73,64 @@
                                                        
                             <div> 
                                  <button class="btn1 float-right zoom">
-                                      <a class="float-right " href="{{asset($resource->fileLocation)}}"><img  src="/buttons/download.png"></a>
+                                      <a class="float-right " href="{{asset($resource->fileLocation)}}" id="downloadPdf" download><img  src="/buttons/download.png"></a>
                                  </button>
-                                        <button class="btn1 float-right zoom">
-                                 <a class="float-right " href="{{asset($resource->fileLocation)}}"><img  src="/buttons/full.png"></a>
-                                </button>   
+                                        <button class="btn1 float-right zoom" id="fullPdfDesktop">
+                                 <a class="float-right " href="{{asset($resource->fileLocation)}}" ><img  src="/buttons/full.png"></a>
+                                </button> 
+                                <button class="btn1 float-right zoom" id="fullPdfMobile">
+                                <img  src="/buttons/full.png">
+                                </button> 
                             </div>
-                        </div>
+                          </div>
 
                            <div id="canvas_container">
                             <canvas id="pdf-render"></canvas>
                           </div>
+                    </div>
                 @elseif($resource->media->name == "Video"||$resource->media->name == "video")
-                <div id="singleVideoContainer"> 
+                <div id="single-main-video " class=""> 
+
                     <video  class="card shadow-sm " id="singleVideo" src="{{asset($resource->fileLocation)}}" controls  autoplay ></video>
                 </div>
                   
                 @endif
 
                 </div>
-                <div class="row blackColor" id="views_uploadTime_1">
-                    <div class="col-7 col-md-7"   >
-                        <span class="date ml-3">{{$resource->view}} Views </span>
+                <div class="row mx-5" id="views_uploadTime_1">
+                    <div class="col-4 col-md-5"   >
+                        <span class="date ">{{$resource->view}} Views </span>
                     </div>
-                    <div class="col-5 col-md-5">
-                       <span class="date float-right mr-3">{{$resource->created_at->diffForHumans() }}</span>
+                    <div class="col-6 col-md-5">
+                          @if($resource->media->name !== "Document" )
+                             <button class="btn btn-small btn-primary" id="quiz">quiz</button>
+                          @endif
+                    </div>
+                    
+                    <div class="col-2 col-md-2">
+                       <span class="date float-right ">{{$resource->created_at->diffForHumans() }}</span>
                     </div>
                 </div>
               </div>
-              
-              <div class="col-lg-4 col-md-12 col-sm-12  " id="singleSideContainer"> 
-                  <div class="row blackColor pt-2" id="views_uploadTime_2">
-                    <div class="container-fluid"> 
-                  <div class="row"> 
-                     <div class="col-9 p-0">  
-                      {{$resource->view}} Views
-                     </div>
-                     <div class="col-3 p-0">  
-                      {{$resource->created_at->diffForHumans() }}
-                     </div>
-                  </div>
-              </div>  
+            
+              <div class="col-lg-4 col-md-12 col-sm-12" id="sidebar_div"> 
+              @if($resource->media->name == "Document" || $resource->media->name == "document")
+                <div id="single-side-pdf">
+                @elseif($resource->media->name == "Video"||$resource->media->name == "video")
+                <div id="single-side-video">
+                <div class="d-flex justify-content-between views_uploadTime_2" >
+                   
+                        <div >{{$resource->view}} Views </div>
+                        <div> 
+                            @if($resource->media->name !== "Document" )
+                                  <button class="btn btn-small btn-primary py-0 m-0" id="quiz2">quiz</button>
+                             @endif
+                        </div>
+                       <div>{{$resource->created_at->diffForHumans() }}</div>
+                    
                 </div>
-                    @if(count($resources)>0)
+                @endif
+                  @if(count($resources)>0)
                     <!-- <span class="icon-download text-info h1"></span> -->
                           <h4 class="mt-3 px-4"><strong>{{$type->name}}</strong></h4>
                             <div class="row px-4" > 
@@ -114,7 +139,7 @@
                                   <a href="{{url('user',[$resource1->id, $type->id])}}">
                                   <div class="col-md   shadow-sm mb-3 ">
                                     <div class="row ">
-                                       <div class="col-sm-12 col-md-12 p-0 text-truncate ">
+                                       <div class="col-sm-12 col-md-12 col-lg-7 p-0 text-truncate ">
                                            @if($resource1->media->name == "Document" )
                                             <img id="singlePdfScroll" src="{{asset($resource1->thumbnailLocation)}}" width="100% " height="150px" >
                                             @elseif($resource1->media->name == "Video"||$resource1->media->name == "video")
@@ -122,18 +147,18 @@
                                             @endif
                                        </div> 
                          
-                                       <div class="col-sm-12 col-md-12  blackColor flex-column p-2 bg-white"> 
+                                       <div class="col-sm-12 col-md-12 col-lg-5  blackColor flex-column p-2 bg-white" id="sidebarText"> 
                                        @if($resource1->unit_id=="" || $resource1->subunit_id=="" || $resource1->grade_id=="")
                                         <!-- <h5 class="card-title">{{$resource1->course->name}} </h5> -->
                                         <h6 class="card-text text-truncate">{{$resource1->description}} </h6>
-                                        <span class="date ">{{$resource1->view}} Views </span><span class="date float-right">{{$resource->created_at->diffForHumans() }}</span>
+                                        <div id="sidebarViewAndTime"><span class="date" >{{$resource1->view}} Views </span><span class="date float-right">{{$resource->created_at->diffForHumans() }}</span></div>
 
                                        
                                         @else
                                         <!-- <h5 class="card-title">G-{{$resource1->grade->name}} {{$resource1->course->name}}</h5> -->
                                         <h6 class="card-text mt-auto">Unit {{$resource1->unit->name}}- {{$resource1->unit->title}}</h6> 
                                         <h6 class="card-text">Sub-Unit {{$resource1->unit->name}}- {{$resource1->subunit->title}}</h6>
-                                        <span class="date mt-5">{{$resource1->view}} Views </span><span class="date float-right">{{$resource->created_at->diffForHumans() }}</span>
+                                        <div id="sidebarViewAndTime"><span class="date mt-5">{{$resource1->view}} Views </span><span class="date float-right">{{$resource->created_at->diffForHumans() }}</span></div>
 
                                         @endif
                                       </div>
@@ -145,33 +170,125 @@
                                 @endforeach
                          </div>    
                     @endif
+</div>
               </div>
           </div>  
       </div>
+      <a class="border rounded d-inline scroll-to-top" href="#page-top" id="page-top-button"><i class="fas fa-angle-up"></i></a>
+    <footer class="bg-white sticky-footer">
+    <div class="container my-auto">
+    <div class="text-center my-auto copyright fixed-bottom"><span>Copyright © MoE 2020</span></div>
     </div>
+    </footer>
+    </div>
+  
 <script src="/assets/js/jQuery3.5.1.js"> </script>
-@include('user.welcomeJs')
+
 @if($resource->media->name=="Document")
- <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
+ <script  src="http://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.943/pdf.min.js"></script>
+
  <script src="/assets/js/pdfView.js"></script>
 @endif
+<script>var countries = <?php echo json_encode($tag); ?>;</script>
+<!-- <script src="/assets/js/single.js"></script> -->
 <script>
-function likeJs() {
-  alert('like');
+  function selectId(id){
+    return document.getElementById(id);
+  }
+  var media=$('#content').val();
+ var like = 0;
+ var dislike = 0;
+ var file_id=document.getElementById("fileId").value;;
+ var likeButton=document.getElementById('likeButton');
+ likeButton.addEventListener("click",function(){
+  likeDislikeJs();
+ });
+function likeDislikeJs() {
+  var file_id = $('#fileId').val();
+  var buttonId=window.event.target.id;
+  var liked=$('#likeButton').hasClass('likeDislike');
+  var disliked=$('#dislikeButton').hasClass('likeDislike');
+ 
+ if (liked==false && disliked==false)
+ {
+    if(buttonId == 'likeButton')
+    {
+      $('#likeButton').addClass('likeDislike');
+       like=1;     
+     }
+     else if(buttonId == 'dislikeButton' )
+     {
+       $('#dislikeButton').addClass('likeDislike');
+        dislike=1;
+     }
+
+ }
+ else if (liked == true && disliked == false)
+ {
+    if(buttonId == 'likeButton')
+    {
+      $('#likeButton').removeClass('likeDislike');
+      like=-1;
+    }
+    else if(buttonId == 'dislikeButton')
+    {
+      $('#likeButton').removeClass('likeDislike');
+      like=-1;
+      $('#dislikeButton').addClass('likeDislike');
+        dislike=1;
+
+    }
+ }
+ else if(liked == false && disliked == true)
+ {
+  if(buttonId == 'likeButton')
+    {
+      $('#likeButton').addClass('likeDislike');
+       like=1;   
+      $('#dislikeButton').removeClass('likeDislike');  
+       dislike=-1;
+     }
+     else if(buttonId == 'dislikeButton')
+    {
+      $('#dislikeButton').removeClass('likeDislike');  
+       dislike=-1;     
+
+    }
+ }
+        $.ajax
+    ({
+            url:'/file/likeDislike',
+            method:'POST',
+            data:{ "_token": "{{ csrf_token() }}" , file_id:file_id, like:like, dislike:dislike },
+
+            success:function(response)
+              {
+                document.querySelector('#likeCount').textContent =(' '+response['like']);
+                document.querySelector('#dislikeCount').textContent =(' '+response['dislike']);
+                },
+             error: function(error)
+      {
+                  alert("Error!  ");
+      }
+    });
 }
 
-function dislikeJs() {
-  alert('dilike');
+</script>
+<script>
+ if (media=='document'|| media=='Document'){
+  var downloadPdf=document.getElementById('downloadPdf');
+  downloadPdf.addEventListener('click', function(){
+    download();
+  });
 }
 </script>
-
 
 <script>
 function download()
 {
 
-      var file_id = $('#fileId').val();
-      console.log(file_id);
+      file_id = $('#fileId').val();
+      
           $.ajax
           ({
                 url:'/file/download',
@@ -186,17 +303,18 @@ function download()
       {
                   alert("Error!  ");
       }
-    });
+    });   
   }
+
 </script>
 <script type='text/javascript'>
-  var media=$('#content').val();
+  
    if(media=="video" || media=="Video")
    {
     var type=$('#fileType').val();
-    document.getElementById('view').addEventListener('ended',myHandler,false);
+    document.getElementById('singleVideo').addEventListener('ended',myHandler,false);
     function myHandler(e) {
-        var file_id=document.getElementById("fileId").value;
+         
                $.ajax
                 ({
                         url:'/view',
@@ -217,6 +335,131 @@ function download()
 </script>
 
   <script>
+  if(media=='video'||media=='Video'){
+  var pos = 0, test, test_status, question, choice, choices, chA, chB, chC,chD, correct = 0;
+var questions = [];
+test = _("test");
+result_global = [];
+pos = 0;
+correct = 0; 
+
+function renderQuestion(result){
+  selectId('page-top-button').click();
+  result_global = result;
+  questions=result;
+  console.log(result_global);
+	if(pos >= questions.length){
+		test.innerHTML = "<h2 id='question'>You got "+correct+" of "+questions.length+" questions correct</h2>";
+		_("test_status").innerHTML = "Test Completed";
+	
+		return false;
+	}
+	_("test_status").innerHTML = "Question "+(pos+1)+" of "+questions.length;
+
+	question = questions[pos][0];
+	chA = questions[pos][1];
+	chB = questions[pos][2];
+	chC = questions[pos][3];
+  chD = questions[pos][4];
+  
+	test.innerHTML = "<h3>"+question+"</h3>";
+	test.innerHTML += "<input type='radio' name='choices' value='A'> "+chA+"<br>";
+	test.innerHTML += "<input type='radio' name='choices' value='B'> "+chB+"<br>";
+  if(chC && chD !== 'null'){
+	test.innerHTML += "<input type='radio' name='choices' value='C'> "+chC+"<br>";
+  test.innerHTML += "<input type='radio' name='choices' value='D'> "+chD+"<br><br>";
+  }
+ 
+	test.innerHTML += "<button onclick='checkAnswer()'>Submit Answer</button>";
+}
+function checkAnswer(){
+	choices = document.getElementsByName("choices");
+  
+	for(var i=0; i<choices.length; i++){
+		if(choices[i].checked){
+			choice = choices[i].value;
+      
+		}
+	}
+  console.log(choice+""+questions[pos][4]);
+	if(choice == questions[pos][5]){
+		correct++;
+	}
+ 
+	pos += 1;
+  
+	renderQuestion(result_global);
+}
+   function _(x){
+     return document.getElementById(x);
+   }
+   const quiz=_('quiz');
+   const quiz2=_('quiz2');
+   const singleDiv=_('singleDisplay');
+
+  quiz.addEventListener('click', function(){
+      quizRender();
+    });
+  quiz2.addEventListener('click', function(){
+     $('#singleDisplay').css('position','static');
+    quizRender();
+      
+      
+      $('.views_uploadTime_2').empty()
+      $('#sidebar_div').empty();
+      
+    });
+  function quizRender(){
+    $('#description_like_dislike').empty();
+    $('#singleViewDiv').empty();
+    $('#views_uploadTime_1').empty();
+    $('#views_uploadTime_2').empty();
+    test.style = "border:#000 2px solid; padding:10px 40px 40px 40px;";
+                $.ajax
+                ({
+                        url:'/quiz',
+                        method:'Get',
+                        data:{file_id:file_id},
+                        success:function(response)
+                        {
+                          var items = [{"fields": {"diameter": 23.0, "neighbourhood": "WEST END"}, "model": "hug.tree", "pk": 345}, {"fields": {"diameter": 14.0, "neighbourhood": "MOUNT PLEASANT"}, "model": "hug.tree", "pk": 484}];
+                         
+var i = 0, result = [];
+
+while(i < response.length){
+    result.push([])
+    for(var key in response[i]){
+        result[result.length-1].push(response[i][key])	;
+    }
+    i++
+}
+
+// console.log(result);
+// document.write(JSON.stringify(result, null, 4));
+renderQuestion(result);
+                        },
+                        error: function(error)
+                        {
+                              alert("Error!  ");
+                        }
+                });
    
+  
+}
+  }
     </script>
+<!-- <script>
+document.onreadystatechange = function () {
+  var state = document.readyState
+  if (state == 'interactive') {
+       document.getElementById('contents').style.visibility="hidden";
+  } else if (state == 'complete') {
+      setTimeout(function(){
+         document.getElementById('interactive');
+         document.getElementById('load').style.visibility="hidden";
+         document.getElementById('contents').style.visibility="visible";
+      },1000);
+  }
+}
+</script> -->
 @endsection

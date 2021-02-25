@@ -8,6 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <title>MoE</title>
   <link rel="icon" href="/assets/img/logom.png" >
@@ -20,6 +21,9 @@
 
   <!-- Custom styles for this template-->
   <link href="/css/admin/sb-admin.css" rel="stylesheet">
+
+  <!-- Css for admin -->
+  <link href="/assets/css/adminCss.css" rel="stylesheet">
 
   <!--CKEditor Plugin-->
   <script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
@@ -34,7 +38,7 @@
 
   <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-    <a class="navbar-brand mr-1" href="/">My Web App</a>
+    <a class="navbar-brand mr-1" href="/">EDSL</a>
 
     <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
       <i class="fas fa-bars"></i>
@@ -75,10 +79,20 @@
     <!-- Sidebar -->
     <ul class="sidebar navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="/">
+        <a class="nav-link" href="/admin">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span>
         </a>
+      </li>
+          <li class="nav-item">
+        <a class="nav-link" href="/dashboard">
+          <i class="fas fa-fw fa-upload"></i>
+          <span>Upload</span></a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" href="/posts">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Posts</span></a>
       </li>
       @can('isAdmin')
         <li class="nav-item">
@@ -94,23 +108,15 @@
             <span>Users</span></a>
         </li>
       @endcanany
-      <li class="nav-item">
-        <a class="nav-link" href="/posts">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Posts</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/dashboard">
-          <i class="fas fa-fw fa-upload"></i>
-          <span>Upload</span></a>
-      </li>
-      @role('manager,content-editor')
+     
+  
+      
       <li class="nav-item">
         <a class="nav-link" href="/posts">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Test</span></a>
       </li>
-      @endrole
+     
     </ul>
 
     <div id="content-wrapper">

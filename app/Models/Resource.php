@@ -42,6 +42,11 @@ class Resource extends Model
     	return $this->belongsTo('App\Models\Type');
     }
     
+    public function quizzes(){
+        return $this->hasMany('App\Models\Quiz')->select('question','chA','chB','chC','chD','ans');
+    }
+    
+    
 
 
 }

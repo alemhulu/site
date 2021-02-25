@@ -9,11 +9,13 @@ class Type extends Model
 {
     use HasFactory;
     public function resources(){
-    	return $this->hasMany('App\Models\Resource')->orderBy('created_at', 'desc');
+    	return $this->hasMany('App\Models\Resource')->inRandomOrder();
     }
     
-    public function allresources(){
-        return $this->hasMany('App\Models\Resource')->where('published',1)->orderBy('created_at', 'desc');
+    public function allresources($contentType){
+        
+        // return $this->hasMany('App\Models\Resource')->where('published',1)->orderBy('created_at', 'desc')->paginate( 4, ['*'], "ContentType".$contentType);
+        return $this->hasMany('App\Models\Resource')->orderBy('created_at', 'desc')->paginate( 4, ['*'], "ContentType".$contentType);
     }
 
     public function videoresources(){

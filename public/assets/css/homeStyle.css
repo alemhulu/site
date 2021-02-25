@@ -347,6 +347,9 @@ i:focus, i:active {
           width: 100%;
           height: auto;
       }
+      #searchForm{
+        display: none;
+      }
 
 }
 @media (max-width: 1000px)
@@ -387,7 +390,9 @@ i:focus, i:active {
           width: 100%;
           height: 50%;
       }
-
+       #searchForm1{
+        display: none;
+      }
   
 
 }
@@ -422,4 +427,17 @@ i:focus, i:active {
   padding: 0;
   margin: 0;
   width: 2rem;
+}
+/* pagination style */
+#alem{
+  margin-top :-200px !important;
+  border-radius: 5px !important;
+  padding : 10px !important;
+}
+
+/* page top  */
+#page-top-button{
+     position:absolute;
+     bottom:0;
+     right:0;
 }

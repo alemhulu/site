@@ -25,17 +25,17 @@
         </div> -->
 
           
-<div class="container" > 
+<div class="container-fluid py-2" > 
         <form id="addResourceForm" action="resources" method="POST" enctype="multipart/form-data">
             @csrf
 
-        <div class="container ">
+        
 
-            <div class="row  bg-light p-2 ">
-                <div class="col-md-10 mx-auto  shadow-sm">
-                    <div class="text-center" id="upload_space" ><h1 class=" mb-3 underline " style="font-size: 20px;">Upload Page</h1> </div>
-                    <div class="row" >
-                        <div class="col-md">
+            <div class="row bg-light">
+                <div class="col-md-12 mx-auto  shadow-sm">
+                    <div class="text-center" id="upload_space" ><h3 class=" m-3 underline ">Upload Page</h3> </div>
+                    <div class="row pt-3" >
+                        <div class="col-md align-self-center">
 
                             <div class="form-group row mb-2">
                                     <div class="col-2">
@@ -54,7 +54,7 @@
                                         </select> 
                                     </div>
                                     <div class="col-2">
-                                        <button type="button" class="btn dblue btn-small px-1 py-0"data-toggle="modal" data-target="#addGradeModal"><i class="fas fa-plus p-2 text-white"></i></button>
+                                        <button type="button" class="btn btn-primary btn-small px-1 py-0"data-toggle="modal" data-target="#addGradeModal"><i class="fas fa-plus p-2"></i></button>
                                     </div>
                                     
                              </div>
@@ -75,7 +75,7 @@
                                        </select>
                                     </div>
                                     <div class="col-2">
-                                        <button type="button" class="btn dblue btn-small px-1 py-0" id="courseButton" data-toggle="modal" data-target="#addCourseModal"><i class="fas fa-plus p-2 text-white"></i></button>
+                                        <button type="button" class="btn btn-primary btn-small px-1 py-0" id="courseButton" data-toggle="modal" data-target="#addCourseModal"><i class="fas fa-plus p-2"></i></button>
                                     </div>
                             </div>
                              <div class="form-group row mb-2">
@@ -88,7 +88,7 @@
                                         </select>
                                     </div>
                                     <div class="col-2">
-                                        <button type="button" class="btn dblue btn-small px-1 py-0  "data-toggle="modal" data-target="#addUnitModal"><i class="fas fa-plus p-2 text-white"></i></button>
+                                        <button type="button" class="btn btn-primary btn-small px-1 py-0  "data-toggle="modal" data-target="#addUnitModal"><i class="fas fa-plus p-2"></i></button>
                                     </div>
                             </div>
                             <div class="form-group row mb-2">
@@ -100,9 +100,33 @@
                                           </select> 
                                     </div>
                                     <div class="col-2">
-                                        <button type="button" class="btn dblue btn-small px-1 py-0"data-toggle="modal" data-target="#addSubUnitModal"><i class="fas fa-plus p-2 text-white"></i></button>
+                                        <button type="button" class="btn btn-primary btn-small px-1 py-0"data-toggle="modal" data-target="#addSubUnitModal"><i class="fas fa-plus p-2"></i></button>
                                     </div>
                             </div>
+                            <!-- <div class="form-group row mb-2">
+                                     <div class="col-2">
+                                          <strong><label class="float-left">Content Type</label></strong>
+                                    </div>
+                                     <div class="col-8">
+                                         <select class="form-control" for="type_id" name="type_id" id="typeChange">
+                               
+                                               @if(count($types)>0){
+                                                 <option value="0"disabled selected>--Choose--</option>
+                                                @foreach($types as $type)
+                                                <option value="{{$type->id}}"> {{$type->name}} </option>
+                                                @endforeach     
+                                                   } 
+                                              @else
+                                               <option value="0"> Add Content Type </option>
+                                               @endif   
+                                        </select> 
+                                    </div>
+                                    <div class="col-2">
+                                       <button type="button" class="btn btn-primary btn-small px-1 py-0"data-toggle="modal" data-target="#addTypeModal"><i class="fas fa-plus p-2"></i></button>
+                                    </div>
+                            </div> -->
+
+
                         </div>
                         <div class="col-md">
 
@@ -125,7 +149,7 @@
                                         </select> 
                                     </div>
                                     <div class="col-2">
-                                       <button type="button" class="btn dblue btn-small px-1 py-0"data-toggle="modal" data-target="#addTypeModal"><i class="fas fa-plus p-2 text-white"></i></button>
+                                       <button type="button" class="btn btn-primary btn-small px-1 py-0"data-toggle="modal" data-target="#addTypeModal"><i class="fas fa-plus p-2"></i></button>
                                     </div>
                             </div>
                              <div class="form-group row mb-2">
@@ -146,9 +170,10 @@
                                       </select>   
                                     </div>
                                     <div class="col-2">
-                                       <button type="button" class="btn dblue btn-small px-1 py-0"data-toggle="modal" data-target="#addMediaModal"><i class="fas fa-plus p-2 text-white"></i></button>
+                                       <button type="button" class="btn btn-primary btn-small px-1 py-0"data-toggle="modal" data-target="#addMediaModal"><i class="fas fa-plus p-2"></i></button>
                                     </div>
                              </div>
+
                              <div class="form-group row mb-2">
                                   <div class="col-3">
                                             <strong><label class="float-left">Tag</label></strong>
@@ -166,22 +191,40 @@
                                             <textarea class="form-control @error ('description') alert alert-warning @enderror" id="description" name="description"></textarea> 
                                     </div>
                             </div>
+                            <!-- Link Idetification View -->
+                            <div class="form-group row mb-2">
+                                    
+                                    <div class="col-3">
+                                           <strong><label >Source</label></strong>
+                                    </div> 
+                                    <div class="col-7">
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                          <input type="radio" id="link1" name="link" class="custom-control-input" checked value="0">
+                                          <label class="custom-control-label font-weight-bold" for="link1">Enternal</label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                          <input type="radio" id="link2" name="link" class="custom-control-input" value="1">
+                                          <label class="custom-control-label text-warning font-weight-bold" for="link2">External</label>
+                                        </div>
+                                    </div>
+                            </div>                            
+
                         </div>
 
                     </div>
                             
                              
 
-                              <h4>  <strong ><label>Upload File</label></strong></h4>
+                              <h4 class="mt-5">  <strong ><label>Upload File</label></strong></h4>
                                 <div class="input-group">
                                     <div class="input-group-append">
-                                       <button class="btn dblue" type="button" id="button-file">Upload</button>
+                                       <button class="btn btn-primary" type="button" id="button-file">Upload</button>
                                     </div>
                                    <input type="text" id="fileLocation" class="form-control" name="fileLocation" placeholder="File Location">
                             </div>
                                <h4 class="mt-4">  <strong ><label>Select Thumbnail</label></strong></h4>
                             <div class="input-group">
-                                    <button class="btn dblue" type="button" id="button-thumbnail">Select</button>
+                                    <button class="btn btn-primary" type="button" id="button-thumbnail">Select</button>
                                     <input type="text" id="thumbnailLocation" class="form-control" name="thumbnailLocation" placeholder="Thumbnail Location">
                             </div>
                            
@@ -190,11 +233,11 @@
                              <div class="flex items-center justify-end ">
                                  
 
-                                     <input type="Submit" class="btn float-right mt-2" value="Create" style="background-color:rgb(31,72,162);">
+                                     <input type="Submit" class="btn float-right mt-2 text-white" value="Create" style="background-color:rgb(31,72,162);">
                             </div>
                     </div>
              </div>
-        </div>
+        
     </form>  
     </div>
  
@@ -225,7 +268,7 @@
              </div> 
              <div class="modal-footer">
                 <button type="button" class="btn lblue" data-dismiss="modal">Close</button>
-                <button type="button" id="grade" class="btn dblue">Create</button>
+                <button type="button" id="grade" class="btn btn-primary">Create</button>
             </div>
         </form>
       </div>
@@ -259,7 +302,7 @@
               </div> 
               <div class="modal-footer">
                     <button type="button" class="btn lblue" data-dismiss="modal">Close</button>
-                    <button type="button" id="course" class="btn dblue">Create</button>
+                    <button type="button" id="course" class="btn btn-primary">Create</button>
              </div>
            </form>
       </div>
@@ -299,7 +342,7 @@
               </div> 
               <div class="modal-footer">
                     <button type="button" class="btn lblue" data-dismiss="modal">Close</button>
-                    <button type="button" id="unit" class="btn dblue ">Create</button>
+                    <button type="button" id="unit" class="btn btn-primary ">Create</button>
              </div>
            </div>
         </form>
@@ -340,7 +383,7 @@
               </div> 
               <div class="modal-footer">
                     <button type="button" class="btn lblue" data-dismiss="modal">Close</button>
-                    <button type="button" id="subunit" class="btn dblue">Create</button>
+                    <button type="button" id="subunit" class="btn btn-primary">Create</button>
              </div>
            </div>
         </form>
@@ -377,7 +420,7 @@
 
               <div class="modal-footer mt-0">
                     <button type="button" class="btn lblue" data-dismiss="modal">Close</button>
-                    <button type="button" id="type" class="btn dblue">Create</button>
+                    <button type="button" id="type" class="btn btn-primary">Create</button>
                   </div>
              </div>
            </form> 
@@ -416,7 +459,7 @@
               
               <div class="modal-footer mt-0 sticky-footer">
                     <button type="button" class="btn lblue" data-dismiss="modal">Close</button>
-                    <button type="button" id="media" class="btn dblue">Create</button>
+                    <button type="button" id="media" class="btn btn-primary">Create</button>
                   </div>
 
            </form> 
@@ -429,42 +472,11 @@
   <!-- Bootstrap core JavaScript -->
     <script src="/vendor/jquery/jquery.min.js"></script>
     <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Custom scripts for this template -->
-    <script src="js/clean-blog.min.js"></script>
 <script src="/assets/js/jQuery3.5.1.js"></script>
           <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.6.0/dist/alpine.js" defer></script>
         <script src="{{ asset('vendor/file-manager/js/file-manager.js') }}"></script>
+        <script src="/assets/js/uploadJs.js"></script>
 
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-
-    document.getElementById('button-file').addEventListener('click', (event) => {
-      event.preventDefault();
-
-      inputId = 'fileLocation';
-
-      window.open('/file-manager/fm-button', 'fm', 'width=1400,height=800');
-    });
-
-    // second button
-    document.getElementById('button-thumbnail').addEventListener('click', (event) => {
-      event.preventDefault();
-
-      inputId = 'thumbnailLocation';
-
-      window.open('/file-manager/fm-button', 'fm', 'width=1400,height=800');
-    });
-  });
-
-  // input
-  let inputId = '';
-
-  // set file link
-  function fmSetLink($url) {
-    document.getElementById(inputId).value = $url;
-  }
-</script>
 @endsection
    
 

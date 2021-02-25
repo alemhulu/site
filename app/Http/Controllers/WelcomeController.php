@@ -84,15 +84,38 @@ class WelcomeController extends Controller
                 array_push($tag, $tags);
         }
     $tag = array_values(array_unique($tag));
-//  $tag = [];
+  //  $tag = [];
 
+            $types=Type::orderBy('name','desc')->get();
+          
+            $paginatedResources = [];
+            foreach($types as $type){
+                $paginatedResources[$type->id] = ($type->allresources($type->id));
+            }
+            
+            // return $paginatedResources;
 
-            $types = Type::orderBy('created_at','asc')->get();
+            $types = Type::orderBy('created_at','asc')->paginate(3,['*'],'types');
+            $types2 = Type::orderBy('name','asc')->get();
             $units=Unit::orderBy('title','asc')->get();
             $subunits=Subunit::orderBy('title','asc')->get();
             $medias=Media::orderBy('name','asc')->get();
-            return view('user.welcome2',compact('grades','courses','types', 'resources','medias','units','subunits','tag'));
-        }
+            return view('user.welcome2',compact('grades','courses','types', 'resources','medias','units','subunits','tag','paginatedResources','types2'));
+}
+
+    // // pagination function
+    // function fetch_data(Request $request){
+       
+    //          $types=Type::orderBy('name','desc')->get();
+          
+    //         $paginatedResources = [];
+    //         foreach($types as $type){
+    //             $paginatedResources[$type->id] = ($type->allresources($type->id));
+    //         }
+    //         return view ('user.paginateResource',compact('types','paginatedResources'));
+
+        
+    // }
 
         /**
       * Show the form for creating a new resource.
@@ -126,12 +149,79 @@ class WelcomeController extends Controller
          $resource=Resource::find($request->file_id);
     $resource->increment('view', 1); 
       }
-public function show( $id,$type)
-    {   $resource=Resource::find($id);
-    if($resource->media->name=="Document" || $resource->media->name=="document")
-    {
-        $resource->increment('view', 1);
-    }
+    
+       /**
+        * show from the database.
+        *
+        * @param  \Illuminate\Http\Request  $request
+        * @return \Illuminate\Http\Response
+        */
+    public function show( $id,$type)
+    {   
+        $tag = [];
+                $grades=Grade::orderBy('name','asc')->get();
+            // $courses = Course::select('name')->distinct()->get();
+        $courses = Course::where('grade_id',null)->orderBy('name','asc')->get();
+        //$courses=Course::all();
+            $resources=Resource::orderBy('created_at','asc')->where('published',1)->get();
+        $resources0=Resource::where('published',1)->groupBy('tag')->pluck('tag');
+        $resources1=Grade::pluck('name');
+        $resources2=Course::groupBy('name')->pluck('name');
+        $resources3=Unit::groupBy('title')->pluck('title');
+        $resources4=Subunit::groupBy('title')->pluck('title');
+        $resources5=Media::groupBy('name')->pluck('name');
+        $resources6=Type::groupBy('name')->pluck('name');
+        $resources7=Resource::where('published',1)->groupBy('description')->pluck('description');
+         foreach($resources0 as $tags)
+        {
+            if($tags!=null)
+                array_push($tag, $tags);
+        }
+     foreach($resources1 as $tags)
+        {
+        $tags=(string)$tags;
+                array_push($tag, $tags);
+        }
+     foreach($resources2 as $tags)
+        {
+        if($tags!=null)
+                array_push($tag, $tags);
+        }
+     foreach($resources3 as $tags)
+        {
+        if($tags!=null)
+                array_push($tag, $tags);
+        }
+     foreach($resources4 as $tags)
+        {
+        if($tags!=null)
+                array_push($tag, $tags);
+        }
+     foreach($resources4 as $tags)
+        {
+        if($tags!=null)
+                array_push($tag, $tags);
+        }
+     foreach($resources5 as $tags)
+        {
+        if($tags!=null)
+                array_push($tag, $tags);
+        }
+     foreach($resources6 as $tags)
+        {
+        if($tags!=null)
+                array_push($tag, $tags);
+        }
+     foreach($resources7 as $tags)
+        {
+        if($tags!=null)
+                array_push($tag, $tags);
+        }
+    $tag = array_values(array_unique($tag));
+        $resource=Resource::find($id);
+        if($resource->media->name=="Document" || $resource->media->name=="document"){
+             $resource->increment('view', 1);
+        }
 
         $type = Type::find($type);
         $resources = $type->resources->except($id);
@@ -368,6 +458,51 @@ public function download(Request $request)
     return $resource->download;
 
 }
+
+// like function
+public function likeDislike(Request $request)
+{
+   
+
+    $like=$request->like;
+    $dislike=$request->dislike;
+    $resource=Resource::find($request->file_id);
+
+    if($like!=0)
+    {
+        if($like==-1)
+        {
+            $resource->decrement('like',1);
+        }
+        elseif ($like==1)
+         {
+            $resource->increment('like',1);
+        }
+    }
+    
+    if($dislike!=0)
+    {
+        if($dislike==-1)
+        {
+            $resource->decrement('deslike',1);
+        }
+         elseif ($dislike==1)
+         {
+            
+           $resource->increment('deslike',1);
+        }
+    }
+    $like=$resource->like;
+    $dislike=$resource->deslike;
+
+    return response()->json([  'like' => $like, 'dislike' => $dislike]);
+     
+
+
+}
+
+
+// tag
 public function tag(Request $request)
 {
     $tag=Resource::where("tag","LIKE","%{$request->input('query')}%")

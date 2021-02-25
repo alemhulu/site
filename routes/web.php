@@ -17,7 +17,7 @@ use App\Http\Controllers\PostsController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\WelcomeController;
-
+use App\Http\Controllers\QuizController;
 
 
 /*
@@ -79,6 +79,15 @@ Route::post('/posts', [PostsController::class, 'store']);
 Route::get('/posts/{post}/edit', [PostsController::class, 'edit']);
 Route::patch('/posts/{post}', [PostsController::class, 'update']);
 Route::delete('/posts/{post}', [PostsController::class, 'destroy']);
+
+//----------------------------------------------------------------------------------------------------------------------
+Route::get('/quiz', [QuizController::class, 'index']);
+Route::get('/Quize/create', [QuizeController::class, 'create']);
+Route::get('/Quize/{post}', [QuizeController::class, 'show']);
+Route::post('/addquiz', [QuizController::class, 'store']);
+Route::get('/Quize/{post}/edit', [QuizeController::class, 'edit']);
+Route::patch('/Quize/{post}', [QuizeController::class, 'update']);
+Route::delete('/Quize/{post}', [QuizeController::class, 'destroy']);
 //-----------------------------------------------------------------------------------------------------------------------------
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -89,6 +98,9 @@ Route::get('/view',[WelcomeController::class, 'view'])->name('view');
 Route::get('/search',[WelcomeController::class, 'search'])->name('search');
 Route::POST('/moeuser',[WelcomeController::class, 'moeuser'])->name('moeuser');
 Route::POST('/file/download',[WelcomeController::class, 'download'])->name('download');
+Route::POST('/file/likeDislike',[WelcomeController::class, 'likeDislike'])->name('likeDislike');
+Route::get('/pagination',[WelcomeController::class,'fetch_data']);
+
 Route::apiResources([
 
    

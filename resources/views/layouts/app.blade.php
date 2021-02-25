@@ -20,6 +20,8 @@
   <!-- Bootstrap core CSS -->
   <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+
   <!-- Custom fonts for this template -->
   <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
@@ -50,40 +52,14 @@
     <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Custom scripts for this template -->
-    <script src="js/clean-blog.min.js"></script>
-<script src="/assets/js/jQuery3.5.1.js"></script>
-          <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.6.0/dist/alpine.js" defer></script>
-        <script src="{{ asset('vendor/file-manager/js/file-manager.js') }}"></script>
+    <!-- <script src="js/clean-blog.min.js"></script> -->
+<!-- <script src="/assets/js/jQuery3.5.1.js"></script> -->
+<script src="/assets/js/popper.min.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+          <!-- <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.6.0/dist/alpine.js" defer></script>
+        <script src="{{ asset('vendor/file-manager/js/file-manager.js') }}"></script> -->
 
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
 
-    document.getElementById('button-file').addEventListener('click', (event) => {
-      event.preventDefault();
-
-      inputId = 'fileLocation';
-
-      window.open('/file-manager/fm-button', 'fm', 'width=1400,height=800');
-    });
-
-    // second button
-    document.getElementById('button-thumbnail').addEventListener('click', (event) => {
-      event.preventDefault();
-
-      inputId = 'thumbnailLocation';
-
-      window.open('/file-manager/fm-button', 'fm', 'width=1400,height=800');
-    });
-  });
-
-  // input
-  let inputId = '';
-
-  // set file link
-  function fmSetLink($url) {
-    document.getElementById(inputId).value = $url;
-  }
-</script>
 </body>
 
 </html>

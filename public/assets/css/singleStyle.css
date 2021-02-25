@@ -180,7 +180,7 @@ body label{
 }
 .sidenav {
    display:none;
-   height: 100%;
+   height: 100%; 
    
    position: fixed;
    z-index: 1;
@@ -283,17 +283,18 @@ i:focus, i:active {
    display: none;
 }*/
 /* Button */
-#canvas_container {
-          width: 100%;
-          height: 40%;
-          overflow: auto;
-      }
- 
-      #canvas_container {
-        background: #333;
-        text-align: center;
-        border: solid 2px;
-      }
+#canvas_container
+{
+      width: 100%;
+      height: 40%;
+      overflow: auto;
+}
+ #canvas_container 
+ {
+    background: #333;
+    text-align: center;
+    border: solid 2px;
+  }
   #navigation_controls
   {
     margin-top: -7%;
@@ -303,38 +304,56 @@ i:focus, i:active {
  {
   color:white !important ;
  }
+ #navPdfFull
+ {
+   display: none;
+ }
   #wrapper
   {
-    margin-left: 3%;
-    margin-right: 3%;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
   }
-  #views_uploadTime_2
-      {
-        display: none;
-      }
+
+
 .likeDislike
 {
- background-color:white; 
- border:none;
- color:gray;
- font-size: 20px;
- margin-top:5%;
+ color:rgb(60,143,194)!important; 
 }
-#singleVideoContainer
+/* #single-main-video
 {
     width: 960px;
     height: 540px;
     border: none;
     
-}
+} */
 #singleVideo
 {
   width: 100%;
-  max-height: 100%;
+  max-height: 540px;
+  /* min-height:540px; */
   background-color: #3c3c3c;
+  
+}
+#singleMainContainer
+{
+  padding: 0;
+  margin-top: 0;
+
+}
+#views_uploadTime_2
+{
+  display: none !important;
 }
 @media (min-width: 1080px)
 {
+      #fullPdfMobile
+      {
+        display: none;
+      }
+      #fullPdfDesktop
+      {
+        display: block;
+      }
       #navbarSupportedContent
       {
         display:block !important;
@@ -375,10 +394,27 @@ i:focus, i:active {
           width: 100%;
           height: auto;
       }
+      #singleViewDiv{
+        margin: 0 35px 0 35px;
+      }
+      #sidebarViewAndTime{
+  position:absolute;
+  bottom:1em;
+  left:1em;
+  right:1em;
+}
 
 }
 @media (max-width: 1080px)
 {
+  #fullPdfMobile
+  {
+    display: block;
+  }
+  #fullPdfDesktop
+  {
+    display: none;
+  }
     #canvas_container {
           width: 100%;
           height: 400px;
@@ -416,53 +452,57 @@ i:focus, i:active {
           height: 50%;
       }
   }
-  @media(max-width:1000px)
-  {
+@media(max-width:1000px)
+{
     #wrapper
     {
       margin-left:0;
       margin-right: 0; 
     }
-      #views_uploadTime_2
+    
+   
+      #singleDisplay
       {
-        display: none;
+        padding: 0;
       }
-
-  }
-  @media(max-width: 770px)
-  {
+}
+@media(max-width: 770px)
+{
     #description_like_dislike
     {
       display: none;
     }
-    #singleMainContainer
-    {
-      padding: 0;
-      margin: 0;
-    }
    
-      #views_uploadTime_2
-      {
-        display: none!important;
+    #canvas_container {
+          width: 100%;
+          height: 380px;
+          overflow: auto;
       }
-        #singleVideoContainer
-      {
-         width: 100%;
-         height: 400px;
-          border: none;
-          margin: 0;
-          padding: 0;
-      }
-     
+   #singleSideContainer
+   {
+      margin-top: 400px;
+   }
+ 
+  
+    #singleVideoContainer
+  {
+      width: 100%;
+      height: 400px;
+      border: none;
+      margin: 0;
+      padding: 0;
   }
+}
 @media (max-width:770px) and (min-width:765px) 
 {
+
           #singleDisplay
       {
           position: fixed;
           z-index: 1;
           top: 0%;
           width: 100%;
+          height: 430px;
           margin: 0;
           padding: 0;
           overflow-x: hidden;
@@ -478,10 +518,33 @@ i:focus, i:active {
          height: 430px;
           border: none;
       }
+      #single-side-video{
+        margin-top: 43%;
+        padding-top: 1px;
+
+      }
+      #singleVideo
+      {
+        width: 100%;
+        max-height: 310px;
+        margin-top: 10%;
+        /* min-height:540px; */
+        background-color: #3c3c3c;
+        
+      }
+      
   
 }
-    @media(max-width: 500px)
+@media (min-width:500px)
+{
+  .views_uploadTime_2
   {
+    display: none !important;
+  }
+}
+@media(max-width: 500px)
+{
+
           #singleDisplay
       {
           position: fixed;
@@ -492,9 +555,17 @@ i:focus, i:active {
           padding: 0;
           overflow-x: hidden;
       }
-      #singleSideContainer
+      #single-side-video
       {
         margin-top: 52%;
+      }
+      #single-side-pdf
+      {
+        margin-top: 120%;
+      }
+      #singleSideContainer
+      {
+        margin-top: 95%;
         
       }
       #views_uploadTime_1
@@ -505,6 +576,7 @@ i:focus, i:active {
       {
         display: block !important;
       }
+     
       #navPdf
       {
         margin-top: 3%;
@@ -515,7 +587,18 @@ i:focus, i:active {
          height: 200px;
           border: none;
       }
-  }
+            #singleViewDiv{
+              margin: 0;
+            }
+            #singleVideo
+            {
+              width: 100%;
+              max-height: 200px;
+              /* min-height:540px; */
+              background-color: #3c3c3c;
+              
+            }
+}
 .top-bar {
   background: #333;
   color: #fff;
@@ -546,5 +629,38 @@ i:focus, i:active {
 {
   padding: 0;
   margin: 0;
-  width: 2rem;
+  width: 3rem;
 }
+.page-info
+{
+  color:white !important;
+  font-size: 3px;
+}
+/* css for quiz */
+/* single page style */
+#load{
+  width:100%;
+  height:100%;
+  position:fixed;
+  z-index:9999;
+  background:url("/assets/img/lodding.gif") no-repeat center center rgba(0,0,0,0.25)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        

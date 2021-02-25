@@ -15,12 +15,12 @@
 
   <div class="collapse navbar-collapse self-align-center mx-auto" id="navbarSupportedContent">  
     <div class="d-flex justify-content-between ml-5">
-      <form class="form  justify-content-start  " id="searchForm" style="width: 80%;">
-                            <div class="input-group col" ><input class="bg-light form-control border-0 small shadow-sm px-2"  type="text" placeholder="Search for ..." id="myInput" autocomplete="off" type="text" >
+      <form class="form  justify-content-start  " id="searchForm1" style="width: 80%;">
+                            <div class="input-group col" ><input class="bg-light form-control border-0 small shadow-sm px-2"  type="text" placeholder="Search for ..." id="myInput1" autocomplete="off" type="text" >
                             <div class="input-group-append"><button class="btn btn-outline py-0 shadow-sm zoom" type="submit" ><i class="fas fa-search"></i></button></div>
                             </div>
                </form>
-        <ul class="nav navbar-nav text-capitalize shadow-nav justify-content-end">
+        <ul class="nav navbar-nav text-capitalize shadow-nav justify-content-end float-right">
         
   
                    @if (Route::has('login'))

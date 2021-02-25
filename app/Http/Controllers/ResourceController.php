@@ -44,6 +44,7 @@ class ResourceController extends Controller
 	    'course_id'=> 'required',
             'fileLocation'=> 'required',
             'thumbnailLocation'=> 'required',
+            'link'=> 'required',
              'media_id'=> 'required',
             'type_id'=> 'required',
             'tag'=> 'required',
@@ -58,6 +59,7 @@ class ResourceController extends Controller
         $user_id            = Auth::user()->id;
         $resource->fileLocation  = request('fileLocation');
         $resource->thumbnailLocation = request('thumbnailLocation');
+        $resource->link = request('link');
         if(request('grade_id')!=0)
         $resource ->grade_id = request('grade_id');
         if(request('course_id')!=0)
@@ -82,10 +84,20 @@ class ResourceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, Post $post)
     {
-        //
+        if (\Request::ajax()){
+
+            $post = Resource::find($request['task']['id']);
+            $post->published = $request['task']['checked'];
+            $post->save();
+
+            return $request;
+        }
+
+        return view('admin.posts.show', ['post'=>$post]);
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -93,11 +105,16 @@ class ResourceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
-    }
+        $this->authorize('edit', $post);
 
+        //get the post with the id $post->idate
+        $post = Resource::find($post->id);
+
+        // return view
+        return view('admin/posts/edit', ['post' => $post]);
+    }
     /**
      * Update the specified resource in storage.
      *
