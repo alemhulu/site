@@ -1,0 +1,47 @@
+ .yellow{
+      background: rgb(248,190,21);
+      color: white;
+   }
+   .red{
+      background: rgb(209,80,62);
+      color: white;
+   }
+   .lblue{
+      background: rgb(60,143,194);
+      color: white;
+   }
+   .dblue{
+      background: rgb(31,72,162);
+      color: white;
+   }
+.blackColor{
+   color: black;
+}
+.yellowColor{
+   color:rgb(248,190,21) ;
+}
+.moe2{
+   background: rgb(209,80,62);
+   color: white;
+}
+.redColor{
+   color:  rgb(209,80,62);
+}
+.moe3{
+   background: rgb(60,143,194);
+   color: white;
+}
+.lblueColor{
+   color: rgb(60,143,194) !important;
+}
+.moe4{
+   background: rgb(31,72,162);
+   color: white;
+}
+.dblueColor{
+   color: rgb(31,72,162) ;
+}
+#logo1 {
+  vertical-align: middle;
+  max-height: 60px;
+  margin-top: 25px;
