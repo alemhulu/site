@@ -305,7 +305,7 @@ i:focus, i:active {
     margin-right: 3%;
   }
 
-@media (min-width: 1100px)
+@media (min-width: 993px)
 {
       #navbarSupportedContent
       {
@@ -350,9 +350,13 @@ i:focus, i:active {
       #searchForm{
         display: none;
       }
+      .formul{
+        display: flex;
+        justify-content: space-around;
+      }
 
 }
-@media (max-width: 1000px)
+@media (max-width: 993px)
 {
     #canvas_container {
           width: 100%;
