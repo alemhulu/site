@@ -350,7 +350,7 @@ i:focus, i:active {
       #searchForm{
         display: none;
       }
-      .formul{
+      .nav-form-ul{
         display: flex;
         justify-content: space-around;
       }
@@ -444,4 +444,18 @@ i:focus, i:active {
      position:absolute;
      bottom:0;
      right:0;
+}
+/* Nav bar margin top */
+#searchForm1{
+  width: 75%; 
+  margin-top:5px;
+}
+/* brand styles */
+.brandEnglish{
+  font-size: 13px;
+  font-family: sans-serif Gotham;
+}
+.brandAmharic{
+  font-size: 16px;
+  font-family: sans-serif, Noto sans Ethiopic !important;
 }

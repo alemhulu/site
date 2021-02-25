@@ -5,15 +5,15 @@
                   style="width: 3.7rem;">
       </a>
       <a class="navbar-brand text-center text-secondary" href="{{url('/')}}" >
-          <span  class="d-block text" style="font-size: 16px;font-family: sans-serif, Noto sans Ethiopic !important;" >ትምህርት ሚኒስቴር</span> 
-          <span class="d-block text" style="font-size: 13px;font-family: sans-serif Gotham ;">Ethiopian Schools Digital Library</span> 
+          <span  class="d-block brandAmharic" >ትምህርት ሚኒስቴር</span> 
+          <span class="d-block brandEnglish" >Ethiopian Schools Digital Library</span> 
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" id="collapseButton">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">  
-          <div class="formul">
-              <form class="form" id="searchForm1" style="width: 75%;">
+          <div class="nav-form-ul">
+              <form class="form" id="searchForm1" >
                   <div class="input-group col" ><input class="bg-light form-control border-0 small shadow-sm px-2"  type="text" placeholder="Search for ..." id="myInput1" autocomplete="off" type="text" >
                       <div class="input-group-append"><button class="btn btn-outline py-0 shadow-sm zoom" type="submit" ><i class="fas fa-search"></i></button>
                       </div>
