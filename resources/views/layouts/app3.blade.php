@@ -13,8 +13,8 @@
     <link rel="icon" href="/assets/img/logom.png">
     @yield('singleStyle')
 </head>
-<body style="overflow-x:hidden;" id="body" >
-      
+<body style="overflow-x:hidden;" >
+    
        @include('inc.nav')
        
         
