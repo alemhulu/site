@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Type extends Model
 {
     use HasFactory;
-    public function resources(){
-    	return $this->hasMany('App\Models\Resource')->inRandomOrder();
+    public function resourcesPaginated($id){
+    	return $this->hasMany('App\Models\Resource')->inRandomOrder()->paginate(3);
     }
     
     public function allresources($contentType){

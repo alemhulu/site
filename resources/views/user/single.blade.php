@@ -130,11 +130,11 @@
                     
                 </div>
                 @endif
-                  @if(count($resources)>0)
+                  @if(count($paginatedResources)>0)
                     <!-- <span class="icon-download text-info h1"></span> -->
                           <h4 class="mt-3 px-4"><strong>{{$type->name}}</strong></h4>
                             <div class="row px-4" > 
-                                @foreach($resources as $resource1)
+                                @foreach($paginatedResources as $resource1)
                                 <div class="col-lg-12 col-md-6 col-sm-6 ">
                                   <a href="{{url('user',[$resource1->id, $type->id])}}">
                                   <div class="col-md   shadow-sm mb-3 ">
@@ -171,6 +171,7 @@
                          </div>    
                     @endif
 </div>
+<div class="mt-5">{{$paginatedResources->links()}}</div>
               </div>
           </div>  
       </div>

@@ -224,10 +224,12 @@ class WelcomeController extends Controller
         }
 
         $type = Type::find($type);
-        $resources = $type->resources->except($id);
+       
+        $paginatedResources = $type->resourcesPaginated($id);
+        
         $tag=Resource::groupBy('tag')->pluck('tag');
 
-        return view('user.single',compact('resources','type','resource','tag'));
+        return view('user.single',compact('paginatedResources','type','resource','tag'));
     }
 
     /**
