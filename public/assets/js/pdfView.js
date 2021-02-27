@@ -6,7 +6,7 @@ var x = window.matchMedia("(max-width: 500px)")
             zoom: 1
         }
 if (x.matches) { // If media query matches
-    myState.zoom = .5;
+    myState.zoom = .6;
 } else {
     myState.zoom = 1;
 }
