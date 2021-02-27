@@ -1,11 +1,16 @@
  var url =$('#path').val();
-
+var x = window.matchMedia("(max-width: 500px)")
  var myState = {
             pdf: null,
             currentPage: 1,
-            zoom: .6
+            zoom: 1
         }
-      
+if (x.matches) { // If media query matches
+    myState.zoom = .5;
+} else {
+    myState.zoom = 1;
+}
+
         pdfjsLib.getDocument(url).then((pdf) => {
       
             myState.pdf = pdf;
@@ -119,7 +124,7 @@ function fullMobile()
             }
           }
           
-          var x = window.matchMedia("(max-width: 400px)")
+          
           myFunction(x) // Call listener function at run time
           x.addListener(myFunction) // Attach listener function on state changes
 
