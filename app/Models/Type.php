@@ -9,7 +9,7 @@ class Type extends Model
 {
     use HasFactory;
     public function resourcesPaginated($id){
-    	return $this->hasMany('App\Models\Resource')->inRandomOrder()->paginate(3);
+    	return $this->hasMany('App\Models\Resource')->inRandomOrder()->paginate(4);
     }
     
     public function allresources($contentType){

@@ -171,11 +171,14 @@
                          </div>    
                     @endif
 </div>
-<div class="mt-5">{{$paginatedResources->links()}}</div>
+
               </div>
+              
           </div>  
+          
       </div>
-      <a class="border rounded d-inline scroll-to-top" href="#page-top" id="page-top-button"><i class="fas fa-angle-up"></i></a>
+      <div class="mt-5">{{$paginatedResources->links('user.singlePaginate')}}</div>
+      <!-- <a class="border rounded d-inline scroll-to-top" href="#page-top" id="page-top-button"><i class="fas fa-angle-down"></i></a> -->
     <footer class="bg-white sticky-footer">
     <div class="container my-auto">
     <div class="text-center my-auto copyright fixed-bottom"><span>Copyright © MoE 2020</span></div>
