@@ -4,6 +4,8 @@
 <head>
 
   <meta charset="utf-8">
+   <meta name="MoE" content="Ministry of Education">
+  <meta name="author" content="Alemhulu AWekelgne">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
