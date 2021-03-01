@@ -37,7 +37,7 @@
                     <a class="page-link zoom h4"  id="alem3" style="position:fixed; right:2%; bottom:1%;" href="{{ $paginator->nextPageUrl() }}" rel="next" aria-label="@lang('pagination.next')"><i class="fas fa-angle-down"></i></a>
                 </li>
             @else
-                <li class="page-item disabled" aria-disabled="true" aria-label="@lang('pagination.next')">
+                <li class="page-item disabled" style="display:none;" aria-disabled="true" aria-label="@lang('pagination.next')">
                     <span class="page-link zoom h4"  id="alem4" aria-hidden="true"><i class="fas fa-angle-down"></i></span>
                 </li>
             @endif
