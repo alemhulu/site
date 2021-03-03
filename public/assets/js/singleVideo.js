@@ -13,11 +13,12 @@ function viewTimeCount(){
           alert("Error!  ");
         }
       });
+    video.removeEventListener('timeupdate',viewTimeCount,false);
   }
 }
 function intialization() {
   video = document.getElementById("singleVideo");
-   video.addEventListener('timeupdate',viewTimeCount,false);
+  video.addEventListener('timeupdate',viewTimeCount,false);
 
 }
 window.onload=intialization;
