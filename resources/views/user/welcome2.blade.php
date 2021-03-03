@@ -215,14 +215,14 @@
           
           @endforeach
         </div>
-        <div class="mt-5">{!!$types->appends(['resources'=>$resources->currentPage()])->links('user.paginateResource')!!}</div>
+        <div class="mt-5" id="paginateType">{!!$types->appends(['resources'=>$resources->currentPage()])->links('user.paginateResource')!!}</div>
         </div>
      
       </div>
       <div id="filter"></div>
   
 
-    <a class="border rounded d-inline scroll-to-top" href="#page-top"><div id="page-top-botton"><i class="fas fa-angle-up"></i></div></a>
+    <!-- <a class="border rounded d-inline scroll-to-top" href="#page-top"><div id="page-top-botton"><i class="fas fa-angle-up"></i></div></a> -->
     <footer class="bg-white sticky-footer">
     <div class="container my-auto">
     <div class="text-center my-auto copyright fixed-bottom"><span>Copyright © MoE 2020</span></div>
