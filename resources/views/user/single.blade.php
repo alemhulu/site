@@ -203,9 +203,6 @@
     return document.getElementById(id);
   }
   var media=$('#content').val();
- var like = 0;
- var dislike = 0;
- var file_id=document.getElementById("fileId").value;;
  var likeButton=document.getElementById('likeButton');
  likeButton.addEventListener("click",function(){
   likeDislikeJs();
@@ -314,32 +311,7 @@ function download()
   }
 
 </script>
-<script type='text/javascript'>
-  
-   if(media=="video" || media=="Video")
-   {
-    var type=$('#fileType').val();
-    document.getElementById('singleVideo').addEventListener('ended',myHandler,false);
-    function myHandler(e) {
-         
-               $.ajax
-                ({
-                        url:'/view',
-                        method:'Get',
-                        data:{file_id:file_id},
-                        success:function(response)
-                        {
-                        },
-                        error: function(error)
-                        {
-                              alert("Error!  ");
-                        }
-                });
 
-    }
-   }
-
-</script>
 
   <script>
   if(media=='video'||media=='Video'){
