@@ -1,7 +1,7 @@
 let video,viewTime,file_id,like,dislike;
 function viewTimeCount(){
   viewTime++;
-  if(viewTime==300){
+  if(viewTime==30){
     $.ajax
       ({
         url: '/view',
