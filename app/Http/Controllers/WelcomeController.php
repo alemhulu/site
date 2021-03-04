@@ -516,7 +516,7 @@ public function tag(Request $request)
 
 }
 public function search(Request $request){
-       
+    
         $output='';
         //$data=$request->query;
         //return response()->json($data);

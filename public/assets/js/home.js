@@ -275,30 +275,30 @@ function autocomplete(inp, arr) {
                 if (x) x[currentFocus].click();
             }
         }
-        var query = $("#myInput").val();
+        var query = $("#myInput1").val();
+        if(query==='')
+        {
+            
+            $('#content').show();
 
-        // $.ajax
-        //     ({
-        //         url: '/search',
-        //         method: 'Get',
-        //         data: { query: query },
-        //         success: function (response) {
-        //             var tag = [];
-        //             for (i = 0; i < response.length; i++) {
-        //                 tag.push(response[i].tag);
+        }
+        else{
+            $.ajax
+                ({
+                    url: '/search',
+                    method: 'Get',
+                    data: { query: query },
+                    success: function (response) {
+                        $('#content').hide();
+                        $('#filter').html(response);
 
-        //             }
-
-        //             //alert(countries); 
-        //             countries = tag;
-        //             //alert(countries);
-
-
-        //         },
-        //         error: function (error) {
-        //             alert("Error!  ");
-        //         }
-        //     });
+                    },
+                    error: function (error) {
+                        alert("Error!  ");
+                    }
+                });
+        }
+    
 
     });
     function addActive(x) {
