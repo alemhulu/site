@@ -304,7 +304,27 @@ i:focus, i:active {
     margin-left: 3%;
     margin-right: 3%;
   }
-
+/* 
+  Thumbnail size for pdf and video on large screen
+*/
+ #pdfView{
+    width: 100%;
+    height: 160px;
+  }
+  #videoView{
+    width: 100%;
+    height: 160px;
+  }
+@media (max-width:1400px) and (min-width:1200px) {
+   #pdfView{
+    width: 100%;
+    height: 110px;
+  }
+  #videoView{
+    width: 100%;
+    height: 110px;
+  }
+}
 @media (min-width: 993px)
 {
       #navbarSupportedContent

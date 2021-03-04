@@ -166,7 +166,7 @@
                         <a href="{{url('user',[$resource->id, $type->id])}}">                      
                         @if($resource->media->name == "Document"||$resource->media->name == "document" )
                         <img id="pdfView" value="{{$resource->id}}" src="{{$resource->thumbnailLocation}}" 
-                        class="rounded-top shadow " width="100%" height="180px" alt="{{$resource->description}}">
+                        class="rounded-top shadow " alt="{{$resource->description}}">
 
                         @if($resource->link == 1)
                         <div class="text-warning py-1 px-2 font-weight-bold" 
@@ -176,7 +176,7 @@
                         @endif
 
                         @elseif($resource->media->name == "Video"||$resource->media->name == "video")
-                        <img  src="{{$resource->thumbnailLocation}}"class="rounded-top shadow " width="100%" height="180px" alt="{{$resource->description}}">
+                        <img id="videoView" src="{{$resource->thumbnailLocation}}"class="rounded-top shadow "  alt="{{$resource->description}}">
                           
                        @if($resource->link == 1)
                         <div class="text-warning py-1 px-2 font-weight-bold" 
