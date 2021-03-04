@@ -34,8 +34,8 @@
                         <p class="h5">{{$resource->description}} </p>
                      </div>
                       <div class="col-5 text-right px-3 align-self-center h4 text-secondary">
-                        <button class="btn btn-sm" ><span class="icon icon-thumbs-up text-secondary h4 " id="likeButton"></span><span class="h5 text-secondary" id="likeCount"> {{$resource->like}}</span></button>
-                        <button class="btn btn-sm "><span class="icon icon-thumbs-down text-secondary h4 " id="dislikeButton"></span><span class="h5 text-secondary" id="dislikeCount"> {{$resource->deslike}}</span></button>
+                        <button class="btn btn-sm likeDislike"  id="likeButton" ><span class="icon icon-thumbs-up text-secondary h4 likeGroup "></span><span class="h5 text-secondary likeGroup" id="likeCount"> {{$resource->like}}</span></button>
+                        <button class="btn btn-sm "id="dislikeButton"><span class="icon icon-thumbs-down text-secondary h4 dislikeGroup" ></span><span class="h5 text-secondary dislikeGroup" id="dislikeCount"> {{$resource->deslike}}</span></button>
                         <a href="{{$resource->fileLocation}}" download >
                         <button class="btn btn-sm download" id="download" onclick="download()">                          
                           <span class="icon icon-download text-secondary h4"></span><span class="h5 text-secondary" id="downloadCount"> {{$resource->download}}</span>                         
@@ -196,14 +196,19 @@
     <script src="/assets/js/singleVideo.js"></script>
 }
 @endif
-<script>var countries = <?php echo json_encode($tag); ?>;</script>
-<!-- <script src="/assets/js/single.js"></script> -->
 <script>
+var media=$('#content').val();
+let countries = <?php echo json_encode($tag); ?>;
+ like=<?php echo json_encode($like); ?>;
+ dislike=<?php echo json_encode($dislike);?>;
+</script>
+<!-- <script src="/assets/js/single.js"></script> -->
+<!-- <script>
   function selectId(id){
     return document.getElementById(id);
   }
   var media=$('#content').val();
- var likeButton=document.getElementById('likeButton');
+ 
  likeButton.addEventListener("click",function(){
   likeDislikeJs();
  });
@@ -277,7 +282,7 @@ function likeDislikeJs() {
     });
 }
 
-</script>
+</script> -->
 <script>
  if (media=='document'|| media=='Document'){
   var downloadPdf=document.getElementById('downloadPdf');

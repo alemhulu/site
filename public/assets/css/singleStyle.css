@@ -2,6 +2,7 @@
 
 * {
   box-sizing: border-box;
+  outline: none !important;
 }
 html,body {
   height : 100%;
@@ -659,8 +660,7 @@ i:focus, i:active {
   font-size: 16px;
   font-family: sans-serif, Noto sans Ethiopic !important;
 }
-
-
+/* like and dislike button */
 
 
 

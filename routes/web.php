@@ -98,7 +98,7 @@ Route::get('/view',[WelcomeController::class, 'view'])->name('view');
 Route::get('/search',[WelcomeController::class, 'search'])->name('search');
 Route::POST('/moeuser',[WelcomeController::class, 'moeuser'])->name('moeuser');
 Route::POST('/file/download',[WelcomeController::class, 'download'])->name('download');
-Route::POST('/file/likeDislike',[WelcomeController::class, 'likeDislike'])->name('likeDislike');
+Route::GET('/file/likeDislike',[WelcomeController::class, 'likeDislike'])->name('likeDislike');
 Route::get('/pagination',[WelcomeController::class,'fetch_data']);
 
 Route::apiResources([

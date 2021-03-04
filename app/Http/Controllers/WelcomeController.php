@@ -163,7 +163,7 @@ class WelcomeController extends Controller
             // $courses = Course::select('name')->distinct()->get();
         $courses = Course::where('grade_id',null)->orderBy('name','asc')->get();
         //$courses=Course::all();
-            $resources=Resource::orderBy('created_at','asc')->where('published',1)->get();
+        $resources=Resource::orderBy('created_at','asc')->where('published',1)->get();
         $resources0=Resource::where('published',1)->groupBy('tag')->pluck('tag');
         $resources1=Grade::pluck('name');
         $resources2=Course::groupBy('name')->pluck('name');
@@ -219,6 +219,8 @@ class WelcomeController extends Controller
         }
     $tag = array_values(array_unique($tag));
         $resource=Resource::find($id);
+        $like=$resource->like;
+        $dislike=$resource->deslike;
         if($resource->media->name=="Document" || $resource->media->name=="document"){
              $resource->increment('view', 1);
         }
@@ -229,7 +231,7 @@ class WelcomeController extends Controller
         
         $tag=Resource::groupBy('tag')->pluck('tag');
 
-        return view('user.single',compact('paginatedResources','type','resource','tag'));
+        return view('user.single',compact('paginatedResources','type','resource','tag','like','dislike'));
     }
 
     /**
@@ -464,36 +466,37 @@ public function download(Request $request)
 // like function
 public function likeDislike(Request $request)
 {
-   
-
     $like=$request->like;
     $dislike=$request->dislike;
     $resource=Resource::find($request->file_id);
 
-    if($like!=0)
-    {
-        if($like==-1)
-        {
-            $resource->decrement('like',1);
-        }
-        elseif ($like==1)
-         {
-            $resource->increment('like',1);
-        }
-    }
+    // if($like!=0)
+    // {
+    //     if($like==-1)
+    //     {
+    //         $resource->decrement('like',1);
+    //     }
+    //     elseif ($like==1)
+    //      {
+    //         $resource->increment('like',1);
+    //     }
+    // }
     
-    if($dislike!=0)
-    {
-        if($dislike==-1)
-        {
-            $resource->decrement('deslike',1);
-        }
-         elseif ($dislike==1)
-         {
+    // if($dislike!=0)
+    // {
+    //     if($dislike==-1)
+    //     {
+    //         $resource->decrement('deslike',1);
+    //     }
+    //      elseif ($dislike==1)
+    //      {
             
-           $resource->increment('deslike',1);
-        }
-    }
+    //        $resource->increment('deslike',1);
+    //     }
+    // }
+    $resource->like=$like;
+    $resource->deslike=$dislike;
+    $resource->save();
     $like=$resource->like;
     $dislike=$resource->deslike;
 
