@@ -470,11 +470,11 @@ i:focus, i:active {
   }
   #singlePdfScroll{
     width: 100%;
-    height: 110px;
+    height: 120px;
   }
   #singleVideoScroll{
     width: 100%;
-    height: 110px;
+    height: 120px;
   }
 }
 @media(max-width:1000px)

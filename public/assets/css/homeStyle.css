@@ -318,11 +318,11 @@ i:focus, i:active {
 @media (max-width:1400px) and (min-width:1200px) {
    #pdfView{
     width: 100%;
-    height: 110px;
+    height: 120px;
   }
   #videoView{
     width: 100%;
-    height: 110px;
+    height: 120px;
   }
 }
 @media (min-width: 993px)
