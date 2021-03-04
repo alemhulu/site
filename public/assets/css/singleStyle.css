@@ -466,7 +466,7 @@ i:focus, i:active {
   }
 @media (max-width:1400px) and (min-width:1200px) {
   #canvas_container {
-     height: 480px !important;
+     height: 450px !important;
   }
   #singlePdfScroll{
     width: 100%;
