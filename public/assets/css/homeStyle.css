@@ -422,11 +422,11 @@ i:focus, i:active {
       /* thumbnail size  */
       #pdfView{
         width: 100%;
-        height: 140px;
+        height: 150px;
       }
       #videoView{
         width: 100%;
-        height: 140px;
+        height: 150px;
       }
 
 }
