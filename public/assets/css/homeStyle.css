@@ -327,6 +327,7 @@ i:focus, i:active {
 }
 @media (min-width: 993px)
 {
+
       #navbarSupportedContent
       {
         display:block !important;
@@ -375,6 +376,7 @@ i:focus, i:active {
         justify-content: space-around;
       }
 
+
 }
 @media (max-width: 993px)
 {
@@ -417,7 +419,15 @@ i:focus, i:active {
        #searchForm1{
         display: none;
       }
-  
+      /* thumbnail size  */
+      #pdfView{
+        width: 100%;
+        height: 140px;
+      }
+      #videoView{
+        width: 100%;
+        height: 140px;
+      }
 
 }
 .top-bar {
