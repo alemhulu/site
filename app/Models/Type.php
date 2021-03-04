@@ -11,7 +11,9 @@ class Type extends Model
     public function resourcesPaginated($id){
     	return $this->hasMany('App\Models\Resource')->inRandomOrder()->paginate(4);
     }
-    
+    public function resources(){
+        return $this->hasmany('App\Models\Resource')->orderBy('created_at','asc');
+    }
     public function allresources($contentType){
         
         // return $this->hasMany('App\Models\Resource')->where('published',1)->orderBy('created_at', 'desc')->paginate( 4, ['*'], "ContentType".$contentType);

@@ -515,154 +515,127 @@ public function tag(Request $request)
                 ->get();
 
 }
-public function search(Request $request)
-{$output='';
-//$data=$request->query;
-//return response()->json($data);
-//  $search=Resource::where('tag',$query)->orderBy('created_at','desc')->get();
-     $types = Type::orderBy('created_at','asc')->get();
-     $resources = [];
+public function search(Request $request){
+       
+        $output='';
+        //$data=$request->query;
+        //return response()->json($data);
+        //  $search=Resource::where('tag',$query)->orderBy('created_at','desc')->get();
+
+         $types = Type::orderBy('created_at','asc')->get();
+        $resources = [];
     
-     $resources1 = Resource::where("tag","LIKE","%{$request->input('query')}%")
-        ->orwhere("description","LIKE","%{$request->input('query')}%")
-                ->get();
-     $resources2 = Subunit::where("title","LIKE","%{$request->input('query')}%")->get();
-     $resources3 = Grade::where("name","LIKE","%{$request->input('query')}%")->get();
-     $resources4 = Course::where("name","LIKE","%{$request->input('query')}%")->get();
-     $resources5 = Unit::where("title","LIKE","%{$request->input('query')}%")->get();
-     $resources6 = Media::where("name","LIKE","%{$request->input('query')}%")->get();
-     $resources7 = Type::where("name","LIKE","%{$request->input('query')}%")->get();
-     foreach($resources1 as $resource)
-    {
-        array_push($resources, $resource);
-    }
-    foreach($resources2 as $subunit)
-        {
-                foreach($subunit->resources as $subresource)
-        {
-            array_push($resources, $subresource);
+        $resources1 = Resource::where("tag","LIKE","%{$request->input('query')}%")
+                ->orwhere("description","LIKE","%{$request->input('query')}%")
+                        ->get();
+        $resources2 = Subunit::where("title","LIKE","%{$request->input('query')}%")->get();
+        $resources3 = Grade::where("name","LIKE","%{$request->input('query')}%")->get();
+        $resources4 = Course::where("name","LIKE","%{$request->input('query')}%")->get();
+        $resources5 = Unit::where("title","LIKE","%{$request->input('query')}%")->get();
+        $resources6 = Media::where("name","LIKE","%{$request->input('query')}%")->get();
+        $resources7 = Type::where("name","LIKE","%{$request->input('query')}%")->get();
+        foreach($resources1 as $resource){
+                array_push($resources, $resource);
         }
+        foreach($resources2 as $subunit){
+                foreach($subunit->resources as $subresource){
+                        array_push($resources, $subresource);
+                }
         }
-    foreach($resources3 as $grade)
-    {
-        foreach($grade->resources as $graderesource)
+        foreach($resources3 as $grade)
         {
-            array_push($resources,$graderesource);
+                foreach($grade->resources as $graderesource){
+                        array_push($resources,$graderesource);
+                }
         }
-    }
-     foreach($resources4 as $course)
-        {
-                foreach($course->resources as $courseresource)
-                {
+        foreach($resources4 as $course){
+                foreach($course->resources as $courseresource){
                         array_push($resources,$courseresource);
                 }
         }
-     foreach($resources5 as $unit)
-        {
-                foreach($unit->resources as $unitresource)
-                {
+        foreach($resources5 as $unit){
+                foreach($unit->resources as $unitresource){
                         array_push($resources,$unitresource);
                 }
         }
-    
-         foreach($resources6 as $media)
-        {
-                foreach($media->resources as $mediaresource)
-                {
+        foreach($resources6 as $media){
+                foreach($media->resources as $mediaresource){
                         array_push($resources,$mediaresource);
                 }
         }
-     foreach($resources7 as $type)
-        {
-                foreach($type->resources as $typeresource)
-                {
+        foreach($resources7 as $type){
+                foreach($type->resources as $typeresource){
                         array_push($resources,$typeresource);
                 }
         }
-    $resources = array_unique($resources);
+        $resources = array_unique($resources);
 
 
 
-    
-    //$resources = collect($resources);
-
-    //return $resources;
-    
-     $type_check = [];
         
-        foreach($types as $type)
-        {
+        //$resources = collect($resources);
+
+        //return $resources;
+        
+        $type_check = [];
+        foreach($types as $type){
                 $type_check[$type->id] = 0;
-
-                foreach($resources as $resource)
-                {
-        
-                if($resource->type_id == $type->id)
-                 {
-                   $type_check[$type->id] += 1;
-                 }
+                foreach($resources as $resource){
+                        if($resource->type_id == $type->id){
+                                $type_check[$type->id] += 1;
+                        }
                 }
         }
-     if(count($resources)==0)
+        if(count($resources)==0)
                 $output.="<h4 class='text-center bg-light'> No Resource is available for this search! </h4>";
-
         else{
                 $output.='<h4 class="mt-3 ml-2 bg-light text-center">Search Result</h4>';
                 $output.='<div class="container-fluid"><div class="row">';
-                foreach($types as $type)
-                {
-                if($type_check[$type->id] > 0)
-                {
-                //$output.='<p>'.$type->name.'</p>';
-                $output.='<h4><strong class="mt-3 ml-2 blackColor">'.$type->name.'</strong></h4>';
-                $output.='<div class="container-fluid">';
-                $output.='<div class="row">';
-                foreach($resources as $resourceFiltered)
-                        {
-
+                foreach($types as $type){
+                if($type_check[$type->id] > 0){
+                        //$output.='<p>'.$type->name.'</p>';
+                        $output.='<h4><strong class="mt-3 ml-2 blackColor">'.$type->name.'</strong></h4>';
+                        $output.='<div class="container-fluid">';
+                        $output.='<div class="row">';
+                        foreach($resources as $resourceFiltered){
                                 //return $resourceFiltered;
                                 $type2 = Type::findorfail($resourceFiltered->type_id);
-                if($type2->id==$type->id)
-                {
-//return $type;
-          $output.='<div class="col-md-3 mb-3 blackColor " id="linkColor">';
-                                $output.='<div class="card ">';
-                                $resource=Resource::find($resourceFiltered->id);
-                                if($resource->media->name == "Document"||$resource->media->name == "document" )
-                                {
-                                        $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.'">
-                                        <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
+                                if($type2->id==$type->id){
+                                        //return $type;
+                                        $output.='<div class="col-md-3 mb-3 blackColor " id="linkColor">';
+                                        $output.='<div class="card ">';
+                                        $resource=Resource::find($resourceFiltered->id);
+                                        if($resource->media->name == "Document"||$resource->media->name == "document" ){
+                                                $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.'">
+                                                <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
+                                        }
+                                        else{
+                                                $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.'">
+                                                <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
+                                        }
+                                        $output.= '<div class="card-body p-1">';
+                                        if($resource->unit_id=="" ||$resource->subunit_id=="" || $resource->grade_id==""){
+                                                $output.= '<h6 class="mb-0">'.$resource->course->name.'</h6>
+                                                <h6 class=" mb-2 text-truncate">'.$resource->description.'</h6>
+                                                <span class="date ">'.$resource->view.' Views </span><span class="date float-right">'.$resource->created_at->diffForHumans().'</span>';
+                                        }
+                                        else{
+                                                $output.='<h6 class="mb-0">G-'.$resource->grade->name.' '.$resource->course->name.'</h6>
+                                                <h6 class="mb-0">Unit '.$resource->unit->name.'-'. $resource->unit->title.'</h6>
+                                                <h6 class=" mb-2">Subunit '.$resource->subunit->name.'-'. $resource->subunit->title.'</h6>
+                                                <span class="date ">'.$resource->view.' Views </span><span class="date float-right">'.$resource->created_at->diffForHumans().'</span>';
+                                        }
+                                        $output.='</div></div></div>';
                                 }
-                                else
-                                {
-                                        $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.'">
-                                        <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
-                                }
-                                $output.= '<div class="card-body p-1">';
-                if($resource->unit_id=="" ||$resource->subunit_id=="" || $resource->grade_id=="")
-                                {
-                                        $output.= '<h6 class="mb-0">'.$resource->course->name.'</h6>
-                                        <h6 class=" mb-2 text-truncate">'.$resource->description.'</h6>
-                                        <span class="date ">'.$resource->view.' Views </span><span class="date float-right">'.$resource->created_at->diffForHumans().'</span>';
-                                }
-                                else
-                                {
-                                        $output.='<h6 class="mb-0">G-'.$resource->grade->name.' '.$resource->course->name.'</h6>
-                                        <h6 class="mb-0">Unit '.$resource->unit->name.'-'. $resource->unit->title.'</h6>
-                                        <h6 class=" mb-2">Subunit '.$resource->subunit->name.'-'. $resource->subunit->title.'</h6>
-                                        <span class="date ">'.$resource->view.' Views </span><span class="date float-right">'.$resource->created_at->diffForHumans().'</span>';
-                                }
-                                $output.='</div></div></div>';
-                }
-     }
+                        }
+                        $output.='</div></div>';
+                }       
+        }
         $output.='</div></div>';
-    }
-}
- $output.='</div></div>';
-}
-    
+        }
+        
 
-    return $output;
-        //return response()->json($data);
-}
+        return $output;
+                //return response()->json($data);
+ }
 }

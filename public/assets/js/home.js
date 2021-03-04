@@ -8,6 +8,7 @@
 // alert (heightWindows + 'document height '+ heightDocument);
 // filter function
 
+// fileter function
     function filter() {
         var action = 'data';
         var grade_id = get_filter_text('gradeId');
@@ -155,7 +156,7 @@
 
 
         });
-
+ 
 
 
 
@@ -276,28 +277,28 @@ function autocomplete(inp, arr) {
         }
         var query = $("#myInput").val();
 
-        $.ajax
-            ({
-                url: '/search',
-                method: 'Get',
-                data: { query: query },
-                success: function (response) {
-                    var tag = [];
-                    for (i = 0; i < response.length; i++) {
-                        tag.push(response[i].tag);
+        // $.ajax
+        //     ({
+        //         url: '/search',
+        //         method: 'Get',
+        //         data: { query: query },
+        //         success: function (response) {
+        //             var tag = [];
+        //             for (i = 0; i < response.length; i++) {
+        //                 tag.push(response[i].tag);
 
-                    }
+        //             }
 
-                    //alert(countries); 
-                    countries = tag;
-                    //alert(countries);
+        //             //alert(countries); 
+        //             countries = tag;
+        //             //alert(countries);
 
 
-                },
-                error: function (error) {
-                    alert("Error!  ");
-                }
-            });
+        //         },
+        //         error: function (error) {
+        //             alert("Error!  ");
+        //         }
+        //     });
 
     });
     function addActive(x) {
