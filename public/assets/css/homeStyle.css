@@ -370,7 +370,7 @@ i:focus, i:active {
       }
       #searchForm{
         display: none;
-      }
+      } 
       .nav-form-ul{
         display: flex;
         justify-content: space-around;

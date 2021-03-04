@@ -356,6 +356,10 @@ i:focus, i:active {
     width: 100%;
     height: 140px;
   }
+#searchForm1{
+  width: 75%; 
+  margin-top:5px;
+}
 @media (min-width: 1080px)
 {
       #fullPdfMobile
@@ -410,11 +414,15 @@ i:focus, i:active {
         margin: 0 35px 0 35px;
       }
       #sidebarViewAndTime{
-  position:absolute;
-  bottom:1em;
-  left:1em;
-  right:1em;
-}
+        position:absolute;
+        bottom:1em;
+        left:1em;
+        right:1em;
+      }
+      #searchForm1{
+        width: 75%; 
+        margin-top:5px;
+      }
 
 }
 @media (max-width: 1080px)
@@ -476,6 +484,10 @@ i:focus, i:active {
     width: 100%;
     height: 120px;
   }
+  .nav-form-ul{
+        display: flex;
+        justify-content: space-around;
+      }
 }
 @media(max-width:1000px)
 {
@@ -490,6 +502,7 @@ i:focus, i:active {
       {
         padding: 0;
       }
+
 }
 @media(max-width: 770px)
 {
@@ -673,7 +686,7 @@ i:focus, i:active {
 /* Nav bar margin top */
 #searchForm1{
   width: 75%; 
-  margin-top:5px;
+  margin-top:5px !important;
 }
 /* brand styles */
 .brandEnglish{
@@ -684,9 +697,18 @@ i:focus, i:active {
   font-size: 16px;
   font-family: sans-serif, Noto sans Ethiopic !important;
 }
-/* like and dislike button */
+/* 
+  nav search and login and register
+*/
 
-
+#searchForm1{
+  width: 75%; 
+  margin-top:5px;
+}
+.nav-form-ul{
+        display: flex;
+        justify-content: space-around;
+}
 
 
 
