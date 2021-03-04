@@ -250,7 +250,9 @@ function autocomplete(inp, arr) {
             }
         }
     });
-    /*execute a function presses a key on the keyboard:*/
+    /*execute a Search function 
+        presses a key on the keyboard:
+    */
     inp.addEventListener("keyup", function (e) {
         //var countries = ["Biology","Acid and Base","Chemistry","Grade 11","Grade 12","Grade 10","ICT","Stempower","Simulated Lab"];  
         var x = document.getElementById(this.id + "autocomplete-list");
@@ -258,6 +260,9 @@ function autocomplete(inp, arr) {
         if (e.keyCode == 40) {
             /*If the arrow DOWN key is pressed,
             increase the currentFocus variable:*/
+            $('.autocomplete-active').click(function () {
+                console.log(this.id);
+            });
             currentFocus++;
             /*and and make the current item more visible:*/
             addActive(x);

@@ -345,6 +345,17 @@ i:focus, i:active {
 {
   display: none !important;
 }
+/* 
+  on single view the size of the thumbnail
+*/
+ #singlePdfScroll{
+    width: 100%;
+    height: 140px;
+  }
+  #singleVideoScroll{
+    width: 100%;
+    height: 140px;
+  }
 @media (min-width: 1080px)
 {
       #fullPdfMobile
@@ -453,6 +464,19 @@ i:focus, i:active {
           height: 50%;
       }
   }
+@media (max-width:1400px) and (min-width:1200px) {
+  #canvas_container {
+     height: 480px !important;
+  }
+  #singlePdfScroll{
+    width: 100%;
+    height: 110px;
+  }
+  #singleVideoScroll{
+    width: 100%;
+    height: 110px;
+  }
+}
 @media(max-width:1000px)
 {
     #wrapper

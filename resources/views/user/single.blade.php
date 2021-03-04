@@ -141,9 +141,9 @@
                                     <div class="row ">
                                        <div class="col-sm-12 col-md-12 col-lg-7 p-0 text-truncate ">
                                            @if($resource1->media->name == "Document" )
-                                            <img id="singlePdfScroll" src="{{asset($resource1->thumbnailLocation)}}" width="100% " height="150px" >
+                                            <img id="singlePdfScroll" src="{{asset($resource1->thumbnailLocation)}}"  >
                                             @elseif($resource1->media->name == "Video"||$resource1->media->name == "video")
-                                            <img id="singleVideoScroll" src="{{asset($resource1->thumbnailLocation)}}" width="100%" height="160px" >
+                                            <img id="singleVideoScroll" src="{{asset($resource1->thumbnailLocation)}}"  >
                                             @endif
                                        </div> 
                          
@@ -202,87 +202,7 @@ let countries = <?php echo json_encode($tag); ?>;
  like=<?php echo json_encode($like); ?>;
  dislike=<?php echo json_encode($dislike);?>;
 </script>
-<!-- <script src="/assets/js/single.js"></script> -->
-<!-- <script>
-  function selectId(id){
-    return document.getElementById(id);
-  }
-  var media=$('#content').val();
- 
- likeButton.addEventListener("click",function(){
-  likeDislikeJs();
- });
-function likeDislikeJs() {
-  var file_id = $('#fileId').val();
-  var buttonId=window.event.target.id;
-  var liked=$('#likeButton').hasClass('likeDislike');
-  var disliked=$('#dislikeButton').hasClass('likeDislike');
- 
- if (liked==false && disliked==false)
- {
-    if(buttonId == 'likeButton')
-    {
-      $('#likeButton').addClass('likeDislike');
-       like=1;     
-     }
-     else if(buttonId == 'dislikeButton' )
-     {
-       $('#dislikeButton').addClass('likeDislike');
-        dislike=1;
-     }
 
- }
- else if (liked == true && disliked == false)
- {
-    if(buttonId == 'likeButton')
-    {
-      $('#likeButton').removeClass('likeDislike');
-      like=-1;
-    }
-    else if(buttonId == 'dislikeButton')
-    {
-      $('#likeButton').removeClass('likeDislike');
-      like=-1;
-      $('#dislikeButton').addClass('likeDislike');
-        dislike=1;
-
-    }
- }
- else if(liked == false && disliked == true)
- {
-  if(buttonId == 'likeButton')
-    {
-      $('#likeButton').addClass('likeDislike');
-       like=1;   
-      $('#dislikeButton').removeClass('likeDislike');  
-       dislike=-1;
-     }
-     else if(buttonId == 'dislikeButton')
-    {
-      $('#dislikeButton').removeClass('likeDislike');  
-       dislike=-1;     
-
-    }
- }
-        $.ajax
-    ({
-            url:'/file/likeDislike',
-            method:'POST',
-            data:{ "_token": "{{ csrf_token() }}" , file_id:file_id, like:like, dislike:dislike },
-
-            success:function(response)
-              {
-                document.querySelector('#likeCount').textContent =(' '+response['like']);
-                document.querySelector('#dislikeCount').textContent =(' '+response['dislike']);
-                },
-             error: function(error)
-      {
-                  alert("Error!  ");
-      }
-    });
-}
-
-</script> -->
 <script>
  if (media=='document'|| media=='Document'){
   var downloadPdf=document.getElementById('downloadPdf');
