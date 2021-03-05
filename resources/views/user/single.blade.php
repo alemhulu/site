@@ -248,7 +248,7 @@ pos = 0;
 correct = 0; 
 
 function renderQuestion(result){
-  selectId('page-top-button').click();
+  // selectId('page-top-button').click();
   result_global = result;
   questions=result;
   console.log(result_global);
