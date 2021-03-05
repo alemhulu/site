@@ -494,8 +494,8 @@ i:focus, i:active {
   position:fixed;
   bottom: 0px;
   right: 1%;
-  border: 1px solid #a9a9a9;
-  border-radius: 5%;
+  border: 3px solid rgb(209,80,62);
+  border-radius: 7%;
 }
 .page-item.active .page-link{
   background: rgb(31,72,162);
