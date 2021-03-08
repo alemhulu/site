@@ -130,7 +130,8 @@
             });
             return filterData;
         }
-
+        $("#headingTwo").attr("aria-expanded", "false");
+        $('#collapseTwo').addClass('show');
     }
 //end of filter function
 

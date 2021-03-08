@@ -28,7 +28,7 @@
                 @if(count($grades)>0) 
                 <ul style="color:black;">
                 @foreach($grades as $grade)
-                <li><input type="checkbox"class="form-check-input " value="{{$grade->id}}" id="gradeId" onchange="filter()" ><h6>Grade - {{$grade->name}}</h6></li>
+                <li><input type="radio"class="form-check-input " name="grade" value="{{$grade->id}}" id="gradeId" onchange="filter()" ><h6>Grade - {{$grade->name}}</h6></li>
                 @endforeach
                 </ul>
                 @endif
@@ -72,9 +72,9 @@
             <div id="unitFilter">
               @if(count($units)>0) 
               <ul style="color:black;" >
-              @foreach($units as $unit)
+              <!-- @foreach($units as $unit)
               <li><input type="checkbox"class="form-check-input resource_check" value="{{$unit->id}}" id="unitId" onchange="filter()"><h6> {{$unit->title}}</h6></li>
-              @endforeach
+              @endforeach -->
               </ul>
               @endif
             </div>
@@ -91,9 +91,9 @@
             <div id="subunitFilter">
               @if(count($subunits)>0) 
               <ul id="" style="color:black;">
-              @foreach($subunits as $subunit)
+              <!-- @foreach($subunits as $subunit)
               <li><input type="checkbox"class="form-check-input resource_check" onchange="filter()"  value="{{$subunit->id}}" id="subunitId"><h6> {{$subunit->title}}</h6></li>
-              @endforeach
+              @endforeach -->
               </ul>
               @endif
            </div>
