@@ -331,6 +331,7 @@ i:focus, i:active {
       #navbarSupportedContent
       {
         display:block !important;
+        width: 200px;
       }
       #view_time_sm
       {

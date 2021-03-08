@@ -13,7 +13,7 @@
   </form>
   
   <div class="row">
-    <div class="col-md-1  collapse "  id="navbarSupportedContent">
+    <div class=" collapse "  id="navbarSupportedContent">
       
         
         <div class=" mt-3" >
