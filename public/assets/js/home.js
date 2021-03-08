@@ -10,7 +10,6 @@
 
 // fileter function
     function filter() {
-        $('#courseFilter').html('');
         var action = 'data';
         var grade_id = get_filter_text('gradeId');
         var course_id = get_filter_text('courseId');
