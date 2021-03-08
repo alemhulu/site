@@ -15,7 +15,7 @@
           <div class="nav-form-ul">
               <form class="form" id="searchForm1" >
                   <div class="input-group col" ><input class="bg-light form-control border-0 small shadow-sm px-2"  type="text" placeholder="Search for ..." id="myInput1" autocomplete="off" type="text" >
-                      <div class="input-group-append"><button class="btn btn-outline py-0 shadow-sm zoom" type="submit" ><i class="fas fa-search"></i></button>
+                      <div class="input-group-append"><button class="btn btn-outline py-0 shadow-sm dblue" type="submit" ><i class="fas fa-search "></i></button>
                       </div>
                   </div>
               </form>
