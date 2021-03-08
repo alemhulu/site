@@ -153,12 +153,16 @@ body label{
    
 }
 .buttonMenu button{
-  background-color: #bbb5b5;
    width:100px;
-   font-size: 14px;
-   font-family: sans-serif Gotham ;
-   float:left !important ;
    font-weight: bold; 
+  color: #444;
+  border: none;
+  text-align: left;
+  outline: none;
+  transition: 0.4s;
+}
+.buttonMenu {
+   background-color:rgba(0,0,0,.03);
 }
 #gradeMenu{
    display: none;
@@ -325,6 +329,11 @@ i:focus, i:active {
     height: 130px;
   }
 }
+@media (max-width:1000px) and (min-width:700px) {
+  .buttonMenu{
+    width: 200px;
+  }
+}
 @media (min-width: 993px)
 {
 
@@ -332,6 +341,7 @@ i:focus, i:active {
       {
         display:block !important;
         width: 200px;
+       
       }
       #view_time_sm
       {

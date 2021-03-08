@@ -18,7 +18,7 @@
         
         <div class=" mt-3" >
                <ul class="navbar-nav mr-auto ">
-      <button class="btn btn-block text-left p-2 buttonMenu border mb-1 zoom ga bold " id="headingOne" data-toggle="collapse" data-target="#gradeCollaps" 
+      <button class="btn btn-block text-left p-3 buttonMenu border mb-1 zoom ga bold " id="headingOne" data-toggle="collapse" data-target="#gradeCollaps" 
                     aria-expanded="true" aria-controls="gradeCollaps"
                     style="font-size: 16px;font-family: sans-serif Gotham ;"  >
                 Grades 
@@ -42,7 +42,7 @@
        
             
             
-            <button class="btn btn-block text-left p-2 buttonMenu border collapsed mb-1 zoom CB bold" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" >
+            <button class="btn btn-block text-left p-3 buttonMenu border collapsed mb-1 zoom CB bold" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" >
             Course
             </button>
             
@@ -63,7 +63,7 @@
         
           
             
-            <button class="btn btn-block text-left p-2 buttonMenu border collapsed mb-1 zoom UB bold" id="headingThree" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"  >
+            <button class="btn btn-block text-left p-3 buttonMenu border collapsed mb-1 zoom UB bold" id="headingThree" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"  >
             Unit
             </button>
             
@@ -83,7 +83,7 @@
         <!-- Subunit Menu -->
         
           
-            <button class="btn btn-block text-left p-2 buttonMenu border collapsed mb-1 zoom SUB bold" id="headingfour" data-toggle="collapse" data-target="#collapsefour" aria-expanded="false" aria-controls="collapsefour">
+            <button class="btn btn-block text-left p-3 buttonMenu border collapsed mb-1 zoom SUB bold" id="headingfour" data-toggle="collapse" data-target="#collapsefour" aria-expanded="false" aria-controls="collapsefour">
             Sub-Unit
             </button>
             
@@ -103,7 +103,7 @@
         
             
             
-            <button class="btn btn-block text-left p-2 buttonMenu border collapsed mb-1 zoom CTB bold" id="headingfive" data-toggle="collapse" data-target="#collapsefive" aria-expanded="false" aria-controls="collapsefive">
+            <button class="btn btn-block text-left p-3 buttonMenu border collapsed mb-1 zoom CTB bold " id="headingfive" data-toggle="collapse" data-target="#collapsefive" aria-expanded="false" aria-controls="collapsefive">
             Content Type
             </button>
             
@@ -124,7 +124,7 @@
         
           
             
-            <button class="btn btn-block text-left p-2 buttonMenu border collapsed mb-1 zoom MTB bold" id="headingsix" data-toggle="collapse" data-target="#collapsesix" aria-expanded="false" aria-controls="collapsesix">
+            <button class="btn btn-block text-left p-3 buttonMenu border collapsed mb-1 zoom MTB bold active" id="headingsix" data-toggle="collapse" data-target="#collapsesix" aria-expanded="false" aria-controls="collapsesix">
             Media Type
             </button>
            

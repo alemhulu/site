@@ -10,6 +10,14 @@
 
 // fileter function
     function filter() {
+        var radioElements = document.getElementsByName("grade");
+        for (var i = 0; i < radioElements.length; i++) {
+            if (radioElements[i].checked == true) {
+                
+            }
+            
+        }
+     
         var action = 'data';
         var grade_id = get_filter_text('gradeId');
         var course_id = get_filter_text('courseId');
