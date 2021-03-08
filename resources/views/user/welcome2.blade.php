@@ -27,9 +27,11 @@
               <div id="gradeFilter">
                 @if(count($grades)>0) 
                 <ul style="color:black;">
+                <br>
                 @foreach($grades as $grade)
                 <li><input type="radio"class="form-check-input " name="grade" value="{{$grade->id}}" id="gradeId" onchange="filter()" ><h6>Grade - {{$grade->name}}</h6></li>
                 @endforeach
+                <br>
                 </ul>
                 @endif
               </div>
@@ -50,10 +52,11 @@
           <div id="collapseTwo" class="collapse hide  shadow" aria-labelledby="headingTwo" >
               <div id="courseFilter">
               @if(count($courses)>0) 
-              <ul  style="color:black;">
+              <ul  style="color:black;"><br>
               @foreach($courses as $course)
               <li><input type="checkbox"class="form-check-input resource_check" value="{{$course->id}}"  id="courseId" onchange="filter()" ><h6>{{$course->name}}</h6></li>
               @endforeach
+              <br>
               </ul>
               @endif
               </div>
@@ -72,9 +75,11 @@
             <div id="unitFilter">
               @if(count($units)>0) 
               <ul style="color:black;" >
+              <br>
               <!-- @foreach($units as $unit)
               <li><input type="checkbox"class="form-check-input resource_check" value="{{$unit->id}}" id="unitId" onchange="filter()"><h6> {{$unit->title}}</h6></li>
               @endforeach -->
+              <br>
               </ul>
               @endif
             </div>
@@ -91,9 +96,11 @@
             <div id="subunitFilter">
               @if(count($subunits)>0) 
               <ul id="" style="color:black;">
+              <br>
               <!-- @foreach($subunits as $subunit)
               <li><input type="checkbox"class="form-check-input resource_check" onchange="filter()"  value="{{$subunit->id}}" id="subunitId"><h6> {{$subunit->title}}</h6></li>
               @endforeach -->
+              <br>
               </ul>
               @endif
            </div>
@@ -112,9 +119,11 @@
             <div >
               @if(count($types2)>0) 
               <ul id="" style="color:black;">
+              <br>
               @foreach($types2 as $type)
               <li><input type="checkbox"class="form-check-input resource_check" onchange="filter()"  value="{{$type->id}}" id="typeId"><h6> {{$type->name}}</h6></li>
               @endforeach
+              <br>
               </ul>
               @endif
             </div>
@@ -133,9 +142,11 @@
            <div>
               @if(count($medias)>0) 
               <ul id="" style="color:black;">
+              <br>
               @foreach($medias as $media)
               <li><input type="checkbox"class="form-check-input resource_check" onchange="filter()"  value="{{$media->id}}" id="mediaId"><h6> {{$media->name}}</h6></li>
               @endforeach
+              <br>
               </ul>
               @endif
            </div>

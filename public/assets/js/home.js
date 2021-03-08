@@ -42,50 +42,50 @@
                         $('.MTB').removeClass('lblue');
                         $('#result').show();
                         $('#filter').empty();
-                        var commonCourses = '<ul  style="color:black;">';
+                        var commonCourses = '<ul  style="color:black;"><br>';
                         for (i = 0; i < response.commonCourses.length; i++) {
                             commonCourses += '<li><input type="checkbox" class="form-check-input " id="courseId" value="' + response.commonCourses[i].id + '" onchange="filter()" ><h6>' + response.commonCourses[i].name + '</h6></li>';
                         }
-                        commonCourses += '</ul>';
+                        commonCourses += '<br></ul>';
                         $('#courseFilter').html(commonCourses);
-                        var allUnits = '<ul  style="color:black;">';
+                        var allUnits = '<ul  style="color:black;"><br>';
                         for (i = 0; i < response.allUnits.length; i++) {
                             allUnits += '<li><input type="checkbox" class="form-check-input" id="unitId" value="' + response.allUnits[i].id + '" onchange="filter()" ><h6>' + response.allUnits[i].title + '</h6></li>';
                         }
-                        allUnits += '</ul>';
+                        allUnits += '<br></ul>';
                         $('#unitFilter').html(allUnits);
-                        var allSubunits = '<ul  style="color:black;">';
+                        var allSubunits = '<ul  style="color:black;"><br>';
                         for (i = 0; i < response.allSubunits.length; i++) {
                             allSubunits += '<li><input type="checkbox" class="form-check-input" id="subunitId" value="' + response.allSubunits[i].id + '" onchange="filter()" ><h6>' + response.allSubunits[i].title + '</h6></li>';
                         }
-                        allSubunits += '</ul>';
+                        allSubunits += '<br></ul>';
                         $('#subunitFilter').html(allSubunits);
                     }
                     else {
                         if (response.g == 1 && response.c == 0) {
-                            var courses = '<ul  style="color:black;">';
+                            var courses = '<ul  style="color:black;"><br>';
                             for (i = 0; i < response.courses.length; i++) {
                                 courses += '<li><input type="checkbox" class="form-check-input " id="courseId" value="' + response.courses[i].id + '" onchange="filter()" ><h6>' + response.courses[i].name + '</h6></li>';
                             }
-                            courses += '</ul>';
+                            courses += '<br></ul>';
                             $('#courseFilter').html(courses);
                             $('#unitFilter').empty();
                             $('#subunitFilter').empty();
                         }
                         if (response.c == 1 && response.u == 0) {
-                            var units = '<ul  style="color:black;">';
+                            var units = '<ul  style="color:black;"><br>';
                             for (i = 0; i < response.units.length; i++) {
                                 units += '<li><input type="checkbox" class="form-check-input" id="unitId" value="' + response.units[i].id + '" onchange="filter()" ><h6>' + response.units[i].title + '</h6></li>';
                             }
-                            units += '</ul>'; $('#unitFilter').html(units);
+                            units += '<br></ul>'; $('#unitFilter').html(units);
                             $('#subunitFilter').empty();
                         }
                         if (response.u == 1 && response.su == 0) {
-                            var subunits = '<ul  style="color:black;">';
+                            var subunits = '<ul  style="color:black;"><br>';
                             for (i = 0; i < response.subunits.length; i++) {
                                 subunits += '<li><input type="checkbox" class="form-check-input" id="subunitId" value="' + response.subunits[i].id + '" onchange="filter()" ><h6>' + response.subunits[i].title + '</h6></li>';
                             }
-                            subunits += '</ul>';
+                            subunits += '<br></ul>';
                             $('#subunitFilter').html(subunits);
                         }
                         $('#result').hide();
