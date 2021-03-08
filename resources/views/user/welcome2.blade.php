@@ -17,8 +17,8 @@
       
         
         <div class=" mt-3" >
-               <ul class="navbar-nav mr-auto ">
-      <button class="btn btn-block text-left p-3 buttonMenu border mb-1 zoom ga bold " id="headingOne" data-toggle="collapse" data-target="#gradeCollaps" 
+               <ul class="navbar-nav mr-auto " style=" display: block;position: relative;">
+      <button class="btn btn-block text-left p-3  buttonMenu border mb-1 zoom ga bold " id="headingOne" data-toggle="collapse" data-target="#gradeCollaps" 
                     aria-expanded="true" aria-controls="gradeCollaps"
                     style="font-size: 16px;font-family: sans-serif Gotham ;"  >
                 Grades 

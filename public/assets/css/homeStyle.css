@@ -103,7 +103,7 @@ body label{
       color: white;
    }
    .lblue{
-      background: rgb(60,143,194);
+      background-color: rgb(60,143,194) !important;
       color: white;
    }
    .dblue{
@@ -155,7 +155,6 @@ body label{
 .buttonMenu button{
    width:100px;
    font-weight: bold; 
-  color: #444;
   border: none;
   text-align: left;
   outline: none;
