@@ -16,12 +16,12 @@
     <div class=" collapse "  id="navbarSupportedContent">
       
         
-        <div  style="text-decoration: none;">
+        <div  >
                <ul class="navbar-nav mr-auto " style=" display: block;position: relative;">
       <button class="btn btn-block text-left p-3  buttonMenu border  zoom ga bold " id="headingOne" data-toggle="collapse" data-target="#gradeCollaps" 
                     aria-expanded="true" aria-controls="gradeCollaps"
                     style="font-size: 16px;font-family: sans-serif Gotham ;"  >
-                Grades 
+                Grade
             </button>
              <div id="gradeCollaps" class="collapse hide shadow-sm" aria-labelledby="headingOne" >
               <div id="gradeFilter">
