@@ -20,6 +20,14 @@
                   </div>
               </form>
               <ul class="nav navbar-nav text-capitalize shadow-nav  float-right">
+                  <div class="links p-2 " style="display:inline-block;">
+                    <a href="//eict.edu.et" class="text-sm text-secondary underline p-2"> 
+                                      <button type="button" class="btn btn-sm btn-outline-primary zoom">EICT</button>
+                    </a>
+                    <a href="//www.moe.gov.et" class="text-sm text-secondary underline p-2"> 
+                                      <button type="button" class="btn btn-sm btn-outline-primary zoom">MoE</button>
+                    </a>
+                </div>
                   @if (Route::has('login'))
                       <div class="hidden fixed my-auto float-right p-2 ">
                           @auth
@@ -37,6 +45,7 @@
                             @endif
                         </div>
                     @endif
+                
               </ul>      
            </div>
        </div>

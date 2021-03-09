@@ -385,7 +385,13 @@ i:focus, i:active {
         display: flex;
         justify-content: space-around;
       }
-
+      /* moe and eict links added display inline */
+      #searchForm1{
+        width: 50% !important;
+      }
+      .links{
+        display: inline-block;
+      }
 
 }
 @media (max-width: 993px)
@@ -438,6 +444,7 @@ i:focus, i:active {
         width: 100%;
         height: 150px;
       }
+    
 
 }
 .top-bar {

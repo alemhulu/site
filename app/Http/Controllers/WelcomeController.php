@@ -709,7 +709,7 @@ class WelcomeController extends Controller
                         }
                 }
                 if(count($resources)==0)
-                        $output.="<h4 class='text-center bg-light'> No Resource is available for this Type! </h4>";
+                        $output.="<h4 class='text-center bg-light text-black'> No Resource is available for this Type! </h4>";
                 else{
                         $output.='<h4 class="mt-3 ml-2 bg-light text-center">'.$resource->type->name.'</h4>';
                         $output.='<div class="container-fluid"><div class="row">';
