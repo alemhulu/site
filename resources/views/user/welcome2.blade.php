@@ -163,7 +163,7 @@
 
           @foreach($types as $type)
           @if(count($paginatedResources[$type->id])>0)
-              <h4 class="m-0 mt-2  bg-white mb-2"><strong class="blackColor">{{$type->name}}</strong></h4>
+              <h4 class="m-0 mt-2  bg-white mb-2 typeMoreButton" id={{$type->name}} ><strong class="blackColor">{{$type->name}}</strong></h4>
                 <div class="container-fluid ">
                 <div class="row md">
            

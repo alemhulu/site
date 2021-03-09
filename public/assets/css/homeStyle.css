@@ -512,9 +512,18 @@ i:focus, i:active {
   background: rgb(31,72,162);
 
 }
-/* for mobile view */
+/* for mobile view Menu width */
 @media (max-width:500px){
   .buttonMenu{
     width: 400px;
   };
 }
+/* Content type buttons for more of that */
+.typeMoreButton{
+  cursor: pointer;
+}
+      .typeMoreButton:hover {
+        color: white !important;
+        background-color:rgb(60,143,194) !important;
+        
+      }

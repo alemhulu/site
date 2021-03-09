@@ -351,7 +351,32 @@ function autocomplete(inp, arr) {
 autocomplete(document.getElementById("myInput"), countries);
 autocomplete(document.getElementById("myInput1"), countries);
 
+// content type button click fetch more of that content
+let typeMoreButtons = document.querySelectorAll('.typeMoreButton');
+typeMoreButtons.forEach(function(typeMoreButton) {
+    typeMoreButton.addEventListener('click',function (e) {
+        let query=e.currentTarget.id;
+        typeMore(query);
+    });
+    
+    // e.addEventListener('click', typeMore(id), false);
+});
+function typeMore(query){
+    $.ajax
+        ({
+            url: '/typeMore',
+            method: 'Get',
+            data: { query: query },
+            success: function (response) {
+                $('#content').hide();
+                $('#filter').html(response);
 
+            },
+            error: function (error) {
+                alert("Error!  ");
+            }
+        });
+}
 // $(document).ready (function(){
 //     $(document).on('click',' .pagination a ' , function(event){
 //         event.preventDefault();
