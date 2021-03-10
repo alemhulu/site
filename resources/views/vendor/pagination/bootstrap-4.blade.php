@@ -13,7 +13,7 @@
             @endif
 
             {{-- Pagination Elements --}}
-            @foreach ($elements as $element)
+            <!-- @foreach ($elements as $element)
                 {{-- "Three Dots" Separator --}}
                 @if (is_string($element))
                     <li class="page-item disabled" aria-disabled="true"><span class="page-link zoom h4" id="alem">  {{ $element }}</span></li>
@@ -29,7 +29,7 @@
                         @endif
                     @endforeach
                 @endif
-            @endforeach
+            @endforeach -->
 
             {{-- Next Page Link --}}
             @if ($paginator->hasMorePages())
