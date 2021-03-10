@@ -391,6 +391,7 @@ i:focus, i:active {
       }
       .links{
         display: inline-block;
+        padding: 20px;
       }
 
 }
@@ -511,9 +512,9 @@ i:focus, i:active {
   position:fixed;
   bottom: 0px;
   right: 1%;
-  /* border: 3px solid rgb(209,80,62); */
+  border: 3px solid rgb(209,80,62);
   border-radius: 7%;
-  background-color: rgb(209,80,62);
+  background-color: rgb(209,80,62) !important;
 }
 .page-item.active .page-link{
   background: rgb(31,72,162);
