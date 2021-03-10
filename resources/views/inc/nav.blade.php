@@ -6,7 +6,7 @@
       </a>
       <a class="navbar-brand text-center text-secondary" href="{{url('/')}}" >
           <span  class="d-block brandAmharic" >ትምህርት ሚኒስቴር</span> 
-          <span class="d-block brandEnglish" >Ethiopian Schools Digital Library</span> 
+          <span class="d-block brandEnglish" >Ethiopian Schools E-Learning & D-Library</span> 
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" id="collapseButton">
         <span class="navbar-toggler-icon"></span>
