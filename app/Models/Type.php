@@ -17,7 +17,7 @@ class Type extends Model
     public function allresources($contentType){
         
         // return $this->hasMany('App\Models\Resource')->where('published',1)->orderBy('created_at', 'desc')->paginate( 4, ['*'], "ContentType".$contentType);
-        return $this->hasMany('App\Models\Resource')->orderBy('created_at', 'desc')->paginate( 4, ['*'], "ContentType".$contentType);
+        return $this->hasMany('App\Models\Resource')->inRandomOrder()->orderBy('created_at', 'desc')->paginate( 4, ['*'], "ContentType".$contentType);
     }
 
     public function videoresources(){
