@@ -205,9 +205,8 @@
                           <span class="date ">{{$resource->view}} Views  </span>
                           <span class="date float-right">{{$resource->created_at->diffForHumans() }}</span>
                           @else
-                          <h6 class="mb-0">G-{{$resource->grade->name}} {{$resource->course->name}}</h6>
-                          <h6 class="mb-0">Unit {{$resource->unit->name}} - {{$resource->unit->title}}</h6> 
-                          <h6 class=" mb-2">Subunit {{$resource->subunit->name}} - {{$resource->subunit->title}}</h6>
+                          <h6 class="mb-0">{{$resource->course->name}} </h6>
+                          <h6 class=" mb-2 text-truncate">{{$resource->description}} </h6>
                           <span class="date ">{{$resource->view}} Views </span>
                           <span class="date float-right">{{$resource->created_at->diffForHumans() }}</span>
                           @endif

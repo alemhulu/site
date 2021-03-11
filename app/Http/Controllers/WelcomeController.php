@@ -26,8 +26,8 @@ class WelcomeController extends Controller
                 { 
                 $tag = [];
                         $grades=Grade::orderBy('name','asc')->get();
-                // $courses = Course::select('name')->distinct()->get();
-                $courses = Course::where('grade_id',null)->orderBy('name','asc')->get();
+                 $courses = Course::select('name')->distinct()->get();
+                // $courses = Course::where('grade_id',null)->orderBy('name','asc')->get();
                 //$courses=Course::all();
                 $resources=Resource::orderBy('created_at','asc')->where('published',1)->get();
                 $resources0=Resource::where('published',1)->groupBy('tag')->pluck('tag');
