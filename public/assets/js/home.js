@@ -140,6 +140,10 @@
         }
         $("#headingTwo").attr("aria-expanded", "false");
         $('#collapseTwo').addClass('show');
+        $("#headingThree").attr("aria-expanded", "false");
+        $('#collapseThree').addClass('show');
+        $("#headingfour").attr("aria-expanded", "false");
+        $('#collapsefour').addClass('show');
     }
 //end of filter function
 

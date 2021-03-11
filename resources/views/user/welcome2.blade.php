@@ -66,12 +66,12 @@
         
           
             
-            <button class="btn btn-block text-left p-3 buttonMenu border collapsed  zoom UB bold" id="headingThree" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"  >
+            <button class="btn btn-block text-left p-3 buttonMenu border collapsed  zoom UB bold" id="headingThree" data-toggle="collapse" data-target="#collapseThree" aria-expanded="True" aria-controls="collapseThree"  >
             Unit
             </button>
             
          
-          <div id="collapseThree" class="collapse  shadow" aria-labelledby="headingThree" >
+          <div id="collapseThree" class="collapse  shadow " aria-labelledby="headingThree" >
             <div id="unitFilter">
               @if(count($units)>0) 
               <ul style="color:black;" >
@@ -88,11 +88,11 @@
         <!-- Subunit Menu -->
         
           
-            <button class="btn btn-block text-left p-3 buttonMenu border collapsed  zoom SUB bold" id="headingfour" data-toggle="collapse" data-target="#collapsefour" aria-expanded="false" aria-controls="collapsefour">
+            <button class="btn btn-block text-left p-3 buttonMenu border collapsed  zoom SUB bold" id="headingfour" data-toggle="collapse" data-target="#collapsefour" aria-expanded="true" aria-controls="collapsefour">
             Sub-Unit
             </button>
             
-          <div id="collapsefour" class="collapse shadow" aria-labelledby="headingfour" >
+          <div id="collapsefour" class="collapse shadow " aria-labelledby="headingfour" >
             <div id="subunitFilter">
               @if(count($subunits)>0) 
               <ul id="" style="color:black;">
