@@ -220,7 +220,7 @@
             document.getElementById('description').value = '';
             document.getElementById('link1').value = 0;
             document.getElementById('link2').value = 1;
-            document.getElementById("thumbnailLocation").value= "";
+            // document.getElementById("thumbnailLocation").value= "";
             document.getElementById("fileLocation").value= "";
             alert("Resource Uploaded");
           },
