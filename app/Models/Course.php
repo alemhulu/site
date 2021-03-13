@@ -17,7 +17,7 @@ class Course extends Model
     }
 
     public function units(){
-    	return $this->hasMany('App\Models\Unit');
+    	return $this->hasMany('App\Models\Unit')->orderBy('name','asc');
     }
 
     public function resources(){

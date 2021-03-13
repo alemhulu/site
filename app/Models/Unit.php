@@ -13,7 +13,7 @@ class Unit extends Model
     }
 
     public function subunits(){
-    	return $this->hasMany('App\Models\Subunit');
+    	return $this->hasMany('App\Models\Subunit')->orderBy('name','asc');
     }
 
     public function resources(){

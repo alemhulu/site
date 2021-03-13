@@ -137,7 +137,7 @@ class WelcomeController extends Controller
         {
                 //
         }
-
+ 
         /**
          * Display the specified resource.
          *
@@ -284,8 +284,8 @@ class WelcomeController extends Controller
                 $co=0;
                 $m=0;
                 $commonCourses = Course::where('grade_id',null)->orderBy('name','asc')->get();
-                $allUnits=Unit::orderBy('title','asc')->get();
-                $allSubunits=Subunit::orderBy('title','asc')->get();
+                $allUnits=Unit::orderBy('name','asc')->get();
+                $allSubunits=Subunit::orderBy('name','asc')->get();
                 if(isset($_POST['action']))
                 {
                         $sql ='';
@@ -302,7 +302,7 @@ class WelcomeController extends Controller
                                 {
                         $c=1;
                                         $course_id = implode("','",$_POST['course_id']);
-                        $units=Unit::whereIn('course_id',$_POST['course_id'])->orderBy('title','asc')->get();
+                        $units=Unit::whereIn('course_id',$_POST['course_id'])->orderBy('name','asc')->get();
                         if($this->x==0)
                                         {
                                                 $sql .=" where course_id In ('$course_id') ";

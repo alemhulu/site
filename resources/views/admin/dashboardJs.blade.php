@@ -175,16 +175,16 @@
       e.preventDefault();
 
       $.ajax({
-          type:"POST",
-          url: "/medias",
-          data: $('#addMediaForm').serialize(),
-          success: function(response){
+            type:"POST",
+             url: "/medias",
+            data: $('#addMediaForm').serialize(),
+            success: function(response){
                 alert("Media type Created");
                 mediaChangeHTML(response);
-        },
-         error: function(error){
-             alert("Error Occered while creating a Media Type");
-            }
+             },
+              error: function(error){
+                    alert("Error Occered while creating a Media Type");
+              }
       });
        function mediaChangeHTML(media){
            
@@ -198,7 +198,7 @@
   });
 
 </script> 
-
+ 
 
 <!-- Add Resources  -->
 <script >
