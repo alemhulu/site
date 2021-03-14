@@ -314,11 +314,7 @@ function checkAnswer(){
       
     });
   function quizRender(){
-    $('#description_like_dislike').empty();
-    $('#singleViewDiv').empty();
-    $('#views_uploadTime_1').empty();
-    $('#views_uploadTime_2').empty();
-    test.style = "border:#000 2px solid; padding:10px 40px 40px 40px;";
+    
                 $.ajax
                 ({
                         url:'/quiz',
@@ -340,7 +336,19 @@ while(i < response.length){
 
 // console.log(result);
 // document.write(JSON.stringify(result, null, 4));
-renderQuestion(result);
+if(result.length==0){
+  alert('Quiz not available for this post!');
+  return false;
+}
+else{
+  $('#description_like_dislike').empty();
+    $('#singleViewDiv').empty();
+    $('#views_uploadTime_1').empty();
+    $('#views_uploadTime_2').empty();
+    test.style = "border:#000 2px solid; padding:10px 40px 40px 40px;";
+  renderQuestion(result);
+}
+
                         },
                         error: function(error)
                         {
