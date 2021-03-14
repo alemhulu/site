@@ -9,6 +9,26 @@
 // filter function
 
 // fileter function
+    
+
+    // Filter by courses from all grades 
+let courses;
+
+function intialization() {
+    courses = document.querySelectorAll(".course");
+    console.log(courses);
+    courses.forEach(function (course) {
+        course.addEventListener('change', function (e) {
+            const id = e.currentTarget.id;
+            typeMore(id);
+        });
+    });
+    
+    
+
+}
+window.onload = intialization;
+   
     function filter() {
         var radioElements = document.getElementsByName("grade");
         for (var i = 0; i < radioElements.length; i++) {
@@ -26,7 +46,7 @@
         var type_id = get_filter_text('typeId');
         var media_id = get_filter_text('mediaId');
         $.ajax
-            ({
+            ({ 
                 url: "/moeuser",
                 method: 'POST',
                 headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
