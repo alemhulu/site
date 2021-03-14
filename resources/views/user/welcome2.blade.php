@@ -51,6 +51,7 @@
           
           <div id="collapseTwo" class="collapse hide  shadow" aria-labelledby="headingTwo" >
               <div id="courseFilter">
+                <form id="courseForm">
               @if(count($courses)>0) 
               <ul  style="color:black;"><br>
               @foreach($courses as $course)
@@ -59,6 +60,7 @@
               <br>
               </ul>
               @endif
+              </form>
               </div>
           </div>
         

@@ -74,6 +74,7 @@ function filter() {
         var subunit_id = get_filter_text('subunitId');
         var type_id = get_filter_text('typeId');
         var media_id = get_filter_text('mediaId');
+        let commonCourses='';
         $.ajax
             ({ 
                 url: "/moeuser",
@@ -89,14 +90,17 @@ function filter() {
                         $('.SUB').removeClass('lblue');
                         $('.CTB').removeClass('lblue');
                         $('.MTB').removeClass('lblue');
+                        commonCourses=$('.course').innerHTML;
                         $('#result').show();
                         $('#filter').empty();
-                        var commonCourses = '<ul  style="color:black;"><br>';
-                        for (i = 0; i < response.commonCourses.length; i++) {
-                            commonCourses += '<li><input type="checkbox" class="form-check-input " id="courseId" value="' + response.commonCourses[i].id + '" onchange="filter()" ><h6>' + response.commonCourses[i].name + '</h6></li>';
-                        }
-                        commonCourses += '<br></ul>';
+                        //  commonCourses = '<ul  style="color:black;"><br>';
+                        // for (i = 0; i < response.commonCourses.length; i++) {
+                        //     commonCourses += '<li><input type="radio" name"courses" class="form-check-input course" id="courseId" value=""' + response.commonCourses[i].id + '"  ><h6>' + response.commonCourses[i].name + '</h6></li>';
+                        // }
+                        // commonCourses += '<br></ul>';
+                        
                         $('#courseFilter').html(commonCourses);
+                        document.getElementById('courseForm').reset();
                         var allUnits = '<ul  style="color:black;"><br>';
                         for (i = 0; i < response.allUnits.length; i++) {
                             allUnits += '<li><input type="checkbox" class="form-check-input" id="unitId" value="' + response.allUnits[i].id + '" onchange="filter()" ><h6>' + response.allUnits[i].title + '</h6></li>';

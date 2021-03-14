@@ -283,7 +283,9 @@ class WelcomeController extends Controller
                 $su=0;
                 $co=0;
                 $m=0;
-                $commonCourses = Course::where('grade_id',null)->orderBy('name','asc')->get();
+         
+                // $commonCourses = Course::where('grade_id',null)->orderBy('name','asc')->get();
+                 $commonCourses = Course::select('name')->distinct()->orderBy('name','asc')->get();
                 $allUnits=Unit::orderBy('name','asc')->get();
                 $allSubunits=Subunit::orderBy('name','asc')->get();
                 if(isset($_POST['action']))
