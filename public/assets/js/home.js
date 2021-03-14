@@ -8,15 +8,33 @@
 // alert (heightWindows + 'document height '+ heightDocument);
 // filter function
 
-// fileter function
-    
+
+
+// content type button click fetch more of that content
+
+function typeMore(query) {
+    $.ajax
+        ({
+            url: '/typeMore',
+            method: 'Get',
+            data: { query: query },
+            success: function (response) {
+                $('#content').hide();
+                $('#filter').html(response);
+
+            },
+            error: function (error) {
+                alert("Error!  ");
+            }
+        });
+}
 
     // Filter by courses from all grades 
-let courses;
+let courses,typeMoreButtons;
 
 function intialization() {
+    // Course filter
     courses = document.querySelectorAll(".course");
-    console.log(courses);
     courses.forEach(function (course) {
         course.addEventListener('change', function (e) {
             const id = e.currentTarget.id;
@@ -24,11 +42,22 @@ function intialization() {
         });
     });
     
-    
+    // content More
+     typeMoreButtons = document.querySelectorAll('.typeMoreButton');
+    typeMoreButtons.forEach(function (typeMoreButton) {
+        typeMoreButton.addEventListener('click', function (e) {
+            let query = e.currentTarget.id;
+            typeMore(query);
+        });
+
+        // e.addEventListener('click', typeMore(id), false);
+    });
 
 }
 window.onload = intialization;
-   
+
+
+   // fileter function
     function filter() {
         var radioElements = document.getElementsByName("grade");
         for (var i = 0; i < radioElements.length; i++) {
@@ -375,32 +404,6 @@ function autocomplete(inp, arr) {
 autocomplete(document.getElementById("myInput"), countries);
 autocomplete(document.getElementById("myInput1"), countries);
 
-// content type button click fetch more of that content
-let typeMoreButtons = document.querySelectorAll('.typeMoreButton');
-typeMoreButtons.forEach(function(typeMoreButton) {
-    typeMoreButton.addEventListener('click',function (e) {
-        let query=e.currentTarget.id;
-        typeMore(query);
-    });
-    
-    // e.addEventListener('click', typeMore(id), false);
-});
-function typeMore(query){
-    $.ajax
-        ({
-            url: '/typeMore',
-            method: 'Get',
-            data: { query: query },
-            success: function (response) {
-                $('#content').hide();
-                $('#filter').html(response);
-
-            },
-            error: function (error) {
-                alert("Error!  ");
-            }
-        });
-}
 // $(document).ready (function(){
 //     $(document).on('click',' .pagination a ' , function(event){
 //         event.preventDefault();
