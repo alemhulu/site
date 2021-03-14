@@ -57,8 +57,8 @@ function intialization() {
 window.onload = intialization;
 
 
-   // fileter function
-    function filter() {
+// fileter function
+function filter() {
         var radioElements = document.getElementsByName("grade");
         for (var i = 0; i < radioElements.length; i++) {
             if (radioElements[i].checked == true) {
@@ -117,6 +117,8 @@ window.onload = intialization;
                                 courses += '<li><input type="checkbox" class="form-check-input " id="courseId" value="' + response.courses[i].id + '" onchange="filter()" ><h6>' + response.courses[i].name + '</h6></li>';
                             }
                             courses += '<br></ul>';
+                            $("#headingTwo").attr("aria-expanded", "false");
+                            $('#collapseTwo').addClass('show');
                             $('#courseFilter').html(courses);
                             $('#unitFilter').empty();
                             $('#subunitFilter').empty();
@@ -126,7 +128,10 @@ window.onload = intialization;
                             for (i = 0; i < response.units.length; i++) {
                                 units += '<li><input type="checkbox" class="form-check-input" id="unitId" value="' + response.units[i].id + '" onchange="filter()" ><h6>' + response.units[i].title + '</h6></li>';
                             }
-                            units += '<br></ul>'; $('#unitFilter').html(units);
+                            units += '<br></ul>'; 
+                            $("#headingThree").attr("aria-expanded", "false");
+                            $('#collapseThree').addClass('show');
+                            $('#unitFilter').html(units);
                             $('#subunitFilter').empty();
                         }
                         if (response.u == 1 && response.su == 0) {
@@ -135,6 +140,9 @@ window.onload = intialization;
                                 subunits += '<li><input type="checkbox" class="form-check-input" id="subunitId" value="' + response.subunits[i].id + '" onchange="filter()" ><h6>' + response.subunits[i].title + '</h6></li>';
                             }
                             subunits += '<br></ul>';
+
+                            $("#headingfour").attr("aria-expanded", "false");
+                            $('#collapsefour').addClass('show');
                             $('#subunitFilter').html(subunits);
                         }
                         $('#result').hide();
@@ -187,14 +195,9 @@ window.onload = intialization;
             });
             return filterData;
         }
-        $("#headingTwo").attr("aria-expanded", "false");
-        $('#collapseTwo').addClass('show');
-        $("#headingThree").attr("aria-expanded", "false");
-        $('#collapseThree').addClass('show');
-        $("#headingfour").attr("aria-expanded", "false");
-        $('#collapsefour').addClass('show');
+    
     }
-//end of filter function
+    //end of filter function
 
 
 
