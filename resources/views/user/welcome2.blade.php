@@ -54,7 +54,7 @@
               @if(count($courses)>0) 
               <ul  style="color:black;"><br>
               @foreach($courses as $course)
-              <li><input type="checkbox"class="form-check-input resource_check" value="{{$course->id}}"  id="courseId" onchange="filter()" ><h6>{{$course->name}}</h6></li>
+              <li><input type="checkbox"class="form-check-input resource_check course" value="{{$course->id}}"  id="{{$course->name}}" onchange="coursesfilter()" ><h6>{{$course->name}}</h6></li>
               @endforeach
               <br>
               </ul>
@@ -216,7 +216,7 @@
                     
                     </div> 
                   @endforeach
-        
+         
                 </div> 
                
               </div>    
