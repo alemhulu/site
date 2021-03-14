@@ -126,7 +126,7 @@ function filter() {
                         if (response.c == 1 && response.u == 0) {
                             var units = '<ul  style="color:black;"><br>';
                             for (i = 0; i < response.units.length; i++) {
-                                units += '<li><input type="checkbox" class="form-check-input" id="unitId" value="' + response.units[i].id + '" onchange="filter()" ><h6>' + response.units[i].title + '</h6></li>';
+                                units += '<li><input type="checkbox" class="form-check-input" id="unitId" value="' + response.units[i].id + '" onchange="filter()" ><h6> Unit' + response.units[i].name + " " + response.units[i].title + '</h6></li>';
                             }
                             units += '<br></ul>'; 
                             $("#headingThree").attr("aria-expanded", "false");
@@ -137,7 +137,7 @@ function filter() {
                         if (response.u == 1 && response.su == 0) {
                             var subunits = '<ul  style="color:black;"><br>';
                             for (i = 0; i < response.subunits.length; i++) {
-                                subunits += '<li><input type="checkbox" class="form-check-input" id="subunitId" value="' + response.subunits[i].id + '" onchange="filter()" ><h6>' + response.subunits[i].title + '</h6></li>';
+                                subunits += '<li><input type="checkbox" class="form-check-input" id="subunitId" value="' + response.subunits[i].id + '" onchange="filter()" ><h6> Subunit' + response.units[i].name + " "  + response.subunits[i].title + '</h6></li>';
                             }
                             subunits += '<br></ul>';
 
