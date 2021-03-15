@@ -18,6 +18,7 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\QuizController;
+use App\Http\Controllers\FeedbackController;
 
 
 /*
@@ -113,6 +114,7 @@ Route::apiResources([
     'types' => TypeController::class,
     'medias' => MediaController::class,
     'resources' => ResourceController::class,
+    'feedbacks' => FeedbackController::class,
 ]);
 
 

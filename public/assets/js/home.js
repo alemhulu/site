@@ -8,7 +8,8 @@
 // alert (heightWindows + 'document height '+ heightDocument);
 // filter function
 
-
+// Inportant Variable 
+let courses, typeMoreButtons, feedbackButton, feedbackSend, buttonMenus;
 
 // content type button click fetch more of that content
 
@@ -29,8 +30,16 @@ function typeMore(query) {
         });
 }
 
-    // Filter by courses from all grades 
-let courses,typeMoreButtons;
+ // feedback funtion
+ function feedbackFuntion(){
+     alert('feedback');
+ }
+ function feedbackAjax(){
+     alert('to server');
+ }
+
+
+
 
 function intialization() {
     // Course filter
@@ -49,10 +58,25 @@ function intialization() {
             let query = e.currentTarget.id;
             typeMore(query);
         });
-
-        // e.addEventListener('click', typeMore(id), false);
     });
 
+    // feedback
+    feedbackButton = document.querySelector('.feedback');
+    feedbackSend = document.querySelector('.feedbackSend');
+
+    feedbackButton.addEventListener('click',feedbackFuntion,false);
+    feedbackSend.addEventListener('click',feedbackAjax,false);
+
+    // icon toggle for menu
+
+    buttonMenus = document.querySelectorAll('.buttonMenu');
+    buttonMenus.forEach(function (buttonMenu){
+        buttonMenu.addEventListener('click',function(e){
+            // console.log(buttonMenu.children[0].classList.toggle('fa-angle-up'));
+            buttonMenu.children[0].classList.toggle('fa-angle-up');
+        });
+    });
+   
 }
 window.onload = intialization;
 

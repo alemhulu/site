@@ -21,7 +21,7 @@
       <button class="btn btn-block text-left p-3  buttonMenu border  zoom ga bold " id="headingOne" data-toggle="collapse" data-target="#gradeCollaps" 
                     aria-expanded="true" aria-controls="gradeCollaps"
                     style="font-size: 16px;font-family: sans-serif Gotham ;"  >
-                Grade
+                Grade <i class="fas fa-angle-down buttonMenuIcon float-right"></i>
             </button>
              <div id="gradeCollaps" class="collapse hide shadow-sm" aria-labelledby="headingOne" >
               <div id="gradeFilter">
@@ -45,7 +45,7 @@
             
             
             <button class="btn btn-block text-left p-3 buttonMenu border collapsed  zoom CB bold" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" >
-            Course
+            Course <i class="fas fa-angle-down buttonMenuIcon float-right"></i>
             </button>
             
           
@@ -69,7 +69,7 @@
           
             
             <button class="btn btn-block text-left p-3 buttonMenu border collapsed  zoom UB bold" id="headingThree" data-toggle="collapse" data-target="#collapseThree" aria-expanded="True" aria-controls="collapseThree"  >
-            Unit
+            Unit <i class="fas fa-angle-down buttonMenuIcon  float-right"></i>
             </button>
             
          
@@ -91,7 +91,7 @@
         
           
             <button class="btn btn-block text-left p-3 buttonMenu border collapsed  zoom SUB bold" id="headingfour" data-toggle="collapse" data-target="#collapsefour" aria-expanded="true" aria-controls="collapsefour">
-            Sub-Unit
+            Sub-Unit <i class="fas fa-angle-down buttonMenuIcon float-right"></i>
             </button>
             
           <div id="collapsefour" class="collapse shadow " aria-labelledby="headingfour" >
@@ -108,12 +108,35 @@
            </div>
           </div>
        
+            <!-- Media Type Menu -->
+        
+          
+            
+            <button class="btn btn-block text-left p-3 buttonMenu border collapsed  zoom MTB bold active" id="headingsix" data-toggle="collapse" data-target="#collapsesix" aria-expanded="false" aria-controls="collapsesix">
+            Media Type <i class="fas fa-angle-down buttonMenuIcon float-right"></i>
+            </button>
+           
+          
+          <div id="collapsesix" class="collapse shadow" aria-labelledby="headingsix" >
+           <div>
+              @if(count($medias)>0) 
+              <ul id="" style="color:black;">
+              <br>
+              @foreach($medias as $media)
+              <li><input type="checkbox"class="form-check-input resource_check" onchange="filter()"  value="{{$media->id}}" id="mediaId"><h6> {{$media->name}}</h6></li>
+              @endforeach
+              <br>
+              </ul>
+              @endif
+           </div>
+          </div>
+
         <!-- Content Type Menu -->
         
             
             
             <button class="btn btn-block text-left p-3 buttonMenu border collapsed  zoom CTB bold " id="headingfive" data-toggle="collapse" data-target="#collapsefive" aria-expanded="false" aria-controls="collapsefive">
-            Content Type
+            Content Type <i class="fas fa-angle-down buttonMenuIcon  float-right"></i>
             </button>
             
           
@@ -131,28 +154,7 @@
             </div>
           </div>
       
-        <!-- Media Type Menu -->
-        
-          
-            
-            <button class="btn btn-block text-left p-3 buttonMenu border collapsed  zoom MTB bold active" id="headingsix" data-toggle="collapse" data-target="#collapsesix" aria-expanded="false" aria-controls="collapsesix">
-            Media Type
-            </button>
-           
-          
-          <div id="collapsesix" class="collapse shadow" aria-labelledby="headingsix" >
-           <div>
-              @if(count($medias)>0) 
-              <ul id="" style="color:black;">
-              <br>
-              @foreach($medias as $media)
-              <li><input type="checkbox"class="form-check-input resource_check" onchange="filter()"  value="{{$media->id}}" id="mediaId"><h6> {{$media->name}}</h6></li>
-              @endforeach
-              <br>
-              </ul>
-              @endif
-           </div>
-          </div>
+      
     </ul>
         </div> 
     </div>
@@ -227,6 +229,47 @@
           
           @endforeach
         </div>
+        <div class="feedback-form ">
+          <form action="">
+            <div>
+                <img src="/assets/img/logom.png" alt="" class="logo">
+            </div>
+            <h5>
+              We would love to hear your thoughts, suggestions, concern or problems with anything so we can improve!
+            </h5>
+            <div class="feedbackRadio">
+              <div>
+                <input type="radio" name="feedback" id="Comments">
+                <label for="Comments">Comments</label>
+              </div>
+               <div>
+                <input type="radio" name="feedback" id="Suggestions">
+                <label for="Suggestions">Suggestions</label>
+              </div>
+               <div>
+                <input type="radio" name="feedback" id="Question">
+                <label for="Question">Question</label>
+              </div>
+            </div>
+            <label for="feedbackDescription">Discribe your Feedback:</label>
+            <textarea name="description" id="feedbackDescription" cols="30" rows="10"></textarea>
+            <h5>Name</h5>
+            <div>
+              <input type="text" name="firstName" id="firstName">
+              <label for="firstName">First Name</label>
+            </div>
+            <div>
+              <input type="text" name="lastName" id="lastName">
+              <label for="lastName">First Name</label>
+            </div>
+            <div>
+              <label for="E-mail">E-mail</label>
+              <input type="text" name="E-mail" id="E-mail">
+            </div>
+            <button type="button" class="bottons feedbackSend">Send</button>
+          </form>
+        </div>
+        <div class="feedback buttons zoom">Feedback</div>
         <div class="mt-5" id="paginateType">{!!$types->appends(['resources'=>$resources->currentPage()])->links('user.paginateResource')!!}</div>
         </div>
      
@@ -252,6 +295,12 @@
 <script>var countries = <?php echo json_encode($tag); ?>;</script>
 <script src="/assets/js/home.js"></script>
 @endsection
+
+
+
+
+
+
 
 
 

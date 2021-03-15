@@ -10,7 +10,14 @@ html,body {
   font-size : 14px;
   font-family : sans-serif Gotham Arial;  
 }
-
+.buttons{
+  background: white;
+  color:  rgb(31,72,162);
+  border: 1px rgb(31,72,162) solid; 
+  border-radius: 5px;
+  padding: 5px 4%;
+  cursor: pointer;
+}
 /*the container must be positioned relative:*/
 .autocomplete {
   position: relative;
@@ -530,8 +537,21 @@ i:focus, i:active {
 .typeMoreButton{
   cursor: pointer;
 }
-      .typeMoreButton:hover {
-        color: white !important;
-        background-color:rgb(60,143,194) !important;
-        
-      }
+.typeMoreButton:hover {
+  color: white !important;
+  background-color:rgb(60,143,194) !important;
+
+}
+
+/* Feedback  */
+.feedback{
+  position:fixed;
+  left: 0;
+  bottom: 0;
+  font-size: medium;
+  text-align: center;
+}
+.logo{
+  width: 4em;
+  
+}
