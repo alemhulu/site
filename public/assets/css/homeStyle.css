@@ -553,5 +553,9 @@ i:focus, i:active {
 }
 .logo{
   width: 4em;
-  
+  margin:auto;
+}
+.feedbackRadio .block {
+  float: left !important;
+  width: 33.3%;
 }

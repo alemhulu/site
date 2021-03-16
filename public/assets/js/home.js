@@ -35,9 +35,20 @@ function typeMore(query) {
      alert('feedback');
  }
  function feedbackAjax(){
-     alert('to server');
+     $.ajax({
+         type: "POST",
+         url: "/feedbacks",
+         data: $('#addFeedbackForm').serialize(),
+         success: function (response) {
+             alert("Thank you for your Feedback!");
+             
+         },
+         error: function (error) {
+             alert("Error Occered while sending a Feedback");
+         }
+     });
  }
-
+ 
 
 
 
@@ -60,24 +71,26 @@ function intialization() {
         });
     });
 
+
     // feedback
     feedbackButton = document.querySelector('.feedback');
-    feedbackSend = document.querySelector('.feedbackSend');
-
-    feedbackButton.addEventListener('click',feedbackFuntion,false);
-    feedbackSend.addEventListener('click',feedbackAjax,false);
+    feedbackSend = document.querySelector('#feedbackSend');
+    
+    // feedbackButton.addEventListener('click',feedbackFuntion,false);
+     feedbackSend.addEventListener('click',feedbackAjax,false);
 
     // icon toggle for menu
 
     buttonMenus = document.querySelectorAll('.buttonMenu');
-    buttonMenus.forEach(function (buttonMenu){
-        buttonMenu.addEventListener('click',function(e){
-            // console.log(buttonMenu.children[0].classList.toggle('fa-angle-up'));
+        buttonMenus.forEach(function (buttonMenu){
+            buttonMenu.addEventListener('click',function(e){
             buttonMenu.children[0].classList.toggle('fa-angle-up');
         });
     });
    
 }
+
+// excutes after window successfully loaded
 window.onload = intialization;
 
 

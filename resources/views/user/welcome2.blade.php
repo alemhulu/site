@@ -229,53 +229,77 @@
           
           @endforeach
         </div>
-        <div class="feedback-form ">
-          <form action="">
-            <div>
-                <img src="/assets/img/logom.png" alt="" class="logo">
-            </div>
-            <h5>
-              We would love to hear your thoughts, suggestions, concern or problems with anything so we can improve!
-            </h5>
-            <div class="feedbackRadio">
-              <div>
-                <input type="radio" name="feedback" id="Comments">
-                <label for="Comments">Comments</label>
-              </div>
-               <div>
-                <input type="radio" name="feedback" id="Suggestions">
-                <label for="Suggestions">Suggestions</label>
-              </div>
-               <div>
-                <input type="radio" name="feedback" id="Question">
-                <label for="Question">Question</label>
-              </div>
-            </div>
-            <label for="feedbackDescription">Discribe your Feedback:</label>
-            <textarea name="description" id="feedbackDescription" cols="30" rows="10"></textarea>
-            <h5>Name</h5>
-            <div>
-              <input type="text" name="firstName" id="firstName">
-              <label for="firstName">First Name</label>
-            </div>
-            <div>
-              <input type="text" name="lastName" id="lastName">
-              <label for="lastName">First Name</label>
-            </div>
-            <div>
-              <label for="E-mail">E-mail</label>
-              <input type="text" name="E-mail" id="E-mail">
-            </div>
-            <button type="button" class="bottons feedbackSend">Send</button>
-          </form>
-        </div>
-        <div class="feedback buttons zoom">Feedback</div>
+        <div class="feedback buttons zoom" data-toggle="modal" data-target="#addFeedback">Feedback</div>
         <div class="mt-5" id="paginateType">{!!$types->appends(['resources'=>$resources->currentPage()])->links('user.paginateResource')!!}</div>
         </div>
      
       </div>
+      
       <div id="filter"></div>
   
+ <!-- AddGrade Modal -->
+
+<div class="modal fade" id="addFeedback" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+      <div class="modal-header">
+      <img src="/assets/img/logom.png" alt="" class="logo">
+      <button type="button" class="close m-0" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      </button>
+      </div>
+      <div class="modal-body">
+          <form id="addFeedbackForm">
+              @csrf 
+              <div class="form-group">
+                
+                    <p class="p-3">
+                      We would love to hear your thoughts, suggestions, concern or problems with anything so we can improve !
+                    </p >
+                    <strong ><label> Feedback Type </label></strong>
+                    <div class="feedbackradio ">
+                      <div class="float-left ml-5 mr-5">
+                          <input type="radio" name="feedbackType" id="Comments"  value="Comments">
+                          <label for="Comments">Comments</label>
+                      </div>
+                      <div class="float-left mr-5">
+                          <input type="radio" name="feedbackType" id="Suggestions" value="Suggestions">
+                          <label for="Suggestions">Suggestions</label>
+                      </div>
+                      <div class="mr-5">
+                        <input type="radio" name="feedbackType" id="Question" value="Question">
+                        <label for="Question">Question</label>
+                      </div>
+                    </div>
+                   
+                       <strong><label for="feedbackDescription" class="d-block text-center mt-3">Discribe your Feedback:</label></strong> 
+                        <textarea name="description" id="feedbackDescription" class="d-block w-100 shadow-sm"  rows="4"></textarea>
+                        <strong ><label class="mt-3">Name</label></strong>
+                        <div class="row">
+                          <div class="col">
+                            <input type="text" name="firstname"  class="shadow-sm" id="firstName">
+                            <label for="firstName">First Name</label>
+                          </div>
+                           <div class="col">
+                            <input type="text" name="lastname" class="shadow-sm"  id="lastName">
+                            <label for="lastname">Last Name</label>
+                          </div>
+                        </div>
+                        <div >
+                          <label for="E-mail">E-mail</label>
+                          <input type="text" name="email" class="shadow-sm" id="E-mail" >
+                        </div>
+             </div> 
+             <div class="modal-footer">
+                <button type="button" class="btn lblue" data-dismiss="modal">Close</button>
+                <button type="button" id="feedbackSend" class="btn btn-primary">Send</button>
+            </div>
+        </form>
+      </div>
+  </div>
+</div>
+</div>
+ 
 
     <!-- <a class="border rounded d-inline scroll-to-top" href="#page-top"><div id="page-top-botton"><i class="fas fa-angle-up"></i></div></a> -->
     <footer class="bg-white sticky-footer">
