@@ -685,7 +685,7 @@ i:focus, i:active {
 }
 /* Nav bar margin top */
 #searchForm1{
-  width: 75%; 
+  width: 50%; 
   margin-top:5px !important;
 }
 /* brand styles */
@@ -702,7 +702,7 @@ i:focus, i:active {
 */
 
 #searchForm1{
-  width: 75%; 
+  width: 50%; 
   margin-top:5px;
 }
 .nav-form-ul{
