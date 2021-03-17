@@ -273,21 +273,21 @@
                     </div>
                    
                        <strong><label for="feedbackDescription" class="d-block text-center mt-3">Discribe your Feedback:</label></strong> 
-                        <textarea name="description" id="feedbackDescription" class="d-block w-100 shadow-sm"  rows="4"></textarea>
+                        <textarea name="description" id="feedbackDescription" class="d-block w-100 shadow-sm"  rows="3"></textarea>
                         <strong ><label class="mt-3">Name</label></strong>
                         <div class="row">
                           <div class="col">
-                            <input type="text" name="firstname"  class="shadow-sm" id="firstName">
+                            <input type="text" name="firstname"  class="shadow-sm p-1" id="firstName">
                             <label for="firstName">First Name</label>
                           </div>
                            <div class="col">
-                            <input type="text" name="lastname" class="shadow-sm"  id="lastName">
+                            <input type="text" name="lastname" class="shadow-sm p-1"  id="lastName">
                             <label for="lastname">Last Name</label>
                           </div>
                         </div>
                         <div >
                           <label for="E-mail">E-mail</label>
-                          <input type="text" name="email" class="shadow-sm" id="E-mail" >
+                          <input type="text" name="email" class="shadow-sm p-1" id="E-mail" >
                         </div>
              </div> 
              <div class="modal-footer">

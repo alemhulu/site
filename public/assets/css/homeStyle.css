@@ -13,7 +13,7 @@ html,body {
 .buttons{
   background: white;
   color:  rgb(31,72,162);
-  border: 1px rgb(31,72,162) solid; 
+  border: 3px rgb(209,80,62) solid; 
   border-radius: 5px;
   padding: 5px 4%;
   cursor: pointer;
