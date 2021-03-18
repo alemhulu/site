@@ -9,7 +9,7 @@
 // filter function
 
 // Inportant Variable 
-let courses, typeMoreButtons, feedbackButton, feedbackSend, buttonMenus;
+let courses, typeMoreButtons, feedbackButton, feedbackSend, buttonMenus, file_id , downloadFileFile, downloadCount;
 
 // content type button click fetch more of that content
 
@@ -72,12 +72,13 @@ function intialization() {
     });
 
 
+    // Object initialization
+
     // feedback
     feedbackButton = document.querySelector('.feedback');
     feedbackSend = document.querySelector('#feedbackSend');
-    
     // feedbackButton.addEventListener('click',feedbackFuntion,false);
-     feedbackSend.addEventListener('click',feedbackAjax,false);
+    feedbackSend.addEventListener('click', feedbackAjax, false);
 
     // icon toggle for menu
 
@@ -87,7 +88,25 @@ function intialization() {
             buttonMenu.children[0].classList.toggle('fa-angle-up');
         });
     });
-   
+   // downloadFile function
+    downloadFiles = document.querySelectorAll('.download');
+    downloadCount = document.querySelector('#downloadCount');
+    downloadFiles.forEach(function (downloadFile) {
+        downloadFile.addEventListener('click', function (e) {
+            file_id = downloadFile.value;
+            $.ajax({
+                url: '/download',
+                method: 'GET',
+                data: { file_id: file_id },
+                success: function (response) {
+                   downloadCount.textContent = " " + response;
+                },
+                error: function (error) {
+                    alert("Error!  ");
+                }
+            });
+        });
+    });
 }
 
 // excutes after window successfully loaded
@@ -464,3 +483,7 @@ autocomplete(document.getElementById("myInput1"), countries);
 //        }
 //     });
 // }
+
+
+
+

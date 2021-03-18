@@ -458,13 +458,19 @@ class WelcomeController extends Controller
 
         public function download(Request $request)
         {
-        
-        $resource=Resource::find($request->file_id);
-        $resource->increment('download',1);
-        return $resource->download;
+                $resource=Resource::find($request->file_id);
+                $resource->increment('download',1);
+                return $resource->download;
 
         }
 
+        public function fileDownload(Request $request)
+        {
+                $resource=Resource::find($request->file_id);
+                $resource->increment('download',1);
+                return $resource->download;
+
+        }
         // like function
         public function likeDislike(Request $request)
         {

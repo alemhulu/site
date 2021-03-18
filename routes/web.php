@@ -100,6 +100,7 @@ Route::get('/search',[WelcomeController::class, 'search'])->name('search');
 Route::get('/typeMore',[WelcomeController::class, 'typeMore'])->name('typeMore');
 Route::POST('/moeuser',[WelcomeController::class, 'moeuser'])->name('moeuser');
 Route::POST('/file/download',[WelcomeController::class, 'download'])->name('download');
+Route::GEt('/download',[WelcomeController::class, 'fileDownload'])->name('fileDownload');
 Route::GET('/file/likeDislike',[WelcomeController::class, 'likeDislike'])->name('likeDislike');
 Route::get('/pagination',[WelcomeController::class,'fetch_data']);
 

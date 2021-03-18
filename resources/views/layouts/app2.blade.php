@@ -6,6 +6,7 @@
     <meta name="MoE" content="Ministry of Education">
     <meta name="author" content="Alemhulu AWekelgne">
     <meta name="google-site-verification" content="YA8sQHO3FyF0B5Ozb0Y96IbN3kgetyaR-fOIN-fa3dk" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>MoE</title>
     <meta name="csrf-token" content="{{ csrf_token() }}" />

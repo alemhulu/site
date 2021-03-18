@@ -1,6 +1,7 @@
 @extends('layouts.app2')
 @section('content')
 @section('homeStyle')
+<link rel="stylesheet" type="text/css" href="/fonts/style.css">
 <link rel="stylesheet" href="/assets/css/homeStyle.css">
 @endsection
 <section>
@@ -164,7 +165,7 @@
       <div id="content" >
         <div id="result">
          <div id="result">
-
+          
           @foreach($types as $type)
           @if(count($paginatedResources[$type->id])>0)
               <h4 class="m-0 mt-2  bg-white mb-2 typeMoreButton" id={{$type->name}} ><strong class="blackColor">{{$type->name}}</strong></h4>
@@ -175,6 +176,7 @@
                     $resources=$paginatedResources[$type->id];
                  ?>
                   @foreach($resources as $resource)
+                  
                     <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4" id="linkColor">
                       <div class="zoom" data-toggle="tooltip" data-placement="top" title="{{$resource->description}}"
                             style=" position: relative;">
@@ -201,21 +203,37 @@
                         @endif
 
                         @endif
-                        
+                         </a>
                         <div class="p-1 shadow rounded text-black">
                           @if($resource->unit_id=="" || $resource->subunit_id=="" || $resource->grade_id=="")
                           <h6 class="mb-0">{{$resource->course->name}} </h6>
                           <h6 class=" mb-2 text-truncate">{{$resource->description}} </h6>
-                          <span class="date ">{{$resource->view}} Views  </span>
-                          <span class="date float-right">{{$resource->created_at->diffForHumans() }}</span>
+                          <div class="d-flex justify-content-between">
+                            <span class="date ">{{$resource->view}} Views  </span>
+                             <a href="{{$resource->fileLocation}}" download>                             
+                            <button class="btn btn-sm download zoom" value="{{$resource->id}}" style="font-size:13px;"  >                          
+                              <span class="icon icon-download "></span><span class=" id="downloadCount"> {{$resource->download}}</span>                         
+                            </button>
+                            </a>
+                            <span class="date float-right">{{$resource->created_at->diffForHumans() }}</span>
+                          </div>
+                          
                           @else
                           <h6 class="mb-0">{{$resource->course->name}} </h6>
                           <h6 class=" mb-2 text-truncate">{{$resource->description}} </h6>
-                          <span class="date ">{{$resource->view}} Views </span>
-                          <span class="date float-right">{{$resource->created_at->diffForHumans() }}</span>
+                          <div class="d-flex justify-content-between">
+                              <span class="date ">{{$resource->view}} Views </span>
+                              <a href="{{$resource->fileLocation}}" download>
+                             <button class="btn btn-sm download zoom" value="{{$resource->id}}" style="font-size:13px;"   >                          
+                              <span class="icon icon-download "></span><span class=" id="downloadCount"> {{$resource->download}}</span>                         
+                            </button>
+                            </a>
+                              <span class="date float-right">{{$resource->created_at->diffForHumans() }}</span>
+                          </div>
+                          
                           @endif
                         </div>
-                        </a>
+                       
                       </div>
                     
                     </div> 
@@ -318,6 +336,7 @@
 <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
 <script>var countries = <?php echo json_encode($tag); ?>;</script>
 <script src="/assets/js/home.js"></script>
+
 @endsection
 
 

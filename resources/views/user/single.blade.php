@@ -217,22 +217,17 @@ function download()
 {
 
       file_id = $('#fileId').val();
-      
-          $.ajax
-          ({
+     $.ajax ({
                 url:'/file/download',
                 method:'POST',
                 data:{ "_token": "{{ csrf_token() }}" , file_id:file_id },
-
-                success:function(response)
-                  {
+                success:function(response){
                     document.querySelector('#downloadCount').textContent =" "+ response;
-      },
-      error: function(error)
-      {
-                  alert("Error!  ");
-      }
-    });   
+                 },
+                error: function(error){
+                    alert("Error!  ");
+                }
+      });   
   }
 
 </script>
