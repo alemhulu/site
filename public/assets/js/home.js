@@ -378,7 +378,7 @@ function autocomplete(inp, arr) {
     /*execute a Search function 
         presses a key on the keyboard:
     */
-    inp.addEventListener("keyup", function (e) {
+    inp.addEventListener("keydown", function (e) {
         //var countries = ["Biology","Acid and Base","Chemistry","Grade 11","Grade 12","Grade 10","ICT","Stempower","Simulated Lab"];  
         var x = document.getElementById(this.id + "autocomplete-list");
         if (x) x = x.getElementsByTagName("div");
