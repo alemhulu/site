@@ -9,7 +9,7 @@
 
  <form class="form  justify-content-start my-1 " id="searchForm" >
                             <div class="input-group col" ><input class="bg-light form-control border-0 small shadow-sm px-2"  type="text" placeholder="Search for ..." id="myInput" autocomplete="off" type="text" >
-                            <div class="input-group-append"><button class="btn btn-outline py-0 shadow-sm zoom" type="submit" ><i class="fas fa-search"></i></button></div>
+                            <div class="input-group-append"><button class="btn btn-outline py-0 shadow-sm zoom search" type="button" ><i class="fas fa-search"></i></button></div>
                             </div>
   </form>
   
@@ -17,9 +17,9 @@
     <div class=" collapse "  id="navbarSupportedContent">
       
         
-        <div  >
-               <ul class="navbar-nav mr-auto " style=" display: block;position: relative;">
-      <button class="btn btn-block text-left p-3  buttonMenu border  zoom ga bold " id="headingOne" data-toggle="collapse" data-target="#gradeCollaps" 
+        <div>
+            <ul class="navbar-nav mr-auto " style=" display: block;position: relative;">
+             <button class="btn btn-block text-left p-3  buttonMenu border  zoom ga bold " id="headingOne" data-toggle="collapse" data-target="#gradeCollaps" 
                     aria-expanded="true" aria-controls="gradeCollaps"
                     style="font-size: 16px;font-family: sans-serif Gotham ;"  >
                 Grade <i class="fas fa-angle-down buttonMenuIcon float-right"></i>

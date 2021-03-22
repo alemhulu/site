@@ -9,7 +9,8 @@
 // filter function
 
 // Inportant Variable 
-let courses, typeMoreButtons, feedbackButton, feedbackSend, buttonMenus, file_id , downloadFileFile, downloadCount;
+let courses, typeMoreButtons, feedbackButton, feedbackSend, buttonMenus, file_id, downloadFileFile, downloadCount, searchButtons, searchInput1, searchInput2, windowWidth, 
+searchInputBig, searchInputSmall;
 
 // content type button click fetch more of that content
 
@@ -31,9 +32,6 @@ function typeMore(query) {
 }
 
  // feedback funtion
- function feedbackFuntion(){
-     alert('feedback');
- }
  function feedbackAjax(){
      $.ajax({
          type: "POST",
@@ -72,8 +70,6 @@ function intialization() {
     });
 
 
-    // Object initialization
-
     // feedback
     feedbackButton = document.querySelector('.feedback');
     feedbackSend = document.querySelector('#feedbackSend');
@@ -88,6 +84,8 @@ function intialization() {
             buttonMenu.children[0].classList.toggle('fa-angle-up');
         });
     });
+
+
    // downloadFile function
     downloadFiles = document.querySelectorAll('.download');
     downloadCount = document.querySelector('#downloadCount');
@@ -107,6 +105,42 @@ function intialization() {
             });
         });
     });
+
+    //search button click
+    windowWidth = window.matchMedia("(max-width:993px)");
+    searchButtons = document.querySelectorAll('.search');
+    searchButtons.forEach(function (searchButton){
+        searchButton.addEventListener('click',function (e){
+            searchInputSmall = $('#myInput').val();
+            searchInputBig = $('#myInput1').val();
+            // console.log(searchInput1);
+            // console.log(searchInput2);
+            if (windowWidth.matches){
+                
+                query = searchInputSmall;
+            }
+            else
+            {
+                
+                query = searchInputBig;
+            }
+            $.ajax({
+                url: '/search',
+                method: 'Get',
+                data: { query: query },
+                success: function (response) {
+                    $('#result').hide();
+                    $('#filter').html(response);
+                },
+                error: function (error) {
+                    alert("Error!  ");
+                }
+            });
+        });
+    });
+
+    //search function by enter key 
+
 }
 
 // excutes after window successfully loaded
@@ -287,26 +321,26 @@ function filter() {
 
 
 
-// search button submit function
+// // search button submit function
 
-	$('#searchForm').submit(function(){
-		var query=$('#myInput').val();
-		$.ajax({
-            url:'/search',
-            method:'Get',
-            data:{query:query},
-            success:function(response){
-            $('#result').hide();
-            $('#filter').html(response);
+// 	$('#searchForm').submit(function(){
+// 		var query=$('#myInput').val();
+// 		$.ajax({
+//             url:'/search',
+//             method:'Get',
+//             data:{query:query},
+//             success:function(response){
+//             $('#result').hide();
+//             $('#filter').html(response);
 
-            },
-            error: function(error){
-            alert("Error!  ");
-            }
-        });
-        // collapseButton.click()
-        return false;
-	});
+//             },
+//             error: function(error){
+//             alert("Error!  ");
+//             }
+//         });
+//         // collapseButton.click()
+//         return false;
+// 	});
 
 
 
@@ -378,59 +412,59 @@ function autocomplete(inp, arr) {
     /*execute a Search function 
         presses a key on the keyboard:
     */
-    inp.addEventListener("keydown", function (e) {
-        //var countries = ["Biology","Acid and Base","Chemistry","Grade 11","Grade 12","Grade 10","ICT","Stempower","Simulated Lab"];  
-        var x = document.getElementById(this.id + "autocomplete-list");
-        if (x) x = x.getElementsByTagName("div");
-        if (e.keyCode == 40) {
-            /*If the arrow DOWN key is pressed,
-            increase the currentFocus variable:*/
-            $('.autocomplete-active').click(function () {
-                console.log(this.id);
-            });
-            currentFocus++;
-            /*and and make the current item more visible:*/
-            addActive(x);
-        } else if (e.keyCode == 38) { //up
-            /*If the arrow UP key is pressed,
-            decrease the currentFocus variable:*/
-            currentFocus--;
-            /*and and make the current item more visible:*/
-            addActive(x);
-        } else if (e.keyCode == 13) {
-            /*If the ENTER key is pressed, prevent the form from being submitted,*/
-            e.preventDefault(); countries
-            if (currentFocus > -1) {
-                /*and simulate a click on the "active" item:*/
-                if (x) x[currentFocus].click();
-            }
-        }
-        var query = $("#myInput1").val();
-        if(query==='')
-        {
+    // inp.addEventListener("keydown", function (e) {
+    //     //var countries = ["Biology","Acid and Base","Chemistry","Grade 11","Grade 12","Grade 10","ICT","Stempower","Simulated Lab"];  
+    //     var x = document.getElementById(this.id + "autocomplete-list");
+    //     if (x) x = x.getElementsByTagName("div");
+    //     if (e.keyCode == 40) {
+    //         /*If the arrow DOWN key is pressed,
+    //         increase the currentFocus variable:*/
+    //         $('.autocomplete-active').click(function () {
+    //             console.log(this.id);
+    //         });
+    //         currentFocus++;
+    //         /*and and make the current item more visible:*/
+    //         addActive(x);
+    //     } else if (e.keyCode == 38) { //up
+    //         /*If the arrow UP key is pressed,
+    //         decrease the currentFocus variable:*/
+    //         currentFocus--;
+    //         /*and and make the current item more visible:*/
+    //         addActive(x);
+    //     } else if (e.keyCode == 13) {
+    //         /*If the ENTER key is pressed, prevent the form from being submitted,*/
+    //         e.preventDefault(); countries
+    //         if (currentFocus > -1) {
+    //             /*and simulate a click on the "active" item:*/
+    //             if (x) x[currentFocus].click();
+    //         }
+    //     }
+    //     var query = $("#myInput1").val();
+    //     if(query==='')
+    //     {
             
-            $('#content').show();
+    //         $('#content').show();
 
-        }
-        else{
-            $.ajax
-                ({
-                    url: '/search',
-                    method: 'Get',
-                    data: { query: query },
-                    success: function (response) {
-                        $('#content').hide();
-                        $('#filter').html(response);
+    //     }
+    //     else{
+    //         $.ajax
+    //             ({
+    //                 url: '/search',
+    //                 method: 'Get',
+    //                 data: { query: query },
+    //                 success: function (response) {
+    //                     $('#content').hide();
+    //                     $('#filter').html(response);
 
-                    },
-                    error: function (error) {
-                        alert("Error!  ");
-                    }
-                });
-        }
+    //                 },
+    //                 error: function (error) {
+    //                     alert("Error!  ");
+    //                 }
+    //             });
+    //     }
     
 
-    });
+    // });
     function addActive(x) {
         /*a function to classify an item as "active":*/
         if (!x) return false;

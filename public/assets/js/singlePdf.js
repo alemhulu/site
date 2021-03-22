@@ -106,9 +106,9 @@ function fullMobile()
             }
           }
           
-          var x = window.matchMedia("(max-width: 400px)")
-          myFunction(x) // Call listener function at run time
-          x.addListener(myFunction) // Attach listener function on state changes
+          var x = window.matchMedia("(max-width: 400px)");
+          myFunction(x); // Call listener function at run time
+          x.addListener(myFunction); // Attach listener function on state changes
 
 
            pdfjsLib.getDocument(url).then((pdf) => {
