@@ -10,7 +10,7 @@
  <form class="form  justify-content-start my-1 " id="searchForm" >
                             <div class="input-group col" >
                               <input class="bg-light form-control border-0 small shadow-sm px-2 input" placeholder="Search for ..." type="text" id="myInput" autocomplete="off" />
-                            <div class="input-group-append"><button class="btn btn-outline py-0 shadow-sm zoom search" type="button" ><i class="fas fa-search"></i></button></div>
+                            <div class="input-group-append"><button class="btn btn-outline py-0 shadow-sm zoom search dblue" type="button" ><i class="fas fa-search"></i></button></div>
                             </div>
   </form>
   
