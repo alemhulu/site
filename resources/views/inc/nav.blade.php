@@ -19,8 +19,8 @@
                       </div>
                   </div>
               </form>
-              <ul class="nav navbar-nav text-capitalize shadow-nav  float-right">
-                  <div class="links p-2 " style="display:inline-block;">
+              <ul class="nav navbar-nav text-capitalize shadow-nav   d-flex flex-row float-right">
+                  <div class="links p-2 " >
                     <a href="//eict.edu.et" target="_blank" class="text-sm text-secondary underline p-2"> 
                                       <button type="button" class="btn btn-sm btn-outline-primary zoom">EICT</button>
                     </a>

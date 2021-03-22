@@ -534,7 +534,7 @@ i:focus, i:active {
 @media (max-width:500px){
   .buttonMenu{
     width: 400px;
-  };
+  }
 }
 /* Content type buttons for more of that */
 .typeMoreButton{
@@ -563,3 +563,11 @@ i:focus, i:active {
   width: 33.3%;
 }
  
+@media (max-width:854px){
+  #navbarSupportedContent{
+    width: 100%;
+  }
+  .buttonMenu{
+    width: 100%;
+  }
+}
