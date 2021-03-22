@@ -6,7 +6,7 @@
       </a>
       <a class="navbar-brand text-center text-secondary" href="{{url('/')}}" >
           <span  class="d-block brandAmharic" >ትምህርት ሚኒስቴር</span> 
-          <span class="d-block brandEnglish" > E-Learning & D-Library</span> 
+          <span class="d-block brandEnglish bold" > E-Learning & D-Library</span> 
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" id="collapseButton">
         <span class="navbar-toggler-icon"></span>
@@ -21,10 +21,10 @@
               </form>
               <ul class="nav navbar-nav text-capitalize shadow-nav  float-right">
                   <div class="links p-2 " style="display:inline-block;">
-                    <a href="//eict.edu.et" class="text-sm text-secondary underline p-2"> 
+                    <a href="//eict.edu.et" target="_blank" class="text-sm text-secondary underline p-2"> 
                                       <button type="button" class="btn btn-sm btn-outline-primary zoom">EICT</button>
                     </a>
-                    <a href="//www.moe.gov.et" class="text-sm text-secondary underline p-2"> 
+                    <a href="//www.moe.gov.et" target="_blank" class="text-sm text-secondary underline p-2"> 
                                       <button type="button" class="btn btn-sm btn-outline-primary zoom">MoE</button>
                     </a>
                 </div>
