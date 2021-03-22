@@ -51,6 +51,15 @@ function typeMore(query) {
 
 
 function intialization() {
+    //search form reload stop
+    $("#searchForm1").submit(function (e) {
+        e.preventDefault();
+    });
+    $("#searchForm").submit(function (e) {
+        e.preventDefault();
+    });
+
+
     // Course filter
     courses = document.querySelectorAll(".course");
     courses.forEach(function (course) {
@@ -139,7 +148,8 @@ function intialization() {
         });
     });
 
-    //search function by enter key 
+    //search function by enter key
+
 
 }
 
@@ -298,20 +308,25 @@ function filter() {
 
 // Search function
 
-     $('#search1').keyup(function(){
-            var query=$("#search").val();
-		    var output='<option>alem</option>';
-            $.ajax({
-                url:'/search',
-                method:'Get',
-                data:{query:query},
-                success:function(response){
-				    $('#subunitFilter').html(allSubunits);
-                 },
-                error: function(error){
-                    alert("Error!  ");
-                }
-            });
+     $('.input').keyup(function(event){
+      if(event.keyCode===13){
+          query = event.target.value;
+          $.ajax({
+              url: '/search',
+              method: 'Get',
+              data: { query: query },
+              success: function (response) {
+                  $('#result').hide();
+                  $('#filter').html(response);
+              },
+              error: function (error) {
+                  alert("Error!  ");
+              }
+          });
+      }
+       
+        
+    
 
 
         });
