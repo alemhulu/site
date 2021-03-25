@@ -571,3 +571,11 @@ i:focus, i:active {
     width: 100%;
   }
 }
+/* Menu scroll */
+.menu-scroll{
+  display: block;
+  position: relative;
+  max-height:600px;
+  overflow-y:scroll;
+   overflow-x:hidden
+}

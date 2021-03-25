@@ -18,8 +18,8 @@
     <div class=" collapse "  id="navbarSupportedContent">
       
         
-        <div>
-            <ul class="navbar-nav mr-auto " style=" display: block;position: relative;">
+        <div style="">
+            <ul class="navbar-nav mr-auto menu-scroll" >
              <button class="btn btn-block text-left p-3  buttonMenu border  zoom ga bold " id="headingOne" data-toggle="collapse" data-target="#gradeCollaps" 
                     aria-expanded="true" aria-controls="gradeCollaps"
                     style="font-size: 16px;font-family: sans-serif Gotham ;"  >
