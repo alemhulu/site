@@ -158,14 +158,12 @@ window.onload = intialization;
 
 
 // fileter function
+function gredeFilter(){
+    $('input[type=checkbox]').prop('checked', false);
+    filter();
+}
 function filter() {
-        var radioElements = document.getElementsByName("grade");
-        for (var i = 0; i < radioElements.length; i++) {
-            if (radioElements[i].checked == true) {
-                
-            }
-            
-        }
+     
      
         var action = 'data';
         var grade_id = get_filter_text('gradeId');
@@ -213,10 +211,12 @@ function filter() {
                         }
                         allSubunits += '<br></ul>';
                         $('#subunitFilter').html(allSubunits);
-                    }
+                   }
                     else {
+                        
                         if (response.g == 1 && response.c == 0) {
                             var courses = '<ul  style="color:black;"><br>';
+                            
                             for (i = 0; i < response.courses.length; i++) {
                                 courses += '<li><input type="checkbox" class="form-check-input " id="courseId" value="' + response.courses[i].id + '" onchange="filter()" ><h6>' + response.courses[i].name + '</h6></li>';
                             }
@@ -226,7 +226,9 @@ function filter() {
                             $('#courseFilter').html(courses);
                             $('#unitFilter').empty();
                             $('#subunitFilter').empty();
+                            
                         }
+                       
                         if (response.c == 1 && response.u == 0) {
                             var units = '<ul  style="color:black;"><br>';
                             for (i = 0; i < response.units.length; i++) {
