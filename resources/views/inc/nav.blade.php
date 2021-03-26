@@ -20,27 +20,28 @@
                   </div>
               </form>
               <ul class="nav navbar-nav text-capitalize shadow-nav   d-flex flex-row float-right">
-                  <div class="links p-2 " >
-                    <a href="//www.moe.gov.et" target="_blank" class="text-sm text-secondary underline p-2"> 
+                  <div class="links " >
+                    <a href="//www.moe.gov.et" target="_blank" class="text-sm text-secondary underline p-1"> 
                                       <button type="button" class="btn btn-sm btn-outline-primary zoom">MoE</button>
                     </a>
-                    <a href="//eict.edu.et" target="_blank" class="text-sm text-secondary underline p-2"> 
+                    <a href="//eict.edu.et" target="_blank" class="text-sm text-secondary underline p-1"> 
                                       <button type="button" class="btn btn-sm btn-outline-primary zoom">EICT</button>
                     </a>
+                  
                 </div>
                   @if (Route::has('login'))
-                      <div class="hidden fixed my-auto float-right p-2 ">
+                      <div class="hidden fixed my-auto float-right ">
                           @auth
                               <form method="POST" action="{{ route('logout') }}">
-                                  <a href="{{ url('/admin') }}" class="text-sm text-secondary underline "> 
+                                  <a href="{{ url('/admin') }}" class="text-sm text-secondary underline p-1"> 
                                       <button type="button" class="btn btn-sm btn-outline-primary zoom">Admin page</button>
                                   </a>
                                   @csrf
                               </form>
                             @else
-                                  <a href="{{ route('login') }}" class="text-sm text-secondary underline " ><button type="button" class="btn btn-sm btn-outline-primary zoom">log in</button></a>
+                                  <a href="{{ route('login') }}" class="text-sm text-secondary underline p-1" ><button type="button" class="btn btn-sm btn-outline-primary zoom">log in</button></a>
                                   @if (Route::has('register'))
-                                      <a href="{{ route('register') }}" class=" text-sm text-secondary underline ml-4 "><button type="button" class="btn btn-sm btn-outline-primary zoom" >Register</button></a>
+                                      <a href="{{ route('register') }}" class=" text-sm text-secondary underline p-1 "><button type="button" class="btn btn-sm btn-outline-primary zoom" >Register</button></a>
                                   @endif
                             @endif
                         </div>

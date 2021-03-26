@@ -189,7 +189,7 @@
                         @if($resource->link == 1)
                         <div class="text-warning py-1 px-2 font-weight-bold" 
                               style="background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.7); ">
-                              External Resource  ( Non-MoE ) <span class="icon icon-download"></span>
+                              External Resource  ( Non-MoE )</span>
                         </div>
                         @endif
 
@@ -199,7 +199,7 @@
                        @if($resource->link == 1)
                         <div class="text-warning py-1 px-2 font-weight-bold" 
                               style="background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.7); ">
-                              External Resource  ( Non-MoE ) <span class="icon icon-download"></span>
+                              External Resource  ( Non-MoE )</span>
                         </div>
                         @endif
 

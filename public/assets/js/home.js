@@ -17,7 +17,7 @@ searchInputBig, searchInputSmall;
 function typeMore(query) {
     $.ajax
         ({
-            url: '/typeMore',
+            url: '/searchCourse',
             method: 'Get',
             data: { query: query },
             success: function (response) {
@@ -60,7 +60,7 @@ function intialization() {
     });
 
 
-    // Course filter
+    // Course filter From diffent Grades
     courses = document.querySelectorAll(".course");
     courses.forEach(function (course) {
         course.addEventListener('change', function (e) {

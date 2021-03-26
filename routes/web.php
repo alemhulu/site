@@ -98,6 +98,8 @@ Route::get('/user/{id}/{type}',[WelcomeController::class, 'show'])->name('single
 Route::get('/view',[WelcomeController::class, 'view'])->name('view');
 Route::get('/search',[WelcomeController::class, 'search'])->name('search');
 Route::get('/typeMore',[WelcomeController::class, 'typeMore'])->name('typeMore');
+Route::get('/searchCourse',[WelcomeController::class, 'searchCourse'])->name('searchCourse');
+
 Route::POST('/moeuser',[WelcomeController::class, 'moeuser'])->name('moeuser');
 Route::POST('/file/download',[WelcomeController::class, 'download'])->name('download');
 Route::GEt('/download',[WelcomeController::class, 'fileDownload'])->name('fileDownload');

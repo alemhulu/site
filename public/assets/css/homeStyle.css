@@ -579,3 +579,23 @@ i:focus, i:active {
   overflow-y:scroll;
    overflow-x:hidden
 }
+.external-link{
+   position: relative;
+}
+.dropdown-content{
+   background-color: #fff;
+    margin: 0;
+    display: none;
+    min-width: 100px;
+    overflow-y: auto;
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 9999;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+}
+.external-link:hover .dropdown-content {
+  display: block;
+}   
