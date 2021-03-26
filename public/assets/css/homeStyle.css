@@ -599,3 +599,8 @@ i:focus, i:active {
 .external-link:hover .dropdown-content {
   display: block;
 }   
+.course-type:hover{
+   color: white !important;
+  background-color:rgb(60,143,194) !important;
+  cursor: pointer;
+}

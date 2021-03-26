@@ -825,6 +825,8 @@ class WelcomeController extends Controller
                 }
                 $resources = array_unique($resources);
 
+                // ramdomize the course filter
+                shuffle($resources);
 
 
                 
@@ -844,19 +846,24 @@ class WelcomeController extends Controller
                 if(count($resources)==0)
                         $output.="<h4 class='text-center bg-light text-black'> No Resource is available for this Type! </h4>";
                 else{
-                        $output.='<h4 class="mt-3 ml-2 bg-light text-center">'.$resource->course->name.'</h4>';
+                        $output.='<h4 class="mt-3 ml-2 bg-light text-center ">'.$resource->course->name.'</h4>';
                         $output.='<div class="container-fluid"><div class="row">';
+                       
                         foreach($types as $type){
+                         
                         if($type_check[$type->id] > 0){
+                                $i = 0;
                                 //$output.='<p>'.$type->name.'</p>';
-                                $output.='<h4><strong class="mt-3 ml-2 blackColor" id=ResutlTittle>'.$type->name.'</strong></h4>';
+                                $output.='<h4><strong class="mt-3 ml-2 blackColor course-type" id=ResutlTittle>'.$type->name.'</strong></h4>';
                                 $output.='<div class="container-fluid">';
                                 $output.='<div class="row">';
                                 foreach($resources as $resourceFiltered){
+                                       
                                         //return $resourceFiltered;
                                         $type2 = Type::findorfail($resourceFiltered->type_id);
-                                        if($type2->id==$type->id){
+                                        if($type2->id==$type->id && $i<4){
                                                 //return $type;
+                                                 $i++;
                                                 $output.='<div class="col-md-3 mb-3 blackColor " id="linkColor">';
                                                 $output.='<div class="card ">';
                                                 $resource=Resource::find($resourceFiltered->id);
