@@ -401,8 +401,8 @@ class WelcomeController extends Controller
                         $output.='<div class="container-fluid"><div class="row">';
                 foreach($types as $type)
                 {
-                        if($type_check[$type->id] > 0)
-                {
+                   if($type_check[$type->id] > 0){
+                                $i = 0;
                 //$output.='<p>'.$type->name.'</p>';
                 $output.='<h4><strong class="mt-3 ml-2 blackColor">'.$type->name.'</strong></h4>';
                 $output.='<div class="container-fluid">';
@@ -412,9 +412,9 @@ class WelcomeController extends Controller
 
                         //return $resourceFiltered;
                         $type2 = Type::findorfail($resourceFiltered->type_id);
-                if($type2->id==$type->id)
-                {
+               if($type2->id==$type->id && $i<4){
         //return $type;
+        $i++;
                         $output.='<div class="col-md-3 mb-3 blackColor " id="linkColor">';
                                 $output.='<div class="card ">';
                                 $resource=Resource::find($resourceFiltered->id);
