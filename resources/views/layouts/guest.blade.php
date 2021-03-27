@@ -5,8 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'MoE Digital Library') }}</title>
-
+        <title>{{ config('app.name', 'MoE E-Learning and D-Library') }}</title>
+        <meta name="description" content="The MoE E-Learning and D-Library is a web portal that provides access to educational digital resources to students and educational staff. The portal has been designed Easily access digital resources in a “YouTube” like style. A functionality to read pdf within the portal. Filter functionality to view contents based on Grade, Course, Units, Sub- Units, etc And	Search functionality by keywords. "/>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
 
