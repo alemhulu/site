@@ -915,7 +915,7 @@ class WelcomeController extends Controller
                        
                         
                                 //$output.='<p>'.$type->name.'</p>';
-                                $output.='<h4><strong class="mt-3 ml-2 blackColor courseType" id="'.$type->name.'">'.$type->name.'</strong></h4>';
+                                $output.='<h4><strong class="mt-3 ml-2 blackColor courseType" id="'.$type->name.'">'.$request->course.' '.$type->name.'</strong></h4>';
                                 $output.='<div class="container-fluid">';
                                 $output.='<div class="row">';
                                 foreach($resources as $resourceFiltered){
