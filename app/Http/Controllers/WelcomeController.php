@@ -844,7 +844,7 @@ class WelcomeController extends Controller
                         }
                 }
                 if(count($resources)==0)
-                        $output.="<h4 class='text-center bg-light text-black'> No Resource is available for this Type! </h4>";
+                        $output.="<h4 class='text-center bg-light text-black'> No Resource is available for this Course! </h4>";
                 else{
                         $output.='<h4 class="mt-3 ml-2 bg-light text-center ">'.$resource->course->name.'</h4>';
                         $output.='<div class="container-fluid"><div class="row">';
@@ -854,7 +854,7 @@ class WelcomeController extends Controller
                         if($type_check[$type->id] > 0){
                                 $i = 0;
                                 //$output.='<p>'.$type->name.'</p>';
-                                $output.='<h4><strong class="mt-3 ml-2 blackColor course-type" id=ResutlTittle>'.$type->name.'</strong></h4>';
+                                $output.='<h4><strong class="mt-3 ml-2 blackColor courseType" id="'.$type->name.'">'.$type->name.'</strong></h4>';
                                 $output.='<div class="container-fluid">';
                                 $output.='<div class="row">';
                                 foreach($resources as $resourceFiltered){
@@ -900,5 +900,60 @@ class WelcomeController extends Controller
                 return $output;
                         //return response()->json($data);
         }
- 
+
+        //   //  Return More of Content Type
+        public function courseType(Request $request){
+               $type=Type::where('name', $request->type)->first();
+               $course=Course::select('id')->where('name',$request->course)->get();
+               $resources=Resource::where('type_id',$type->id)
+               ->whereIn('course_id', $course)
+               ->get();
+               $output='';
+              
+                $output.='<h4 class="mt-3 ml-2 bg-light text-center ">'.$request->name.'</h4>';
+                        $output.='<div class="container-fluid"><div class="row">';
+                       
+                        
+                                //$output.='<p>'.$type->name.'</p>';
+                                $output.='<h4><strong class="mt-3 ml-2 blackColor courseType" id="'.$type->name.'">'.$type->name.'</strong></h4>';
+                                $output.='<div class="container-fluid">';
+                                $output.='<div class="row">';
+                                foreach($resources as $resourceFiltered){
+                                       
+                                        //return $resourceFiltered;
+                                        $type2 = Type::findorfail($resourceFiltered->type_id);
+                                        if($type2->id==$type->id){
+                                                //return $type;
+                                       
+                                                $output.='<div class="col-md-3 mb-3 blackColor " id="linkColor">';
+                                                $output.='<div class="card ">';
+                                                $resource=Resource::find($resourceFiltered->id);
+                                                if($resource->media->name == "Document"||$resource->media->name == "document" ){
+                                                        $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.'">
+                                                        <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
+                                                }
+                                                else{
+                                                        $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.'">
+                                                        <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
+                                                }
+                                                $output.= '<div class="card-body p-1">';
+                                                if($resource->unit_id=="" ||$resource->subunit_id=="" || $resource->grade_id==""){
+                                                        $output.= '<h6 class="mb-0">'.$resource->course->name.'</h6>
+                                                        <h6 class=" mb-2 text-truncate">'.$resource->description.'</h6>
+                                                        <span class="date ">'.$resource->view.' Views </span><span class="date float-right">'.$resource->created_at->diffForHumans().'</span>';
+                                                }
+                                                else{
+                                                        $output.='<h6 class="mb-0">G-'.$resource->grade->name.' '.$resource->course->name.'</h6>
+                                                        <h6 class="mb-0">Unit '.$resource->unit->name.'-'. $resource->unit->title.'</h6>
+                                                        <h6 class=" mb-2">Subunit '.$resource->subunit->name.'-'. $resource->subunit->title.'</h6>
+                                                        <span class="date ">'.$resource->view.' Views </span><span class="date float-right">'.$resource->created_at->diffForHumans().'</span>';
+                                                }
+                                                $output.='</div></div></div>';
+                                        }
+                                }
+                                $output.='</div></div>';
+                   
+                $output.='</div></div>';
+                return $output;
+        }
 }

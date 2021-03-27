@@ -9,15 +9,16 @@
 // filter function
 
 // Inportant Variable 
-let courses, typeMoreButtons, feedbackButton, feedbackSend, buttonMenus, file_id, downloadFileFile, downloadCount, searchButtons, searchInput1, searchInput2, windowWidth, 
+let courses, typeMoreButtons, feedbackButton, feedbackSend, buttonMenus, file_id, downloadFileFile, downloadCount, searchButtons, searchInput1, searchInput2, windowWidth, course, type, courseTypes,
 searchInputBig, searchInputSmall;
 
 // content type button click fetch more of that content
 
 function typeMore(query) {
+   
     $.ajax
         ({
-            url: '/searchCourse',
+            url: '/typeMore',
             method: 'Get',
             data: { query: query },
             success: function (response) {
@@ -31,6 +32,51 @@ function typeMore(query) {
         });
 }
 
+// Search by course name from all Grades
+
+function courseFromAllGrade(query) {
+
+    $.ajax
+        ({
+            url: '/searchCourse',
+            method: 'Get',
+            data: { query: query },
+            success: function (response) {
+                $('#content').hide();
+                $('#filter').html(response);
+                // Filter Course by the content type
+                courseTypes = document.querySelectorAll('.courseType');
+                courseTypes.forEach(function (courseType) {
+                    courseType.addEventListener('click', function (e) {
+                        type=this.id;
+                        course=query;
+                        courseTypeFunction(course, type);
+                    });
+                });
+
+            },
+            error: function (error) {
+                alert("Error!  ");
+            }
+        });
+}
+// Filter course for a specific content type
+function courseTypeFunction(query, type) {
+    $.ajax
+        ({
+            url: '/courseType',
+            method: 'Get',
+            data: { type: type, course:course},
+            success: function (response) {
+                $('#content').hide();
+                $('#filter').html(response);
+
+            },
+            error: function (error) {
+                alert("Error!  ");
+            }
+        });
+}
  // feedback funtion
  function feedbackAjax(){
      $.ajax({
@@ -51,6 +97,7 @@ function typeMore(query) {
 
 
 function intialization() {
+
     //search form reload stop
     $("#searchForm1").submit(function (e) {
         e.preventDefault();
@@ -64,8 +111,9 @@ function intialization() {
     courses = document.querySelectorAll(".course");
     courses.forEach(function (course) {
         course.addEventListener('change', function (e) {
-            const id = e.currentTarget.id;
-            typeMore(id);
+            query = e.currentTarget.id;
+            courseFromAllGrade(query);
+            
         });
     });
     
@@ -73,7 +121,7 @@ function intialization() {
      typeMoreButtons = document.querySelectorAll('.typeMoreButton');
     typeMoreButtons.forEach(function (typeMoreButton) {
         typeMoreButton.addEventListener('click', function (e) {
-            let query = e.currentTarget.id;
+             query = e.currentTarget.id;
             typeMore(query);
         });
     });
@@ -94,6 +142,7 @@ function intialization() {
         });
     });
 
+    
 
    // downloadFile function
     downloadFiles = document.querySelectorAll('.download');
