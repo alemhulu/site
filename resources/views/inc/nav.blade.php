@@ -13,14 +13,14 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">  
           <div class="nav-form-ul">
-              <form class="form" id="searchForm1" >
+              <form class="form mt-4" id="searchForm1" >
                   <div class="input-group col" ><input class="bg-light form-control border-0 small shadow-sm px-2 input"  type="text" placeholder="Search for ..." id="myInput1" autocomplete="off" type="text" >
                       <div class="input-group-append"><button class="btn btn-outline py-0 shadow-sm dblue search" type="button" ><i class="fas fa-search "></i></button>
                       </div>
                   </div>
               </form>
               <ul class="nav navbar-nav text-capitalize shadow-nav   d-flex flex-row float-right">
-                  <div class="links " >
+                  <div class="links my-auto" >
                     <a href="//www.moe.gov.et" target="_blank" class="text-sm text-secondary underline p-1"> 
                                       <button type="button" class="btn btn-sm btn-outline-primary zoom">MoE</button>
                     </a>
