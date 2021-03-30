@@ -1,0 +1,34 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    font-family:Sans-serif;
+
+}
+.Button{
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    font-family: inherit;
+    cursor: pointer;
+}
+.Button-outline {
+    color: rgb(31,72,162);;
+    background-color: transparent;
+    background-image: none;
+    border-color: rgb(31,72,162);;
+}
+.Button:hover{
+   color: white !important;
+  background-color:rgb(60,143,194) !important;
+  cursor: pointer;
+}

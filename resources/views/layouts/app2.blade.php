@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link rel="icon" href="/assets/img/logom.png">
+    <link rel="stylesheet" href="/assets/css/utility.css">
     @yield('homeStyle')
 </head>
 <body >

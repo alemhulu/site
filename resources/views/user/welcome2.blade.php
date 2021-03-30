@@ -169,7 +169,7 @@
           
           @foreach($types as $type)
           @if(count($paginatedResources[$type->id])>0)
-              <h4 class="m-0 mt-2  bg-white mb-2 typeMoreButton" id={{$type->name}} ><strong class="blackColor">{{$type->name}}</strong></h4>
+              <h4 class="m-0 mt-2   mb-2 typeMoreButton Button Button-outline zoom" id={{$type->name}} ><strong >{{$type->name}}</strong></h4>
                 <div class="container-fluid ">
                 <div class="row md">
            
@@ -181,7 +181,7 @@
                     <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4" id="linkColor">
                       <div class="zoom" data-toggle="tooltip" data-placement="top" title="{{$resource->description}}"
                             style=" position: relative;">
-                        <a href="{{url('user',[$resource->id, $type->id])}}">                      
+                        <a href="{{url('user',[$resource->id, $type->id])}}" target="_blank">                      
                         @if($resource->media->name == "Document"||$resource->media->name == "document" )
                         <img id="pdfView" value="{{$resource->id}}" src="{{$resource->thumbnailLocation}}" 
                         class="rounded-top shadow " alt="{{$resource->description}}">
