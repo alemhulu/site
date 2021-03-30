@@ -424,7 +424,7 @@ class WelcomeController extends Controller
                                         <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
                                 }
                                 else{
-                                        $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.'" " target="_blank"
+                                        $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.'" target="_blank" >
                                         <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
                                 }
                                 $output.= '<div class="card-body p-1">';
@@ -616,7 +616,7 @@ class WelcomeController extends Controller
                                                         <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
                                                 }
                                                 else{
-                                                        $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.' " " target="_blank"                                                        <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
+                                                        $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.' "  target="_blank">                                                        <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
                                                 }
                                                 $output.= '<div class="card-body p-1">';
                                                
