@@ -38,7 +38,7 @@
 
   <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-    <a class="navbar-brand mr-1" href="/">EDSL</a>
+    <a class="navbar-brand mr-1" href="/">MoE-ELDL</a>
 
     <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
       <i class="fas fa-bars"></i>
@@ -62,7 +62,7 @@
         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-user-circle fa-fw"></i>
           @auth
-          {{ Auth::user()->name }} {{ Auth::user()->roles->isNotEmpty() ? Auth::user()->roles->first()->name : "" }}
+          {{ Auth::user()->name }} {{ Auth::user()->roles->isNotEmpty() ? Auth::user()->firstname : "" }}
           @endauth
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
