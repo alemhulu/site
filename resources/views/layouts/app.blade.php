@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="MoE" content="Ministry of Education">
   <meta name="author" content="Alemhulu AWekelgne">
-  <meta name="description" content="ትምህርት ሚኒስቴር: The MoE E-Learning and D-Library is a web portal that provides access to educational digital resources to students and educational staff. The portal has been designed Easily access digital resources in a “YouTube” like style. A functionality to read pdf within the portal. Filter functionality to view contents based on Grade, Course, Units, Sub- Units, etc And	Search functionality by keywords. "/>
+  <meta name="description" content="ትምህርት ሚኒስቴር: The MoE E-Learning and D-Library provides access to Digital educational resources to students and educational staff based on Grade, Course, Units, Sub- Units, etc with multifaceted Search functionality by keywords. "/>
   <meta name="google-site-verification" content="YA8sQHO3FyF0B5Ozb0Y96IbN3kgetyaR-fOIN-fa3dk" />
     <title>Example Books - high-quality used books for children</title>
 
