@@ -10,7 +10,7 @@
 
 // Inportant Variable 
 let courses, typeMoreButtons, feedbackButton, feedbackSend, buttonMenus, file_id, downloadFileFile, downloadCount, searchButtons, searchInput1, searchInput2, windowWidth, course, type, courseTypes,
-searchInputBig, searchInputSmall;
+    searchInputBig, searchInputSmall, grade, gradeTypes;
 
 // content type button click fetch more of that content
 
@@ -77,6 +77,25 @@ function courseTypeFunction(query, type) {
             }
         });
 }
+
+
+//Filter grade from a specific content type
+function gradeTypeFunction(grade,type) {
+    $.ajax({
+        url:'/gradeType',
+        method:'Get',
+        data:{grade:'grade', type:'type',},
+        success(response){
+            $('#content').hide();
+            $('#filter').html(response);
+        },
+        error(){
+            alert('Error! ');
+        }
+    });
+}
+
+
  // feedback funtion
  function feedbackAjax(){
      $.ajax({
@@ -155,7 +174,7 @@ function intialization() {
                 method: 'GET',
                 data: { file_id: file_id },
                 success: function (response) {
-                   downloadCount.textContent = " " + response;
+                  
                 },
                 error: function (error) {
                     alert("Error!  ");
@@ -211,6 +230,7 @@ function gredeFilter(){
     $('input[type=checkbox]').prop('checked', false);
     filter();
 }
+
 function filter() {
      
      

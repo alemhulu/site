@@ -103,7 +103,7 @@ Route::get('/courseType',[WelcomeController::class, 'courseType'])->name('course
 
 Route::POST('/moeuser',[WelcomeController::class, 'moeuser'])->name('moeuser');
 Route::POST('/file/download',[WelcomeController::class, 'download'])->name('download');
-Route::GEt('/download',[WelcomeController::class, 'fileDownload'])->name('fileDownload');
+Route::GEt('/download',[WelcomeController::class, 'download'])->name('fileDownload');
 Route::GET('/file/likeDislike',[WelcomeController::class, 'likeDislike'])->name('likeDislike');
 Route::get('/pagination',[WelcomeController::class,'fetch_data']);
 
