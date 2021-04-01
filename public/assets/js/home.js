@@ -44,15 +44,7 @@ function courseFromAllGrade(query) {
             success: function (response) {
                 $('#content').hide();
                 $('#filter').html(response);
-                // Filter Course by the content type
-                courseTypes = document.querySelectorAll('.courseType');
-                courseTypes.forEach(function (courseType) {
-                    courseType.addEventListener('click', function (e) {
-                        type=this.id;
-                        course=query;
-                        courseTypeFunction(course, type);
-                    });
-                });
+                intialization();
 
             },
             error: function (error) {
@@ -70,7 +62,7 @@ function courseTypeFunction(query, type) {
             success: function (response) {
                 $('#content').hide();
                 $('#filter').html(response);
-
+                intialization();
             },
             error: function (error) {
                 alert("Error!  ");
@@ -88,6 +80,7 @@ function gradeTypeFunction(grade,type) {
         success(response){
             $('#content').hide();
             $('#filter').html(response);
+            intialization();
         },
         error(){
             alert('Error! ');
@@ -178,7 +171,7 @@ function intialization() {
             method: 'GET',
             data: { file_id: file_id },
             success: function (response) {
-
+                
             },
             error: function (error) {
                 alert("Error!  ");
@@ -365,6 +358,7 @@ function filter() {
                             $('.MTB').removeClass('lblue');
                         }
                     }
+                    intialization();
                 }
             });
         function get_filter_text(text_id) {
@@ -393,6 +387,7 @@ function filter() {
               success: function (response) {
                   $('#result').hide();
                   $('#filter').html(response);
+                  intialization();
               },
               error: function (error) {
                   alert("Error!  ");
@@ -445,6 +440,7 @@ function changeFunction()
         success:function(response){
             $('#result').hide();
             $('#filter').html(response);
+            intialization();
         },
         error: function(error){
             alert("Error!  ");
