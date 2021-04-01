@@ -169,19 +169,23 @@ function intialization() {
     downloadFiles.forEach(function (downloadFile) {
         downloadFile.addEventListener('click', function (e) {
             file_id = downloadFile.value;
-            $.ajax({
-                url: '/download',
-                method: 'GET',
-                data: { file_id: file_id },
-                success: function (response) {
-                  
-                },
-                error: function (error) {
-                    alert("Error!  ");
-                }
-            });
+           fileDownload();
         });
     });
+    function fileDownload() {
+        $.ajax({
+            url: '/download',
+            method: 'GET',
+            data: { file_id: file_id },
+            success: function (response) {
+
+            },
+            error: function (error) {
+                alert("Error!  ");
+            }
+        });
+        
+    }
 
     //search button click
     windowWidth = window.matchMedia("(max-width:993px)");
