@@ -35,7 +35,7 @@ function typeMore(query) {
 // Search by course name from all Grades
 
 function courseFromAllGrade(query) {
-
+   
     $.ajax
         ({
             url: '/searchCourse',
@@ -44,7 +44,7 @@ function courseFromAllGrade(query) {
             success: function (response) {
                 $('#content').hide();
                 $('#filter').html(response);
-                intialization();
+                
 
             },
             error: function (error) {
@@ -122,8 +122,9 @@ function intialization() {
     // Course filter From diffent Grades
     courses = document.querySelectorAll(".course");
     courses.forEach(function (course) {
-        course.addEventListener('change', function (e) {
+        course.addEventListener('click', function (e) {
             query = e.currentTarget.id;
+            console.log(grade);
             courseFromAllGrade(query);
             
         });
