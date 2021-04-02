@@ -332,8 +332,8 @@ while(i < response.length){
 // console.log(result);
 // document.write(JSON.stringify(result, null, 4));
 if(result.length==0){
-  alert('Quiz not available for this post!');
-  return false;
+  
+  
 }
 else{
   $('#description_like_dislike').empty();
