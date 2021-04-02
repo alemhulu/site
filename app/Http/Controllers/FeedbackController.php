@@ -42,7 +42,7 @@ class FeedbackController extends Controller
             'description' => 'required|max:255',
             'firstname' => 'required|max:255',
             'lastname' => 'required|max:255',
-            'email' => 'required|unique:users|email|max:255',
+            // 'email' => 'required|unique:users|email|max:255',
         ]);
 
        
