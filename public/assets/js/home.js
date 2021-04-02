@@ -24,7 +24,7 @@ function typeMore(query) {
             success: function (response) {
                 $('#content').hide();
                 $('#filter').html(response);
-
+                intialization();
             },
             error: function (error) {
                 alert("Error!  ");
@@ -76,7 +76,7 @@ function gradeTypeFunction(grade,type) {
     $.ajax({
         url:'/gradeType',
         method:'Get',
-        data:{grade:'grade', type:'type',},
+        data:{grade:grade, type:type,},
         success(response){
             $('#content').hide();
             $('#filter').html(response);
@@ -215,6 +215,29 @@ function intialization() {
 
     //search function by enter key
 
+    // Filter Course by the content type
+    courseTypes = document.querySelectorAll('.courseType');
+    courseTypes.forEach(function (courseType) {
+        courseType.addEventListener('click', function (e) {
+            type = this.id;
+            course = query;
+            courseTypeFunction(course, type);
+        });
+    });
+
+    //Filter Type for a given grade
+    gradeTypes = document.querySelectorAll('.gradeType');
+    gradeTypes.forEach(function (gradeType) {
+        gradeType.addEventListener('click',function (e) {
+            // grade = $("input[type='radio'][name='grade']:checked").parent().text();
+            grade = $('#gradeId:checked').val();
+            type = this.val;
+            console.log(type);
+            // gradeTypeFunction(grade,type);
+        })
+        
+    } 
+    );
 
 }
 

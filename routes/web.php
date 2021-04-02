@@ -100,6 +100,7 @@ Route::get('/search',[WelcomeController::class, 'search'])->name('search');
 Route::get('/typeMore',[WelcomeController::class, 'typeMore'])->name('typeMore');
 Route::get('/searchCourse',[WelcomeController::class, 'searchCourse'])->name('searchCourse');
 Route::get('/courseType',[WelcomeController::class, 'courseType'])->name('courseType');
+Route::get('/gradeType',[WelcomeController::class, 'gradeType'])->name('gradeType');
 
 Route::POST('/moeuser',[WelcomeController::class, 'moeuser'])->name('moeuser');
 Route::POST('/file/download',[WelcomeController::class, 'download'])->name('download');

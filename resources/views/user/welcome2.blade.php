@@ -31,7 +31,7 @@
                 <ul style="color:black;">
                 <br>
                 @foreach($grades as $grade)
-                <li><input type="radio"class="form-check-input " name="grade" value="{{$grade->id}}" id="gradeId" onchange="gredeFilter()" ><h6>Grade - {{$grade->name}}</h6></li>
+                <li><input type="radio"class="form-check-input gradeRadio" name="grade" value="{{$grade->id}}" id="gradeId" onchange="gredeFilter()" ><h6>Grade - {{$grade->name}}</h6></li>
                 @endforeach
                 <br>
                 </ul>

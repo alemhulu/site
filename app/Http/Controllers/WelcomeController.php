@@ -24,98 +24,98 @@ class WelcomeController extends Controller
          */
                 public function index()
                 { 
-                $tag = [];
-                        $grades=Grade::orderBy('name','asc')->get();
-                 $courses = Course::select('name')->distinct()->orderBy('name','asc')->get();
-                // $courses = Course::where('grade_id',null)->orderBy('name','asc')->get();
-                //$courses=Course::all();
-                $resources=Resource::orderBy('created_at','asc')->where('published',1)->get();
-                $resources0=Resource::where('published',1)->groupBy('tag')->pluck('tag');
-                $resources1=Grade::pluck('name');
-                $resources2=Course::groupBy('name')->pluck('name');
-                $resources3=Unit::groupBy('title')->pluck('title');
-                $resources4=Subunit::groupBy('title')->pluck('title');
-                $resources5=Media::groupBy('name')->pluck('name');
-                $resources6=Type::groupBy('name')->pluck('name');
-                $resources7=Resource::where('published',1)->groupBy('description')->pluck('description');
-                foreach($resources0 as $tags)
-                {
-                if($tags!=null)
-                        array_push($tag, $tags);
-                }
-        foreach($resources1 as $tags)
-                {
-                $tags=(string)$tags;
-                        array_push($tag, $tags);
-                }
-        foreach($resources2 as $tags)
-                {
-                if($tags!=null)
-                        array_push($tag, $tags);
-                }
-        foreach($resources3 as $tags)
-                {
-                if($tags!=null)
-                        array_push($tag, $tags);
-                }
-        foreach($resources4 as $tags)
-                {
-                if($tags!=null)
-                        array_push($tag, $tags);
-                }
-        foreach($resources4 as $tags)
-                {
-                if($tags!=null)
-                        array_push($tag, $tags);
-                }
-        foreach($resources5 as $tags)
-                {
-                if($tags!=null)
-                        array_push($tag, $tags);
-                }
-        foreach($resources6 as $tags)
-                {
-                if($tags!=null)
-                        array_push($tag, $tags);
-                }
-        foreach($resources7 as $tags)
-                {
-                if($tags!=null)
-                        array_push($tag, $tags);
-                }
-        $tag = array_values(array_unique($tag));
-        //  $tag = [];
+                        $tag = [];
+                                $grades=Grade::orderBy('name','asc')->get();
+                        $courses = Course::select('name')->distinct()->orderBy('name','asc')->get();
+                        // $courses = Course::where('grade_id',null)->orderBy('name','asc')->get();
+                        //$courses=Course::all();
+                        $resources=Resource::orderBy('created_at','asc')->where('published',1)->get();
+                        $resources0=Resource::where('published',1)->groupBy('tag')->pluck('tag');
+                        $resources1=Grade::pluck('name');
+                        $resources2=Course::groupBy('name')->pluck('name');
+                        $resources3=Unit::groupBy('title')->pluck('title');
+                        $resources4=Subunit::groupBy('title')->pluck('title');
+                        $resources5=Media::groupBy('name')->pluck('name');
+                        $resources6=Type::groupBy('name')->pluck('name');
+                        $resources7=Resource::where('published',1)->groupBy('description')->pluck('description');
+                        foreach($resources0 as $tags)
+                        {
+                        if($tags!=null)
+                                array_push($tag, $tags);
+                        }
+                        foreach($resources1 as $tags)
+                                {
+                                $tags=(string)$tags;
+                                        array_push($tag, $tags);
+                                }
+                        foreach($resources2 as $tags)
+                                {
+                                if($tags!=null)
+                                        array_push($tag, $tags);
+                                }
+                        foreach($resources3 as $tags)
+                                {
+                                if($tags!=null)
+                                        array_push($tag, $tags);
+                                }
+                        foreach($resources4 as $tags)
+                                {
+                                if($tags!=null)
+                                        array_push($tag, $tags);
+                                }
+                        foreach($resources4 as $tags)
+                                {
+                                if($tags!=null)
+                                        array_push($tag, $tags);
+                                }
+                        foreach($resources5 as $tags)
+                                {
+                                if($tags!=null)
+                                        array_push($tag, $tags);
+                                }
+                        foreach($resources6 as $tags)
+                                {
+                                if($tags!=null)
+                                        array_push($tag, $tags);
+                                }
+                        foreach($resources7 as $tags)
+                                {
+                                if($tags!=null)
+                                        array_push($tag, $tags);
+                                }
+                        $tag = array_values(array_unique($tag));
+                        //  $tag = [];
 
-                $types=Type::orderBy('name','desc')->get();
-                
-                $paginatedResources = [];
-                foreach($types as $type){
-                        $paginatedResources[$type->id] = ($type->allresources($type->id));
+                                $types=Type::orderBy('name','desc')->get();
+                                
+                                $paginatedResources = [];
+                                foreach($types as $type){
+                                        $paginatedResources[$type->id] = ($type->allresources($type->id));
+                                }
+                                
+                                // return $paginatedResources;
+
+                                $types = Type::inRandomOrder()->paginate(3,['*'],'types');
+                                $types2 = Type::orderBy('name','asc')->get();
+                                $units=Unit::orderBy('title','asc')->get();
+                                $subunits=Subunit::orderBy('title','asc')->get();
+                                $medias=Media::orderBy('name','asc')->get();
+                                return view('user.welcome2',compact('grades','courses','types', 'resources','medias','units','subunits','tag','paginatedResources','types2'));
                 }
-                
-                // return $paginatedResources;
 
-                $types = Type::inRandomOrder()->paginate(3,['*'],'types');
-                $types2 = Type::orderBy('name','asc')->get();
-                $units=Unit::orderBy('title','asc')->get();
-                $subunits=Subunit::orderBy('title','asc')->get();
-                $medias=Media::orderBy('name','asc')->get();
-                return view('user.welcome2',compact('grades','courses','types', 'resources','medias','units','subunits','tag','paginatedResources','types2'));
-        }
-
-        // // pagination function
-        // function fetch_data(Request $request){
-        
-        //          $types=Type::orderBy('name','desc')->get();
+                // // pagination function
+                // function fetch_data(Request $request){
                 
-        //         $paginatedResources = [];
-        //         foreach($types as $type){
-        //             $paginatedResources[$type->id] = ($type->allresources($type->id));
-        //         }
-        //         return view ('user.paginateResource',compact('types','paginatedResources'));
+                //          $types=Type::orderBy('name','desc')->get();
+                        
+                //         $paginatedResources = [];
+                //         foreach($types as $type){
+                //             $paginatedResources[$type->id] = ($type->allresources($type->id));
+                //         }
+                //         return view ('user.paginateResource',compact('types','paginatedResources'));
 
-                
-        // }
+                        
+                // }
 
                 /**
          * Show the form for creating a new resource.
@@ -404,7 +404,7 @@ class WelcomeController extends Controller
                    if($type_check[$type->id] > 0){
                                 $i = 0;
                 //$output.='<p>'.$type->name.'</p>';
-                $output.='<h4><strong class="mt-3 ml-2 Button Button-outline zoom">'.$type->name.'</strong></h4>';
+                $output.='<h4><strong class="mt-3 ml-2 Button Button-outline zoom gradeType" value="'.$type->id.'" >'.$type->name.'</strong></h4>';
                 $output.='<div class="container-fluid">';
                 $output.='<div class="row">';
                 foreach($resources as $resourceFiltered)
@@ -903,7 +903,7 @@ class WelcomeController extends Controller
                         //return response()->json($data);
         }
 
-        //   //  Return More of Content Type
+           //  Return All resources for a choosen content type
         public function courseType(Request $request){
                $type=Type::where('name', $request->type)->first();
                $course=Course::select('id')->where('name',$request->course)->get();
@@ -958,5 +958,11 @@ class WelcomeController extends Controller
                    
                 $output.='</div></div>';
                 return $output;
+        }
+
+        // For choosed Grade return all resources by selected content type
+        public function gradeType(Request $request){
+        
+               
         }
 }
