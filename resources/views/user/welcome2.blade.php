@@ -47,7 +47,7 @@
             
             
             <button class="btn btn-block text-left p-3 buttonMenu border collapsed  zoom CB bold" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" >
-            Course <i class="fas fa-angle-down buttonMenuIcon float-right"></i>
+            Subjects <i class="fas fa-angle-down buttonMenuIcon float-right"></i>
             </button>
             
           
@@ -181,7 +181,7 @@
                     <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4" id="linkColor">
                       <div class="zoom" data-toggle="tooltip" data-placement="top" title="{{$resource->description}}"
                             style=" position: relative;">
-                        <a href="{{url('user',[$resource->id, $type->id])}}" target="_blank">                      
+                        <a href="{{url('user',[$resource->id, $type->id])}}" >                      
                         @if($resource->media->name == "Document"||$resource->media->name == "document" )
                         <img id="pdfView" value="{{$resource->id}}" src="{{$resource->thumbnailLocation}}" 
                         class="rounded-top shadow " alt="{{$resource->description}}">

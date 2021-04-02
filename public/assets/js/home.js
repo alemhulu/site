@@ -24,7 +24,7 @@ function typeMore(query) {
             success: function (response) {
                 $('#content').hide();
                 $('#filter').html(response);
-                intialization();
+                
             },
             error: function (error) {
                 alert("Error!  ");
@@ -62,7 +62,7 @@ function courseTypeFunction(query, type) {
             success: function (response) {
                 $('#content').hide();
                 $('#filter').html(response);
-                intialization();
+              
             },
             error: function (error) {
                 alert("Error!  ");
@@ -80,7 +80,7 @@ function gradeTypeFunction(grade,type) {
         success(response){
             $('#content').hide();
             $('#filter').html(response);
-            intialization();
+            
         },
         error(){
             alert('Error! ');
@@ -126,6 +126,7 @@ function intialization() {
             query = e.currentTarget.id;
             console.log(grade);
             courseFromAllGrade(query);
+            
             
         });
     });

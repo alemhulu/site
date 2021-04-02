@@ -420,11 +420,11 @@ class WelcomeController extends Controller
                                 $output.='<div class="card ">';
                                 $resource=Resource::find($resourceFiltered->id);
                                 if($resource->media->name == "Document"||$resource->media->name == "document" ){
-                                        $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.'" target="_blank" >
+                                        $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.'"  >
                                         <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
                                 }
                                 else{
-                                        $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.'" target="_blank" >
+                                        $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.'"  >
                                         <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
                                 }
                                 $output.= '<div class="card-body p-1">';
@@ -613,11 +613,11 @@ class WelcomeController extends Controller
                                                 $output.='<div class="card ">';
                                                 $resource=Resource::find($resourceFiltered->id);
                                                 if($resource->media->name == "Document"||$resource->media->name == "document" ){
-                                                        $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.' " target="_blank">
+                                                        $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.' " >
                                                         <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
                                                 }
                                                 else{
-                                                        $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.' "  target="_blank">                                                        <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
+                                                        $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.' "  >                                                        <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
                                                 }
                                                 $output.= '<div class="card-body p-1">';
                                                
@@ -736,11 +736,11 @@ class WelcomeController extends Controller
                                                 $output.='<div class="card ">';
                                                 $resource=Resource::find($resourceFiltered->id);
                                                 if($resource->media->name == "Document"||$resource->media->name == "document" ){
-                                                        $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.' " target="_blank">
+                                                        $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.' " >
                                                         <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
                                                 }
                                                 else{
-                                                        $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.' " target="_blank">
+                                                        $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.' " >
                                                         <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
                                                 }
                                                 $output.= '<div class="card-body p-1">';
@@ -869,11 +869,11 @@ class WelcomeController extends Controller
                                                 $output.='<div class="card ">';
                                                 $resource=Resource::find($resourceFiltered->id);
                                                 if($resource->media->name == "Document"||$resource->media->name == "document" ){
-                                                        $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.'  " target="_blank">
+                                                        $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.'  " >
                                                         <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
                                                 }
                                                 else{
-                                                        $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.' " target="_blank">
+                                                        $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.' " >
                                                         <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
                                                 }
                                                 $output.= '<div class="card-body p-1">';
@@ -931,11 +931,11 @@ class WelcomeController extends Controller
                                                 $output.='<div class="card ">';
                                                 $resource=Resource::find($resourceFiltered->id);
                                                 if($resource->media->name == "Document"||$resource->media->name == "document" ){
-                                                        $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.' " target="_blank">
+                                                        $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.' " >
                                                         <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
                                                 }
                                                 else{
-                                                        $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.' " target="_blank">
+                                                        $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.' " >
                                                         <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
                                                 }
                                                 $output.= '<div class="card-body p-1">';
