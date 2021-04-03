@@ -273,7 +273,7 @@
               <div class="form-group">
                 
                     <p class="p-3">
-                      We would love to hear your thoughts, suggestions, concern or problems with anything so we can improve !
+                      We would love to hear your thoughts, suggestions, concern or problems with anything on the site so we can improve !
                     </p >
                     <strong ><label> Feedback Type </label></strong>
                     <div class="feedbackradio ">
