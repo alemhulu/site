@@ -404,7 +404,7 @@ class WelcomeController extends Controller
                    if($type_check[$type->id] > 0){
                                 $i = 0;
                 //$output.='<p>'.$type->name.'</p>';
-                $output.='<h4><strong class="mt-3 ml-2 Button Button-outline zoom gradeType" value="'.$type->id.'" >'.$type->name.'</strong></h4>';
+                $output.='<h4><strong class="mt-3 ml-2 Button Button-outline zoom gradeType" onclick="" value="'.$type->id.'" >'.$type->name.'</strong></h4>';
                 $output.='<div class="container-fluid">';
                 $output.='<div class="row">';
                 foreach($resources as $resourceFiltered)
@@ -434,7 +434,7 @@ class WelcomeController extends Controller
                                                   <div class="d-flex justify-content-between">
                                                         <span class="date">'.  $resource->view  .'  Views </span>
                                                         <a href="'.$resource->fileLocation.'" download>
-                                                                 <button class="btn btn-sm download zoom" value="'.$resource->id.'" style="font-size:13px;">
+                                                                 <button class="btn btn-sm download zoom" value="'.$resource->id.'" style="font-size:13px;"  >
                                                                         <span class="icon icon-download "></span><span id="downloadCount">'. $resource->download.'</span>
                                                                 </button>
                                                         </a>
@@ -626,7 +626,7 @@ class WelcomeController extends Controller
                                                 <div class="d-flex justify-content-between">
                                                         <span class="date">'.  $resource->view  .'  Views </span>
                                                         <a href="'.$resource->fileLocation.'" download>
-                                                                 <button class="btn btn-sm download zoom" value="'.$resource->id.'" style="font-size:13px;">
+                                                                 <button class="btn btn-sm download zoom" value="'.$resource->id.'" style="font-size:13px;"  >
                                                                         <span class="icon icon-download "></span><span id="downloadCount">'. $resource->download.'</span>
                                                                 </button>
                                                         </a>
@@ -750,7 +750,7 @@ class WelcomeController extends Controller
                                                   <div class="d-flex justify-content-between">
                                                         <span class="date">'.  $resource->view  .'  Views </span>
                                                         <a href="'.$resource->fileLocation.'" download>
-                                                                 <button class="btn btn-sm download zoom" value="'.$resource->id.'" style="font-size:13px;">
+                                                                 <button class="btn btn-sm download zoom" value="'.$resource->id.'" style="font-size:13px;" onclick="fileDownloadId()" >
                                                                         <span class="icon icon-download "></span><span id="downloadCount">'. $resource->download.'</span>
                                                                 </button>
                                                         </a>
@@ -855,7 +855,7 @@ class WelcomeController extends Controller
                         if($type_check[$type->id] > 0){
                                 $i = 0;
                                 //$output.='<p>'.$type->name.'</p>';
-                                $output.='<h4><strong class="mt-3 ml-2 Button Button-outline zoom courseType" id="'.$type->name.'">'.$type->name.'</strong></h4>';
+                                $output.='<h4><strong class="mt-3 ml-2 Button Button-outline zoom courseType"  id="'.$type->name.' onclick="courseType()">'.$type->name.'</strong></h4>';
                                 $output.='<div class="container-fluid">';
                                 $output.='<div class="row">';
                                 foreach($resources as $resourceFiltered){
@@ -883,7 +883,7 @@ class WelcomeController extends Controller
                                                   <div class="d-flex justify-content-between">
                                                         <span class="date">'.  $resource->view  .'  Views </span>
                                                         <a href="'.$resource->fileLocation.'" download>
-                                                                 <button class="btn btn-sm download zoom" value="'.$resource->id.'" style="font-size:13px;">
+                                                                 <button class="btn btn-sm download zoom" value="'.$resource->id.'" style="font-size:13px;" onclick="fileDownloadId()" >
                                                                         <span class="icon icon-download "></span><span id="downloadCount">'. $resource->download.'</span>
                                                                 </button>
                                                         </a>
@@ -945,7 +945,7 @@ class WelcomeController extends Controller
                                                   <div class="d-flex justify-content-between">
                                                         <span class="date">'.  $resource->view  .'  Views </span>
                                                         <a href="'.$resource->fileLocation.'" download>
-                                                                 <button class="btn btn-sm download zoom" value="'.$resource->id.'" style="font-size:13px;">
+                                                                 <button class="btn btn-sm download zoom" value="'.$resource->id.'" style="font-size:13px;" onclick="fileDownloadId()" >
                                                                         <span class="icon icon-download "></span><span id="downloadCount">'. $resource->download.'</span>
                                                                 </button>
                                                         </a>
