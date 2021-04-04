@@ -10,8 +10,8 @@
 
 // Inportant Variable 
 let courses, typeMoreButtons, feedbackButton, feedbackSend, buttonMenus, file_id, downloadFileFile, downloadCount, searchButtons, searchInput1, searchInput2, windowWidth, course, type, courseTypes,
-    searchInputBig, searchInputSmall, grade, gradeTypes;
-
+    searchInputBig, searchInputSmall, grade, gradeTypes, garade_id_radio, grade_type_id;
+garade_id_radio=1;
 function fileDownloadId () {
     file_id= event.target.parentElement.value;
     fileDownload(file_id);
@@ -175,6 +175,15 @@ function gradeTypeFunction(grade,type) {
          }
      });
  }
+
+ //Filter all resources for choosen grade by the content type
+function gradeTypeController() {
+    type_id_radio = event.target.innerHTML;
+    // grade_id_radio = event.target.value;
+    
+    gradeTypeFunction(grade_id_radio,type_id_radio);
+    
+ }
  
 
 
@@ -210,7 +219,7 @@ function common() {
             // grade = $("input[type='radio'][name='grade']:checked").parent().text();
             grade = $('#gradeId:checked').val();
             type = this.val;
-            console.log(type);
+            
             // gradeTypeFunction(grade,type);
         });
     });
@@ -295,6 +304,7 @@ window.onload = intialization;
 // fileter function
 function gredeFilter(){
     $('input[type=checkbox]').prop('checked', false);
+    grade_id_radio = event.target.value;
     filter();
 }
 
