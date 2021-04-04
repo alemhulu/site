@@ -67,7 +67,12 @@ function courseTypeCall() {
         });
     });
 }
-
+function courseTypeFromController()
+{
+    type = event.target.id;
+    course=query;
+    courseTypeFunction(course, type);
+}
 
 // from autocomplete dropdown while click search function
 function changeFunction() {
