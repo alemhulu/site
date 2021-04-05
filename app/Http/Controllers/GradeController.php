@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Grade;
 use App\Models\course;
-
+use App\Models\Resource;
 class GradeController extends Controller
 {
     /**
@@ -15,7 +15,12 @@ class GradeController extends Controller
      */
     public function index()
     {
-        return 123;
+            // find and change id and filename
+            // $resource = Resource::find(86);
+            // $resource->fileName='<iframe width="560" height="315" src="https://www.youtube.com/embed/-u5wVgJCJmI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+            // $resource->save();
+            //  return $resource;
+             
     }
 
     /**
