@@ -10,7 +10,7 @@
   <meta name="author" content="Alemhulu AWekelgne">
   <meta name="description" content="ትምህርት ሚኒስቴር: The MoE E-Learning and D-Library provides access to Digital educational resources to students and educational staff based on Grade, Course, Units, Sub- Units, etc with multifaceted Search functionality by keywords. "/>
   <meta name="google-site-verification" content="YA8sQHO3FyF0B5Ozb0Y96IbN3kgetyaR-fOIN-fa3dk" />
-    <title>Example Books - high-quality used books for children</title>
+     <title>Ministry of Education Ethiopia</title>
 
    <!-- CSRF Token -->
    <meta name="csrf-token" content="{{ csrf_token() }}">
