@@ -24,6 +24,12 @@ class WelcomeController extends Controller
          */
                 public function index()
                 { 
+                        // $resources=Resource::where('type_id',"9")->get();
+                        // foreach($resources as $resource){
+                        //         $resource->fileName="1";
+                        //         $resource->save();
+                        // }
+                        // return $resources;
                         $tag = [];
                                 $grades=Grade::orderBy('name','asc')->get();
                         $courses = Course::select('name')->distinct()->orderBy('name','asc')->get();

@@ -89,9 +89,13 @@
                           </div>
                     </div>
                 @elseif($resource->media->name == "Video"||$resource->media->name == "video")
+                
                 <div id="single-main-video " class=""> 
-
+                    @if($resource->fileName=="1")
+                    {!!$resource->fileLocation!!}                   
+                    @else
                     <video  class="card shadow-sm " id="singleVideo" src="{{asset($resource->fileLocation)}}" controls  autoplay ></video>
+                    @endif
                 </div>
                   
                 @endif

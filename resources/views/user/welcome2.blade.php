@@ -23,7 +23,7 @@
              <button class="btn btn-block text-left p-3  buttonMenu border  zoom ga bold " id="headingOne" data-toggle="collapse" data-target="#gradeCollaps" 
                     aria-expanded="true" aria-controls="gradeCollaps"
                     style="font-size: 16px;font-family: sans-serif Gotham ;"  >
-                Grade <i class="fas fa-angle-down buttonMenuIcon float-right"></i>
+                Grades <i class="fas fa-angle-down buttonMenuIcon float-right"></i>
             </button>
              <div id="gradeCollaps" class="collapse hide shadow-sm" aria-labelledby="headingOne" >
               <div id="gradeFilter">
@@ -71,7 +71,7 @@
           
             
             <button class="btn btn-block text-left p-3 buttonMenu border collapsed  zoom UB bold" id="headingThree" data-toggle="collapse" data-target="#collapseThree" aria-expanded="True" aria-controls="collapseThree"  >
-            Unit <i class="fas fa-angle-down buttonMenuIcon  float-right"></i>
+            Units <i class="fas fa-angle-down buttonMenuIcon  float-right"></i>
             </button>
             
          
@@ -93,7 +93,7 @@
         
           
             <button class="btn btn-block text-left p-3 buttonMenu border collapsed  zoom SUB bold" id="headingfour" data-toggle="collapse" data-target="#collapsefour" aria-expanded="true" aria-controls="collapsefour">
-            Sub-Unit <i class="fas fa-angle-down buttonMenuIcon float-right"></i>
+            Sub-Units <i class="fas fa-angle-down buttonMenuIcon float-right"></i>
             </button>
             
           <div id="collapsefour" class="collapse shadow " aria-labelledby="headingfour" >
@@ -115,7 +115,7 @@
           
             
             <button class="btn btn-block text-left p-3 buttonMenu border collapsed  zoom MTB bold active" id="headingsix" data-toggle="collapse" data-target="#collapsesix" aria-expanded="false" aria-controls="collapsesix">
-            Media Type <i class="fas fa-angle-down buttonMenuIcon float-right"></i>
+            Media Types <i class="fas fa-angle-down buttonMenuIcon float-right"></i>
             </button>
            
           
@@ -138,7 +138,7 @@
             
             
             <button class="btn btn-block text-left p-3 buttonMenu border collapsed  zoom CTB bold " id="headingfive" data-toggle="collapse" data-target="#collapsefive" aria-expanded="false" aria-controls="collapsefive">
-            Content Type <i class="fas fa-angle-down buttonMenuIcon  float-right"></i>
+            Content Types<i class="fas fa-angle-down buttonMenuIcon  float-right"></i>
             </button>
             
           
