@@ -437,10 +437,23 @@ class WelcomeController extends Controller
                                 if($resource->media->name == "Document"||$resource->media->name == "document" ){
                                         $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.'"  >
                                         <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
+
+                                        if($resource->link == 1){
+                                              $output.='<div class="text-warning py-1 px-2 font-weight-bold" 
+                                                style="background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.7); ">
+                                                External Resource  ( Non-MoE )</span>
+                                                </div>';  
+                                        }
                                 }
                                 else{
                                         $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.'"  >
                                         <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
+                                        if($resource->link == 1){
+                                              $output.='<div class="text-warning py-1 px-2 font-weight-bold" 
+                                                style="background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.7); ">
+                                                External Resource  ( Non-MoE )</span>
+                                                </div>';  
+                                        }
                                 }
                                 $output.= '<div class="card-body p-1">';
                                
@@ -630,9 +643,24 @@ class WelcomeController extends Controller
                                                 if($resource->media->name == "Document"||$resource->media->name == "document" ){
                                                         $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.' " >
                                                         <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
+                                                        if($resource->link == 1){
+                                                             $output.='<div class="text-warning py-1 px-2 font-weight-bold" 
+                                                             style="background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.7); ">
+                                                             External Resource  ( Non-MoE )</span>
+                                                             </div>';  
+                                                        }
+
                                                 }
                                                 else{
-                                                        $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.' "  >                                                        <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
+                                                        $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.' "  >                                     
+                                                        <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
+                                                        if($resource->link == 1){
+                                                             $output.='<div class="text-warning py-1 px-2 font-weight-bold" 
+                                                             style="background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.7); ">
+                                                             External Resource  ( Non-MoE )</span>
+                                                             </div>';  
+                                                        }
+
                                                 }
                                                 $output.= '<div class="card-body p-1">';
                                                
@@ -753,10 +781,22 @@ class WelcomeController extends Controller
                                                 if($resource->media->name == "Document"||$resource->media->name == "document" ){
                                                         $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.' " >
                                                         <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
+                                                        if($resource->link == 1){
+                                                             $output.='<div class="text-warning py-1 px-2 font-weight-bold" 
+                                                             style="background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.7); ">
+                                                             External Resource  ( Non-MoE )</span>
+                                                             </div>';  
+                                                        }
                                                 }
                                                 else{
                                                         $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.' " >
                                                         <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
+                                                        if($resource->link == 1){
+                                                             $output.='<div class="text-warning py-1 px-2 font-weight-bold" 
+                                                             style="background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.7); ">
+                                                             External Resource  ( Non-MoE )</span>
+                                                             </div>';  
+                                                        }
                                                 }
                                                 $output.= '<div class="card-body p-1">';
                                                 
@@ -886,10 +926,22 @@ class WelcomeController extends Controller
                                                 if($resource->media->name == "Document"||$resource->media->name == "document" ){
                                                         $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.'  " >
                                                         <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
+                                                        if($resource->link == 1){
+                                                             $output.='<div class="text-warning py-1 px-2 font-weight-bold" 
+                                                             style="background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.7); ">
+                                                             External Resource  ( Non-MoE )</span>
+                                                             </div>';  
+                                                        }
                                                 }
                                                 else{
                                                         $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.' " >
                                                         <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
+                                                        if($resource->link == 1){
+                                                             $output.='<div class="text-warning py-1 px-2 font-weight-bold" 
+                                                             style="background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.7); ">
+                                                             External Resource  ( Non-MoE )</span>
+                                                             </div>';  
+                                                        }
                                                 }
                                                 $output.= '<div class="card-body p-1">';
                                                
@@ -948,10 +1000,22 @@ class WelcomeController extends Controller
                                                 if($resource->media->name == "Document"||$resource->media->name == "document" ){
                                                         $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.' " >
                                                         <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
+                                                        if($resource->link == 1){
+                                                             $output.='<div class="text-warning py-1 px-2 font-weight-bold" 
+                                                             style="background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.7); ">
+                                                             External Resource  ( Non-MoE )</span>
+                                                             </div>';  
+                                                        }
                                                 }
                                                 else{
                                                         $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.' " >
                                                         <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
+                                                        if($resource->link == 1){
+                                                             $output.='<div class="text-warning py-1 px-2 font-weight-bold" 
+                                                             style="background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.7); ">
+                                                             External Resource  ( Non-MoE )</span>
+                                                             </div>';  
+                                                        }
                                                 }
                                                 $output.= '<div class="card-body p-1">';
                                                
@@ -1005,10 +1069,22 @@ class WelcomeController extends Controller
                                                 if($resource->media->name == "Document"||$resource->media->name == "document" ){
                                                         $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.' " >
                                                         <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
+                                                        if($resource->link == 1){
+                                                             $output.='<div class="text-warning py-1 px-2 font-weight-bold" 
+                                                             style="background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.7); ">
+                                                             External Resource  ( Non-MoE )</span>
+                                                             </div>';  
+                                                        }
                                                 }
                                                 else{
                                                         $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.' " >
                                                         <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
+                                                        if($resource->link == 1){
+                                                             $output.='<div class="text-warning py-1 px-2 font-weight-bold" 
+                                                             style="background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.7); ">
+                                                             External Resource  ( Non-MoE )</span>
+                                                             </div>';  
+                                                        }
                                                 }
                                                 $output.= '<div class="card-body p-1">';
                                                
