@@ -138,7 +138,7 @@
             
             
             <button class="btn btn-block text-left p-3 buttonMenu border collapsed  zoom CTB bold " id="headingfive" data-toggle="collapse" data-target="#collapsefive" aria-expanded="false" aria-controls="collapsefive">
-            Content Types<i class="fas fa-angle-down buttonMenuIcon  float-right"></i>
+            Catogories<i class="fas fa-angle-down buttonMenuIcon  float-right"></i>
             </button>
             
           

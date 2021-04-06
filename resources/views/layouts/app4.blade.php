@@ -44,9 +44,7 @@
   @yield('content')
 
 
-  @if(!\Request::is('login') && !\Request::is('register'))
-    @include('partial.footer')
-  @endif
+ 
 
     <!-- Bootstrap core JavaScript -->
     <script src="/vendor/jquery/jquery.min.js"></script>
