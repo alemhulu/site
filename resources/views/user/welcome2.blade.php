@@ -323,7 +323,7 @@
     <!-- <a class="border rounded d-inline scroll-to-top" href="#page-top"><div id="page-top-botton"><i class="fas fa-angle-up"></i></div></a> -->
     <footer class="bg-white sticky-footer">
     <div class="container my-auto">
-    <div class="text-center my-auto copyright fixed-bottom text-black"><span>Copyright © MoE 2020</span></div>
+    <div class="text-center my-auto copyright fixed-bottom text-black"><span>Copyright © MoE 2021</span></div>
     </div>
     </footer>  
   </div> <!-- col 10 end-->
