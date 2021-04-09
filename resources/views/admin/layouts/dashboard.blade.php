@@ -116,7 +116,9 @@
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Test</span></a>
       </li>
-     
+     <div class=version>
+        <h6>Version  2.1</h6>
+     </div>
     </ul>
 
     <div id="content-wrapper">
