@@ -75,6 +75,7 @@ class ResourceController extends Controller
 
         $resource->user_id      = $user_id;
         $resource ->description = request('description');
+        $resource ->tag = request('tag');
         $resource -> save();
     }
 
