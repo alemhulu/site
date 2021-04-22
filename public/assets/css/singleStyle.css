@@ -6,7 +6,7 @@
 }
 iframe{
   width: 100%;
-  height: 480px;
+  height: 500px;
 }
 html,body {
   height : 100%;
@@ -629,17 +629,21 @@ i:focus, i:active {
          height: 200px;
           border: none;
       }
-            #singleViewDiv{
-              margin: 0;
-            }
-            #singleVideo
-            {
-              width: 100%;
-              max-height: 200px;
-              /* min-height:540px; */
-              background-color: #3c3c3c;
-              
-            }
+      #singleViewDiv{
+        margin: 0;
+      }
+      #singleVideo
+      {
+        width: 100%;
+        max-height: 200px;
+        /* min-height:540px; */
+        background-color: #3c3c3c;
+        
+      }
+      iframe{
+        width: 100%;
+        height: 190px;
+      }
 }
 .top-bar {
   background: #333;

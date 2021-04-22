@@ -14,7 +14,7 @@ class AdminController extends Controller
 
     public function index()
     {
-        $resources = Resource::orderBy('created_at','desc')->get();
+        $resources = Resource::orderBy('created_at','asc')->get();
    
         return view('admin.index',compact('resources'));
     }

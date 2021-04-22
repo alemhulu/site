@@ -25,7 +25,7 @@
           
               <div class="col-lg-8 col-md-12 " id="singleDisplay">
               <h2 id="test_status"></h2>
-              <div  id="test"></div>
+              <div  id="test" style="heght:150px;"></div>
                   <div class="row mx-5" id="description_like_dislike">              
                                     <input type="number" id="fileId" value="{{$resource->id}}" hidden>
                                     <input type="text" id="path" value="{{$resource->fileLocation}}" hidden>
@@ -90,7 +90,7 @@
                     </div>
                 @elseif($resource->media->name == "Video"||$resource->media->name == "video")
                 
-                <div id="single-main-video " class=""> 
+                <div id="single-main-video " class=""  style="heght:50px;"> 
                     @if($resource->fileName!="")
                     {!!$resource->fileName!!}                   
                     @else

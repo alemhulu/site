@@ -43,7 +43,8 @@
 
   @yield('content')
 
-
+     
+       
  
 
     <!-- Bootstrap core JavaScript -->

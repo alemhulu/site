@@ -169,7 +169,7 @@
           
           @foreach($types as $type)
           @if(count($paginatedResources[$type->id])>0)
-              <h4 class="m-0 mt-2   mb-2 typeMoreButton Button Button-outline zoom" id={{$type->name}} ><strong >{{$type->name}}</strong></h4>
+              <h4 class=" mt-2   mb-2 typeMoreButton Button Button-outline zoom" id={{$type->name}} ><strong >{{$type->name}}</strong></h4>
                 <div class="container-fluid ">
                 <div class="row md">
            
@@ -178,7 +178,7 @@
                  ?>
                   @foreach($resources as $resource)
                   
-                    <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4" id="linkColor">
+                    <div class="col-12 col-sm-6 col-md-6 col-lg-3 " id="linkColor">
                       <div class="zoom" data-toggle="tooltip" data-placement="top" title="{{$resource->description}}"
                             style=" position: relative;">
                         <a href="{{url('user',[$resource->id, $type->id])}}" >                      
@@ -187,8 +187,8 @@
                         class="rounded-top shadow " alt="{{$resource->description}}">
 
                         @if($resource->link == 1)
-                        <div class="text-warning py-1 px-2 font-weight-bold" 
-                              style="background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.7); ">
+                        <div class="text-warning  font-weight-bold" 
+                              style="background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.7);  ">
                               External Resource  ( Non-MoE )</span>
                         </div>
                         @endif
@@ -197,8 +197,8 @@
                         <img id="videoView" src="{{$resource->thumbnailLocation}}"class="rounded-top shadow "  alt="{{$resource->description}}">
                           
                        @if($resource->link == 1)
-                        <div class="text-warning py-1 px-2 font-weight-bold" 
-                              style="background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.7); ">
+                        <div class="text-warning  font-weight-bold " 
+                              style="background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.7);  ">
                               External Resource  ( Non-MoE )</span>
                         </div>
                         @endif

@@ -40,7 +40,7 @@ class WelcomeController extends Controller
                         // return $resource;
                         
                         $tag = [];
-                                $grades=Grade::orderBy('name','asc')->get();
+                        $grades=Grade::orderBy('name','asc')->get();
                         $courses = Course::select('name')->distinct()->orderBy('name','asc')->get();
                         // $courses = Course::where('grade_id',null)->orderBy('name','asc')->get();
                         //$courses=Course::all();
@@ -111,6 +111,7 @@ class WelcomeController extends Controller
                                 // return $paginatedResources;
 
                                 $types = Type::inRandomOrder()->paginate(3,['*'],'types');
+                                // $types = Type::orderBy('created_at','asc')->paginate(3,['*'],'types');
                                 $types2 = Type::orderBy('name','asc')->get();
                                 $units=Unit::orderBy('title','asc')->get();
                                 $subunits=Subunit::orderBy('title','asc')->get();
