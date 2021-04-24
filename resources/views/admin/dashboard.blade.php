@@ -334,7 +334,7 @@
                         <input value="" type="text" id="courseValue"  class="form-control" disabled ><input value="" type="number" id="course_id" name="course_id" hidden >
                     </div>
                     <div class="col "><div><strong><label>Unit</label></strong></div>
-                        <input type="number" class="form-control" name="name" placeholder="Name" step="1" min="1" max="12" required>
+                        <input type="number" class="form-control" name="name" placeholder="Name" step="1" min="1" max="20" required>
                     </div>
                     <div class="col"><div><strong><label>Title</label></strong></div>
                         <input type="text" class="form-control"  name="title" placeholder="Name"  required>
