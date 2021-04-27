@@ -436,7 +436,7 @@ class WelcomeController extends Controller
                                 $output.='<div class="card ">';
                                 $resource=Resource::find($resourceFiltered->id);
                                 if($resource->media->name == "Document"||$resource->media->name == "document" ){
-                                        $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.'"  >
+                                        $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.'"  target="--blank">
                                         <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
 
                                         if($resource->link == 1){
@@ -447,7 +447,7 @@ class WelcomeController extends Controller
                                         }
                                 }
                                 else{
-                                        $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.'"  >
+                                        $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.'" target="--blank" >
                                         <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
                                         if($resource->link == 1){
                                               $output.='<div class="text-warning py-1 px-2 font-weight-bold" 
