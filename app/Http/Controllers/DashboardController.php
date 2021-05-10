@@ -10,6 +10,7 @@ use App\Models\Subunit;
 use App\Models\Type;
 use App\Models\Resource;
 use App\Models\Media;
+use App\Models\Language;
 
 
 class DashboardController extends Controller
@@ -28,10 +29,10 @@ class DashboardController extends Controller
         $subunits= Subunit::orderBy('name','asc')->get();
         $types=Type::orderBy('name','asc')->get();
         $medias=Media::orderBy('name','asc')->get();
-       
+        $languages = Language::orderBy('name','asc')->get();
        $commonCourses=Course::whereNull('grade_id')->get();
         
-        return view('admin.dashboard',compact('grades','courses','units','subunits','types','medias','commonCourses'));
+        return view('admin.dashboard',compact('grades','courses','units','subunits','types','medias','commonCourses','languages'));
     }
 
     /**

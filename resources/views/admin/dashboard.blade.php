@@ -36,7 +36,7 @@
                     <div class="text-center" id="upload_space" ><h3 class=" m-3 underline ">Upload Page</h3> </div>
                     <div class="row pt-3" >
                         <div class="col-md align-self-center">
-
+<!-- grade select dropdown -->
                             <div class="form-group row mb-2">
                                     <div class="col-2">
                                           <strong><label class="float-left" for="name">Grade</label></strong>
@@ -44,7 +44,7 @@
                                      <div class="col-8">
                                           <select class="form-control" id="gradeChange"  name="grade_id" >
                                               @if(count($grades)>0)
-                                               <option value="0" disabled selected>      --Choose--</option>
+                                               <option value="0" disabled selected>--Choose--</option>
                                              @foreach($grades as $grade)
                                               <option value="{{$grade->id}}"> <h1>{{$grade->name}}</h1> </option>
                                               @endforeach   
@@ -58,9 +58,10 @@
                                     </div>
                                     
                              </div>
+<!-- subject select dropdown -->
                              <div class="form-group row mb-2">
                                    <div class="col-2">
-                                          <strong><label class="float-left" for="name">Course</label></strong>
+                                          <strong><label class="float-left" for="name">Subject</label></strong>
                                     </div>
                                      <div class="col-8">
                                         <select class="form-control formselect required" id="courseChange" name="course_id"   >
@@ -70,7 +71,7 @@
                                              <option value="{{$course->id}}"> {{$course->name}} </option>
                                               @endforeach     
                                              @else
-                                            <option value="0"> Add Course </option>
+                                            <option value="0"> Add Subject </option>
                                           @endif   
                                        </select>
                                     </div>
@@ -78,6 +79,7 @@
                                         <button type="button" class="btn btn-primary btn-small px-1 py-0" id="courseButton" data-toggle="modal" data-target="#addCourseModal"><i class="fas fa-plus p-2"></i></button>
                                     </div>
                             </div>
+<!-- unit select dropdown -->
                              <div class="form-group row mb-2">
                                   <div class="col-2">
                                            <strong><label class="float-left">Unit</label></strong>
@@ -91,7 +93,8 @@
                                         <button type="button" class="btn btn-primary btn-small px-1 py-0  "data-toggle="modal" data-target="#addUnitModal"><i class="fas fa-plus p-2"></i></button>
                                     </div>
                             </div>
-                            <div class="form-group row mb-2">
+<!-- sub unit select dropdown -->
+                             <div class="form-group row mb-2">
                                   <div class="col-2">
                                            <strong><label >Sub Unit</label></strong>
                                     </div>
@@ -101,6 +104,27 @@
                                     </div>
                                     <div class="col-2">
                                         <button type="button" class="btn btn-primary btn-small px-1 py-0"data-toggle="modal" data-target="#addSubUnitModal"><i class="fas fa-plus p-2"></i></button>
+                                    </div>
+                            </div>
+<!-- language dropdown -->
+                              <div class="form-group row mb-2">
+                                  <div class="col-2">
+                                           <strong><label >Language</label></strong>
+                                    </div>
+                                     <div class="col-8">
+                                          <select class="form-control formselect required" id="languageChange" name="language_id" >
+                                          @if (count($languages) > 0)
+                                              <option value="" disabled selected>--Choose--</option>
+                                              @foreach($languages as $language)
+                                              <option value="{{$language->id}}">{{$language->name}}</option>
+                                              @endforeach
+                                          @else
+                                             <option value="0"> Add Subject </option>
+                                          @endif  
+                                          </select> 
+                                    </div>
+                                    <div class="col-2">
+                                        <button type="button" class="btn btn-primary btn-small px-1 py-0"data-toggle="modal" data-target="#addlanguageModal"><i class="fas fa-plus p-2"></i></button>
                                     </div>
                             </div>
                             <!-- <div class="form-group row mb-2">
@@ -211,7 +235,7 @@
 
                         </div>
 
-                    </div>
+                  </div>
                             
                              
 
@@ -330,7 +354,7 @@
               @csrf 
               <div class="form-group">
               <div class="row">
-                    <div class="col"><div><strong><label>Course</label></strong></div>
+                    <div class="col"><div><strong><label>Subject</label></strong></div>
                         <input value="" type="text" id="courseValue"  class="form-control" disabled ><input value="" type="number" id="course_id" name="course_id" hidden >
                     </div>
                     <div class="col "><div><strong><label>Unit</label></strong></div>
@@ -356,6 +380,42 @@
         
 
 <!-- AddSubUnitModal -->
+
+<div class="modal fade" id="addlanguageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+      <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add new Language</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
+      <div class="modal-body">
+          <form id="addSubUnitForm" >
+              @csrf 
+              <div class="form-group">
+              <div class="row">
+                    <div class="col">
+                        <strong><label>Language</label></strong>                           
+                    </div>
+                   
+                    <div class="col">
+                        <input type="text" class="form-control"  name="language" placeholder="Name"  required>
+                  </div>
+              </div> 
+              <div class="modal-footer">
+                    <button type="button" class="btn lblue" data-dismiss="modal">Close</button>
+                    <button type="button" id="subunit" class="btn btn-primary">Create</button>
+             </div>
+           </div>
+        </form>
+      </div>
+</div>
+</div>
+</div>  
+
+
+<!-- AddLanguageModal -->
 
 <div class="modal fade" id="addSubUnitModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 <div class="modal-dialog" role="document">
@@ -391,6 +451,7 @@
 </div>
 </div>
 </div>  
+
 
 
 <!-- Content type Modal -->

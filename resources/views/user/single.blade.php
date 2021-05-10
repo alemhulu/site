@@ -95,9 +95,15 @@
                     {!!$resource->fileName!!}                   
                     @else
                     <video  class="card shadow-sm " id="singleVideo" src="{{asset($resource->fileLocation)}}" controls  autoplay ></video>
+
                     @endif
                 </div>
-                  
+                                             <span>
+                  <a class="nav-link"
+                    href="https://www.facebook.com/sharer/sharer.php?u=http://elearn.moe.gov.et/user/115/9">
+                    <i class="fab fa-facebook-f"></i> share
+                  </a>
+                </span>
                 @endif
 
                 </div>
@@ -118,6 +124,7 @@
               </div>
             
               <div class="col-lg-4 col-md-12 col-sm-12" id="sidebar_div"> 
+              
               @if($resource->media->name == "Document" || $resource->media->name == "document")
                 <div id="single-side-pdf">
                 @elseif($resource->media->name == "Video"||$resource->media->name == "video")
@@ -150,7 +157,7 @@
                                             <img id="singleVideoScroll" src="{{asset($resource1->thumbnailLocation)}}"  >
                                             @endif
                                        </div> 
-                         
+                                        
                                        <div class="col-sm-12 col-md-12 col-lg-5  blackColor flex-column p-2 bg-white" id="sidebarText"> 
                                        @if($resource1->unit_id=="" || $resource1->subunit_id=="" || $resource1->grade_id=="")
                                         <!-- <h5 class="card-title">{{$resource1->course->name}} </h5> -->

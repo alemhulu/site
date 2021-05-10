@@ -226,9 +226,12 @@
                               <span class="date ">{{$resource->view}} Views </span>
                               <a href="{{$resource->fileLocation}}" download>
                              <button class="btn btn-sm download zoom" value="{{$resource->id}}" style="font-size:13px;"   >                          
-                              <span class="icon icon-download "></span><span class=" id="downloadCount"> {{$resource->download}}</span>                         
+                              <span class="icon icon-download "></span><span class=" id="downloadCount"> {{$resource->download}}</span> 
+                                                      
                             </button>
                             </a>
+                            
+
                               <span class="date float-right">{{$resource->created_at->diffForHumans() }}</span>
                           </div>
                           
@@ -238,6 +241,7 @@
                       </div>
                     
                     </div> 
+                
                   @endforeach
          
                 </div> 
@@ -291,7 +295,7 @@
                       </div>
                     </div>
                    
-                       <strong><label for="feedbackDescription" class="d-block text-center mt-3">Discribe your Feedback:</label></strong> 
+                       <strong><label for="feedbackDescription" class="d-block text-center mt-3">Describe your Feedback:</label></strong> 
                         <textarea name="description" id="feedbackDescription" class="d-block w-100 shadow-sm"  rows="3"></textarea>
                         <strong ><label class="mt-3">Name</label></strong>
                         <div class="row">
