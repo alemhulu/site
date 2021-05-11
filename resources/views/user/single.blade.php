@@ -98,12 +98,7 @@
 
                     @endif
                 </div>
-                                             <span>
-                  <a class="nav-link"
-                    href="https://www.facebook.com/sharer/sharer.php?u=http://elearn.moe.gov.et/user/115/9">
-                    <i class="fab fa-facebook-f"></i> share
-                  </a>
-                </span>
+         
                 @endif
 
                 </div>
