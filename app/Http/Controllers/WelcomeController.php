@@ -421,7 +421,7 @@ class WelcomeController extends Controller
                    if($type_check[$type->id] > 0){
                                 $i = 0;
                 //$output.='<p>'.$type->name.'</p>';
-                $output.='<h4><strong class="mt-3 ml-2 Button Button-outline zoom gradeType" onclick="gradeTypeController()" value="'.$type->id.'" >'.$type->name.'</strong></h4>';
+                $output.='<h4><strong class="mt-3 ml-2 Button Button-outline zoom bg-white gradeType" onclick="gradeTypeController()" value="'.$type->id.'" >'.$type->name.'</strong></h4>';
                 $output.='<div class="container-fluid">';
                 $output.='<div class="row">';
                 foreach($resources as $resourceFiltered)
@@ -631,7 +631,7 @@ class WelcomeController extends Controller
                         foreach($types as $type){
                         if($type_check[$type->id] > 0){
                                 //$output.='<p>'.$type->name.'</p>';
-                                $output.='<h4><strong class="mt-3 ml-2 Button Button-outline zoom" id=ResutlTittle>'.$type->name.'</strong></h4>';
+                                $output.='<h4><strong class="mt-3 ml-2 Button Button-outline zoom bg-white" id=ResutlTittle>'.$type->name.'</strong></h4>';
                                 $output.='<div class="container-fluid">';
                                 $output.='<div class="row">';
                                 foreach($resources as $resourceFiltered){
@@ -912,7 +912,7 @@ class WelcomeController extends Controller
                         if($type_check[$type->id] > 0){
                                 $i = 0;
                                 //$output.='<p>'.$type->name.'</p>';
-                                $output.='<h4><strong class="mt-3 ml-2 Button Button-outline zoom courseType"  id="'.$type->name.'" onclick="courseTypeFromController()">'.$type->name.'</strong></h4>';
+                                $output.='<h4><strong class="mt-3 ml-2 Button Button-outline zoom bg-white courseType"  id="'.$type->name.'" onclick="courseTypeFromController()">'.$type->name.'</strong></h4>';
                                 $output.='<div class="container-fluid">';
                                 $output.='<div class="row">';
                                 foreach($resources as $resourceFiltered){

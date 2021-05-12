@@ -14,8 +14,15 @@ html,body {
   overflow-x : hidden; 
   font-size : 14px;
   font-family : sans-serif Gotham Arial;  
+  background-color: #f6f6f6 !important;
+}
+#content{
+  background-color: #f6f6f6;
 }
 
+#current_page{
+  background-color: #fff;
+}
 /*the container must be positioned relative:*/
 .autocomplete {
   position: relative;

@@ -1,5 +1,5 @@
 <div id="page-top">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light ban sticky-top "> 
+  <nav class="navbar navbar-expand-lg navbar-light bg-white ban sticky-top "> 
       <a class="navbar-brand" href="{{ url('/') }}">
           <img class="my-auto" id="logo" src="/assets/img/logom.png" 
                   style="width: 3.7rem;">

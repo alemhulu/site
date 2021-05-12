@@ -98,7 +98,12 @@
 
                     @endif
                 </div>
-         
+                                             <!-- <span>
+                  <a class="nav-link"
+                    href="https://www.facebook.com/sharer/sharer.php?u=http://elearn.moe.gov.et/user/115/9">
+                    <i class="fab fa-facebook-f"></i> share
+                  </a>
+                </span> -->
                 @endif
 
                 </div>
@@ -185,7 +190,7 @@
       </div>
       <div class="mt-5">{{$paginatedResources->links('user.singlePaginate')}}</div>
       <!-- <a class="border rounded d-inline scroll-to-top" href="#page-top" id="page-top-button"><i class="fas fa-angle-down"></i></a> -->
-    <footer class="bg-white sticky-footer">
+    <footer class=" sticky-footer">
     <div class="container my-auto">
     <div class="text-center my-auto copyright fixed-bottom"><span>Copyright © MoE 2020</span></div>
     </div>
@@ -194,13 +199,13 @@
   
 <script src="/assets/js/jQuery3.5.1.js"> </script>
 
-@if($resource->media->name=="Document"){
+@if($resource->media->name=="Document")
     <script  src="http://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.943/pdf.min.js"></script>
     <script src="/assets/js/pdfView.js"></script>
-}
-@else{
+
+@else
     <script src="/assets/js/singleVideo.js"></script>
-}
+
 @endif
 <script>
 var media=$('#content').val();
@@ -239,9 +244,9 @@ function download()
 </script>
 
 
-  <script>
-  if(media=='video'||media=='Video'){
-  var pos = 0, test, test_status, question, choice, choices, chA, chB, chC,chD, correct = 0;
+<script>
+if(media=='video'||media=='Video'){
+var pos = 0, test, test_status, question, choice, choices, chA, chB, chC,chD, correct = 0;
 var questions = [];
 test = _("test");
 result_global = [];

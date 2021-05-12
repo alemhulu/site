@@ -9,7 +9,9 @@ html,body {
   overflow-x : hidden; 
   font-size : 14px;
   font-family : sans-serif Gotham Arial;  
+  background-color: #f6f6f6;
 }
+
 .buttons{
   background: white;
   color:  rgb(31,72,162);
@@ -250,7 +252,7 @@ i:focus, i:active {
 
 .zoom:hover{
   color: white;
-  background: rgb(60,143,194);
+  background: rgb(60,143,194) !important;
   border-radius: 4px;
   transform: scale(1.05); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }

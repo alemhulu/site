@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="/assets/css/homeStyle.css">
 @endsection
 <section>
-<div class=" container-fluid">
+<div class=" container-fluid ">
 
  <form class="form  justify-content-start my-1 " id="searchForm" >
                             <div class="input-group col" >
@@ -14,12 +14,12 @@
                             </div>
   </form>
   
-  <div class="row">
-    <div class=" collapse "  id="navbarSupportedContent">
+  <div class="row gray">
+    <div class=" collapse bg-white"  id="navbarSupportedContent" style="height:800px;">
       
         
-        <div style="">
-            <ul class="navbar-nav mr-auto menu-scroll" >
+        <div >
+            <ul class="navbar-nav mr-auto menu-scroll " >
              <button class="btn btn-block text-left p-3  buttonMenu border  zoom ga bold " id="headingOne" data-toggle="collapse" data-target="#gradeCollaps" 
                     aria-expanded="true" aria-controls="gradeCollaps"
                     style="font-size: 16px;font-family: sans-serif Gotham ;"  >
@@ -31,7 +31,7 @@
                 <ul style="color:black;">
                 <br>
                 @foreach($grades as $grade)
-                <li><input type="radio"class="form-check-input gradeRadio" name="grade" value="{{$grade->id}}" id="gradeId" onchange="gredeFilter()" ><h6>Grade - {{$grade->name}}</h6></li>
+                <li><input type="radio"class="form-check-input gradeRadio " name="grade" value="{{$grade->id}}" id="gradeId" onchange="gredeFilter()" ><h6 class="">Grade - {{$grade->name}}</h6></li>
                 @endforeach
                 <br>
                 </ul>
@@ -169,8 +169,8 @@
           
           @foreach($types as $type)
           @if(count($paginatedResources[$type->id])>0)
-              <h4 class=" mt-2   mb-2 typeMoreButton Button Button-outline zoom" id={{$type->name}} ><strong >{{$type->name}}</strong></h4>
-                <div class="container-fluid ">
+              <h4 class=" mt-2   mb-2 typeMoreButton Button Button-outline zoom bg-white" id={{$type->name}} ><strong >{{$type->name}}</strong></h4>
+                <div class="container-fluid gray">
                 <div class="row md">
            
                 <?php
@@ -179,7 +179,7 @@
                   @foreach($resources as $resource)
                   
                     <div class="col-12 col-sm-6 col-md-6 col-lg-3 " id="linkColor">
-                      <div class="zoom" data-toggle="tooltip" data-placement="top" title="{{$resource->description}}"
+                      <div class="bg-white zoom" data-toggle="tooltip" data-placement="top" title="{{$resource->description}}"
                             style=" position: relative;">
                         <a href="{{url('user',[$resource->id, $type->id])}}" >                      
                         @if($resource->media->name == "Document"||$resource->media->name == "document" )
@@ -205,7 +205,7 @@
 
                         @endif
                          </a>
-                        <div class="p-1 shadow rounded text-black">
+                        <div class="p-1 shadow rounded text-black ">
                           @if($resource->unit_id=="" || $resource->subunit_id=="" || $resource->grade_id=="")
                           <h6 class="mb-0">{{$resource->course->name}} </h6>
                           <h6 class=" mb-2 text-truncate">{{$resource->description}} </h6>
@@ -325,7 +325,7 @@
  
 
     <!-- <a class="border rounded d-inline scroll-to-top" href="#page-top"><div id="page-top-botton"><i class="fas fa-angle-up"></i></div></a> -->
-    <footer class="bg-white sticky-footer">
+    <footer class="sticky-footer">
     <div class="container my-auto">
     <div class="text-center my-auto copyright fixed-bottom text-black"><span>Copyright © MoE 2021</span></div>
     </div>
