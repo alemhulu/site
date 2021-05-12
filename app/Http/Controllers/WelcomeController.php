@@ -411,11 +411,11 @@ class WelcomeController extends Controller
         //return $resources[0]->type;
 
         if(count($resources)==0)
-                $output.="<h4 class='text-center bg-light'> No Resource is available for this selection! </h4>";
+                $output.="<h4 class='text-center bg-light '> No Resource is available for this selection! </h4>";
 
         else{
-                $output.='<h4 class="mt-3 ml-2 bg-light text-center">Filtered Result</h4>';
-                        $output.='<div class="container-fluid"><div class="row">';
+                $output.='<h4 class="mt-3 ml-2 bg-light text-center ">Filtered Result</h4>';
+                        $output.='<div class="container-fluid "><div class="row">';
                 foreach($types as $type)
                 {
                    if($type_check[$type->id] > 0){
@@ -423,7 +423,7 @@ class WelcomeController extends Controller
                 //$output.='<p>'.$type->name.'</p>';
                 $output.='<h4><strong class="mt-3 ml-2 Button Button-outline zoom bg-white gradeType" onclick="gradeTypeController()" value="'.$type->id.'" >'.$type->name.'</strong></h4>';
                 $output.='<div class="container-fluid">';
-                $output.='<div class="row">';
+                $output.='<div class="row ">';
                 foreach($resources as $resourceFiltered)
                 {
 
@@ -434,7 +434,7 @@ class WelcomeController extends Controller
                         //return $type;
                         $i++;
                         $output.='<div class="col-md-3 mb-3 blackColor " id="linkColor">';
-                                $output.='<div class="card ">';
+                                $output.='<div class="card zoom shadow-lg">';
                                 $resource=Resource::find($resourceFiltered->id);
                                 if($resource->media->name == "Document"||$resource->media->name == "document" ){
                                         $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.'"  target="--blank">
@@ -640,7 +640,7 @@ class WelcomeController extends Controller
                                         if($type2->id==$type->id){
                                                 //return $type;
                                                 $output.='<div class="col-md-3 mb-3 blackColor " id="linkColor">';
-                                                $output.='<div class="card ">';
+                                                $output.='<div class="card zoom shadow-lg">';
                                                 $resource=Resource::find($resourceFiltered->id);
                                                 if($resource->media->name == "Document"||$resource->media->name == "document" ){
                                                         $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.' " >
@@ -778,7 +778,7 @@ class WelcomeController extends Controller
                                         if($type2->id==$type->id){
                                                 //return $type;
                                                 $output.='<div class="col-md-3 mb-3 blackColor " id="linkColor">';
-                                                $output.='<div class="card ">';
+                                                $output.='<div class="card zoom shadow-lg">';
                                                 $resource=Resource::find($resourceFiltered->id);
                                                 if($resource->media->name == "Document"||$resource->media->name == "document" ){
                                                         $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.' " >
@@ -923,7 +923,7 @@ class WelcomeController extends Controller
                                                 //return $type;
                                                  $i++;
                                                 $output.='<div class="col-md-3 mb-3 blackColor " id="linkColor">';
-                                                $output.='<div class="card ">';
+                                                $output.='<div class="card zoom shadow-lg">';
                                                 $resource=Resource::find($resourceFiltered->id);
                                                 if($resource->media->name == "Document"||$resource->media->name == "document" ){
                                                         $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.'  " >
@@ -997,7 +997,7 @@ class WelcomeController extends Controller
                                                 //return $type;
                                        
                                                 $output.='<div class="col-md-3 mb-3 blackColor " id="linkColor">';
-                                                $output.='<div class="card ">';
+                                                $output.='<div class="card zoom shadow-lg">';
                                                 $resource=Resource::find($resourceFiltered->id);
                                                 if($resource->media->name == "Document"||$resource->media->name == "document" ){
                                                         $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.' " >
