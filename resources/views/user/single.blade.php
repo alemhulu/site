@@ -148,7 +148,7 @@
                                 @foreach($paginatedResources as $resource1)
                                 <div class="col-lg-12 col-md-6 col-sm-6 ">
                                   <a href="{{url('user',[$resource1->id, $type->id])}}">
-                                  <div class="col-md   shadow-sm mb-3 ">
+                                  <div class="col-md   shadow-lg mb-3  zoom">
                                     <div class="row ">
                                        <div class="col-sm-12 col-md-12 col-lg-7 p-0 text-truncate ">
                                            @if($resource1->media->name == "Document" )
@@ -158,7 +158,7 @@
                                             @endif
                                        </div> 
                                         
-                                       <div class="col-sm-12 col-md-12 col-lg-5  blackColor flex-column p-2 bg-white" id="sidebarText"> 
+                                       <div class="col-sm-12 col-md-12 col-lg-5  blackColor flex-column p-2 " id="sidebarText"> 
                                        @if($resource1->unit_id=="" || $resource1->subunit_id=="" || $resource1->grade_id=="")
                                         <!-- <h5 class="card-title">{{$resource1->course->name}} </h5> -->
                                         <h6 class="card-text text-truncate">{{$resource1->description}} </h6>

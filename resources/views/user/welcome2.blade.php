@@ -15,7 +15,7 @@
   </form>
   
   <div class="row gray">
-    <div class=" collapse bg-white"  id="navbarSupportedContent" style="height:800px;">
+    <div class=" collapse bg-white"  id="navbarSupportedContent" style="height:auto">
       
         
         <div >
@@ -179,7 +179,7 @@
                   @foreach($resources as $resource)
                   
                     <div class="col-12 col-sm-6 col-md-6 col-lg-3 " id="linkColor">
-                      <div class="bg-white zoom" data-toggle="tooltip" data-placement="top" title="{{$resource->description}}"
+                      <div class="shadow-sm bg-white zoom" data-toggle="tooltip" data-placement="top" title="{{$resource->description}}"
                             style=" position: relative;">
                         <a href="{{url('user',[$resource->id, $type->id])}}" >                      
                         @if($resource->media->name == "Document"||$resource->media->name == "document" )
