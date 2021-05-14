@@ -178,7 +178,7 @@
                  ?>
                   @foreach($resources as $resource)
                   
-                    <div class="col-12 col-sm-6 col-md-6 col-lg-3 " id="linkColor">
+                    <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-3" id="linkColor">
                       <div class="shadow-sm bg-white zoom" data-toggle="tooltip" data-placement="top" title="{{$resource->description}}"
                             style=" position: relative;">
                         <a href="{{url('user',[$resource->id, $type->id])}}" >                      
