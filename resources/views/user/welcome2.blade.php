@@ -212,7 +212,7 @@
                           <div class="d-flex justify-content-between">
                             <span class="date ">{{$resource->view}} Views  </span>
                              <a href="{{$resource->fileLocation}}" download>                             
-                            <button class="btn btn-sm download zoom" value="{{$resource->id}}" style="font-size:13px;"  >                          
+                            <button class="btn btn-sm download zoom border shadow" value="{{$resource->id}}" style="font-size:13px;"  >                          
                               <span class="icon icon-download "></span><span class=" id="downloadCount"> {{$resource->download}}</span>                         
                             </button>
                             </a>
@@ -225,7 +225,7 @@
                           <div class="d-flex justify-content-between">
                               <span class="date ">{{$resource->view}} Views </span>
                               <a href="{{$resource->fileLocation}}" download>
-                             <button class="btn btn-sm download zoom" value="{{$resource->id}}" style="font-size:13px;"   >                          
+                             <button class="btn btn-sm download zoom border shadow" value="{{$resource->id}}" style="font-size:13px;"   >                          
                               <span class="icon icon-download "></span><span class=" id="downloadCount"> {{$resource->download}}</span> 
                                                       
                             </button>

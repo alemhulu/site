@@ -464,8 +464,8 @@ class WelcomeController extends Controller
                                                   <div class="d-flex justify-content-between">
                                                         <span class="date">'.  $resource->view  .'  Views </span>
                                                         <a href="'.$resource->fileLocation.'" download>
-                                                                 <button class="btn btn-sm download zoom" value="'.$resource->id.'" style="font-size:13px;"  >
-                                                                        <span class="icon icon-download "></span><span id="downloadCount">'. $resource->download.'</span>
+                                                                 <button class="btn btn-sm download zoom border shadow" value="'.$resource->id.'" style="font-size:13px;"  >
+                                                                        <span class="icon icon-download "></span><span id="downloadCount">'.' '. $resource->download.'</span>
                                                                 </button>
                                                         </a>
                                                         <span class="date float-right">'.$resource->created_at->diffForHumans() .'</span>
@@ -671,8 +671,8 @@ class WelcomeController extends Controller
                                                 <div class="d-flex justify-content-between">
                                                         <span class="date">'.  $resource->view  .'  Views </span>
                                                         <a href="'.$resource->fileLocation.'" download>
-                                                                 <button class="btn btn-sm download zoom" value="'.$resource->id.'" style="font-size:13px;"  >
-                                                                        <span class="icon icon-download "></span><span id="downloadCount">'. $resource->download.'</span>
+                                                                 <button class="btn btn-sm download zoom border shadow" value="'.$resource->id.'" style="font-size:13px;"  >
+                                                                        <span class="icon icon-download "></span><span id="downloadCount">'.' '. $resource->download.'</span>
                                                                 </button>
                                                         </a>
                                                         <span class="date float-right">'.$resource->created_at->diffForHumans() .'</span>
@@ -807,8 +807,8 @@ class WelcomeController extends Controller
                                                   <div class="d-flex justify-content-between">
                                                         <span class="date">'.  $resource->view  .'  Views </span>
                                                         <a href="'.$resource->fileLocation.'" download>
-                                                                 <button class="btn btn-sm download zoom" value="'.$resource->id.'" style="font-size:13px;" onclick="fileDownloadId()" >
-                                                                        <span class="icon icon-download "></span><span id="downloadCount">'. $resource->download.'</span>
+                                                                 <button class="btn btn-sm download zoom border shadow" value="'.$resource->id.'" style="font-size:13px;" onclick="fileDownloadId()" >
+                                                                        <span class="icon icon-download "></span><span id="downloadCount">'.' '. $resource->download.'</span>
                                                                 </button>
                                                         </a>
                                                         <span class="date float-right">'.$resource->created_at->diffForHumans() .'</span>
@@ -952,8 +952,8 @@ class WelcomeController extends Controller
                                                   <div class="d-flex justify-content-between">
                                                         <span class="date">'.  $resource->view  .'  Views </span>
                                                         <a href="'.$resource->fileLocation.'" download>
-                                                                 <button class="btn btn-sm download zoom" value="'.$resource->id.'" style="font-size:13px;" onclick="fileDownloadId()" >
-                                                                        <span class="icon icon-download "></span><span id="downloadCount">'. $resource->download.'</span>
+                                                                 <button class="btn btn-sm download zoom border shadow" value="'.$resource->id.'" style="font-size:13px;" onclick="fileDownloadId()" >
+                                                                        <span class="icon icon-download "></span><span id="downloadCount">'.' '. $resource->download.'</span>
                                                                 </button>
                                                         </a>
                                                         <span class="date float-right">'.$resource->created_at->diffForHumans() .'</span>
@@ -1026,8 +1026,8 @@ class WelcomeController extends Controller
                                                   <div class="d-flex justify-content-between">
                                                         <span class="date">'.  $resource->view  .'  Views </span>
                                                         <a href="'.$resource->fileLocation.'" download>
-                                                                 <button class="btn btn-sm download zoom" value="'.$resource->id.'" style="font-size:13px;" onclick="fileDownloadId()" >
-                                                                        <span class="icon icon-download "></span><span id="downloadCount">'. $resource->download.'</span>
+                                                                 <button class="btn btn-sm download zoom border shadow" value="'.$resource->id.'" style="font-size:13px;" onclick="fileDownloadId()" >
+                                                                        <span class="icon icon-download "></span><span id="downloadCount">'.' '. $resource->download.'</span>
                                                                 </button>
                                                         </a>
                                                         <span class="date float-right">'.$resource->created_at->diffForHumans() .'</span>
@@ -1095,8 +1095,8 @@ class WelcomeController extends Controller
                                                   <div class="d-flex justify-content-between">
                                                         <span class="date">'.  $resource->view  .'  Views </span>
                                                         <a href="'.$resource->fileLocation.'" download>
-                                                                 <button class="btn btn-sm download zoom" value="'.$resource->id.'" style="font-size:13px;" onclick="fileDownloadId()" >
-                                                                        <span class="icon icon-download "></span><span id="downloadCount">'. $resource->download.'</span>
+                                                                 <button class="btn btn-sm download zoom border shadow" value="'.$resource->id.'" style="font-size:13px;" onclick="fileDownloadId()" >
+                                                                        <span class="icon icon-download "></span><span id="downloadCount">'.' '. $resource->download.'</span>
                                                                 </button>
                                                         </a>
                                                         <span class="date float-right">'.$resource->created_at->diffForHumans() .'</span>
