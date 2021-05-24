@@ -150,7 +150,7 @@
                                   <a href="{{url('user',[$resource1->id, $type->id])}}">
                                   <div class="col-md   shadow-lg mb-3  zoom">
                                     <div class="row ">
-                                       <div class="col-sm-12 col-md-12 col-lg-7 p-0 text-truncate ">
+                                       <div class="col-sm-12 col-md-12 col-lg-7 p-0  ">
                                            @if($resource1->media->name == "Document" )
                                             <img id="singlePdfScroll" src="{{asset($resource1->thumbnailLocation)}}"  >
                                             @elseif($resource1->media->name == "Video"||$resource1->media->name == "video")
@@ -161,7 +161,14 @@
                                        <div class="col-sm-12 col-md-12 col-lg-5  blackColor flex-column p-2 " id="sidebarText"> 
                                        @if($resource1->unit_id=="" || $resource1->subunit_id=="" || $resource1->grade_id=="")
                                         <!-- <h5 class="card-title">{{$resource1->course->name}} </h5> -->
-                                        <h6 class="card-text text-truncate">{{$resource1->description}} </h6>
+                                        <h6 class="card-text ">{{$resource1->description}} </h6>
+                                      
+                                                                        
+                                       
+                                          <!-- <button class="btn btn-sm download zoom border shadow" style="position:relative; top:20%; left:40%;" value="{{$resource->id}}" style="font-size:13px;"  >                          
+                                            <span class="icon icon-download "></span><span class=" id="downloadCount"> {{$resource->download}}</span>                         
+                                          </button> -->
+                                       
                                         <div id="sidebarViewAndTime"><span class="date" >{{$resource1->view}} Views </span><span class="date float-right">{{$resource->created_at->diffForHumans() }}</span></div>
 
                                        
