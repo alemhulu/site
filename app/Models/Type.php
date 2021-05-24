@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Type extends Model
 {
     use HasFactory;
-    public function resourcesPaginated($id){
-    	return $this->hasMany('App\Models\Resource')->inRandomOrder()->paginate(4);
+    public function resourcesPaginated($id,$course_id){
+    	return $this->hasMany('App\Models\Resource')->inRandomOrder()->where('course_id',$course_id)->paginate(4);
     }
     public function resources(){
         return $this->hasmany('App\Models\Resource')->orderBy('created_at','asc');

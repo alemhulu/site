@@ -243,8 +243,9 @@ class WelcomeController extends Controller
                 }
 
                 $type = Type::find($type);
-        
-                $paginatedResources = $type->resourcesPaginated($id);
+                $course_id=$resource->course_id;
+               
+                $paginatedResources = $type->resourcesPaginated($id,$course_id);
                 
                 $tag=Resource::groupBy('tag')->pluck('tag');
 
