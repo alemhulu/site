@@ -379,7 +379,7 @@
 
         
 
-<!-- AddSubUnitModal -->
+<!-- AddLanguageModal -->
 
 <div class="modal fade" id="addlanguageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 <div class="modal-dialog" role="document">
@@ -391,7 +391,7 @@
           </button>
       </div>
       <div class="modal-body">
-          <form id="addSubUnitForm" >
+          <form id="addLanguageForm" >
               @csrf 
               <div class="form-group">
               <div class="row">
@@ -415,7 +415,7 @@
 </div>  
 
 
-<!-- AddLanguageModal -->
+<!-- AddSubunitModal -->
 
 <div class="modal fade" id="addSubUnitModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 <div class="modal-dialog" role="document">

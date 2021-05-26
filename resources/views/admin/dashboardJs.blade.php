@@ -114,7 +114,7 @@
               data: $('#addSubUnitForm').serialize(),
 
               success: function(response){
-                    alert("Unit Created");
+                    alert("Sub-Unit Created");
                     subunitsHTML(response);
                   },
 
