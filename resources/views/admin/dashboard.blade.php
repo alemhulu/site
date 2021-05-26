@@ -405,7 +405,7 @@
               </div> 
               <div class="modal-footer">
                     <button type="button" class="btn lblue" data-dismiss="modal">Close</button>
-                    <button type="button" id="subunit" class="btn btn-primary">Create</button>
+                    <button type="button" id="language" class="btn btn-primary">Create</button>
              </div>
            </div>
         </form>
