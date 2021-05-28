@@ -27,6 +27,12 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191); //NEW: Increase StringLength
         Paginator::useBootstrap();
+
+        //Https setting
+        if($this->app->environment('production')){
+            \URL::forceScheme('https');
+        }
+
     }
 
     
