@@ -5,7 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Pagination\Paginator;
-use \ILLuminate\Support\Facades\URL::forceScheme('https');
+use ILLuminate\Support\Facades\URL::forceScheme('https');
 
 class AppServiceProvider extends ServiceProvider
 {
