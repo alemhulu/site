@@ -123,5 +123,5 @@ Route::apiResources([
 ]);
 
 
-URL::forceScheme('https');
+
 

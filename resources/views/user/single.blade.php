@@ -207,7 +207,7 @@
 <script src="/assets/js/jQuery3.5.1.js"> </script>
 
 @if($resource->media->name=="Document")
-    <script  src="http://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.943/pdf.min.js"></script>
+    <script  src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.943/pdf.min.js"></script>
     <script src="/assets/js/pdfView.js"></script>
 
 @else
