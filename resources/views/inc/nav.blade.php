@@ -21,10 +21,10 @@
               </form>
               <ul class="nav navbar-nav text-capitalize shadow-nav   d-flex flex-row float-right">
                   <div class="links my-auto" >
-                    <a href="//www.moe.gov.et" target="_blank" class="text-sm text-secondary underline p-1"> 
+                    <a href="http://www.moe.gov.et" target="_blank" class="text-sm text-secondary underline p-1"> 
                                       <button type="button" class="btn btn-sm btn-outline-primary zoom">MoE</button>
                     </a>
-                    <a href="//eict.edu.et" target="_blank" class="text-sm text-secondary underline p-1"> 
+                    <a href="http://eict.edu.et" target="_blank" class="text-sm text-secondary underline p-1"> 
                                       <button type="button" class="btn btn-sm btn-outline-primary zoom">EICT</button>
                     </a>
                   
