@@ -8,14 +8,15 @@ var x = window.matchMedia("(max-width: 500px)")
 if (x.matches) { // If media query matches
     myState.zoom = .6;
 } else {
-    myState.zoom = 1;
+    myState.zoom = 1.5;
 }
 
         pdfjsLib.getDocument(url).then((pdf) => {
       
             myState.pdf = pdf;
+            
             render();
- 
+  
         });
  
         function render() {
@@ -39,7 +40,7 @@ if (x.matches) { // If media query matches
                  document.querySelector('#page-count').textContent = myState.pdf.numPages;
             });
         }
-       
+
         document.getElementById('prev-page').addEventListener('click', (e) => {
             if(myState.pdf == null || myState.currentPage == 1) 
               return;

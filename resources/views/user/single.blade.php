@@ -85,7 +85,7 @@
                           </div>
 
                            <div id="canvas_container">
-                            <canvas id="pdf-render"></canvas>
+                            <!-- <canvas id="pdf-render"></canvas> -->
                           </div>
                     </div>
                 @elseif($resource->media->name == "Video"||$resource->media->name == "video")
@@ -208,7 +208,8 @@
 
 @if($resource->media->name=="Document")
     <script  src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.943/pdf.min.js"></script>
-    <script src="/assets/js/pdfView.js"></script>
+    <!-- <script src="/assets/js/pdfView.js"></script> -->
+    <script src="/assets/js/pdfScroll.js"></script>
 
 @else
     <script src="/assets/js/singleVideo.js"></script>
