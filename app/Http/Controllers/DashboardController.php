@@ -22,7 +22,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $grades = Grade::orderBy('name','asc')->get();
+        $grades = Grade::orderBy('name','desc')->get();
         $courses= Course::where('grade_id','=',null)->orderBy('name', 'asc')->get();
         // $courses= Course::orderBy('name','asc')->get();
         $units= Unit::orderBy('name','asc')->get();
