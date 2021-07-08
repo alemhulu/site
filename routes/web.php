@@ -92,6 +92,7 @@ Route::delete('/Quize/{post}', [QuizeController::class, 'destroy']);
 //-----------------------------------------------------------------------------------------------------------------------------
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/alex', [ResourceController::class, 'great']);
 
 Route::get('/', [WelcomeController::class, 'index']);
 Route::get('/user/{id}/{type}',[WelcomeController::class, 'show'])->name('single');
