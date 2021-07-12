@@ -59,7 +59,7 @@ class ResourceController extends Controller
                              $thumbnailLocation= ' ';
                              $type_id = ' ';
                              $unit_id = ' ';
-                             
+
                              $description= $name;
                              $fileLocation= $child_path;
                              
@@ -82,7 +82,7 @@ class ResourceController extends Controller
                             //  if(request('media_id')!=0)
                              $resource ->media_id = $media_id;
                      
-                             $resource->user_id      = $user_id;
+                             $resource->user_id= $user_id;
                              $resource ->description = $description;
                              $resource ->tag = $tag;
                              return $resource;
@@ -133,7 +133,7 @@ class ResourceController extends Controller
      */
     public function store(Request $request)
     {
-        return $request->all();
+        
 
         $this->validate($request,[
 	    'course_id'=> 'required',
