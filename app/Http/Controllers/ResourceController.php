@@ -30,18 +30,23 @@ class ResourceController extends Controller
     return array_merge($tree, $branch);
     }
 
+    public function great(Request $request){
 
-    public function great (){
          //real path accessing the destination folder
-                        $path = public_path().'\storage\biology\video\Revision G-11 & G-12';
+                        $path = storage_path().'/app/public/biology/video/plasma';
                         //static value for storage in database;
-                        $pathname = '/storage/biology/video/plasma/Revision G-11 & G-12/';
+                        $pathname = '/storage/biology/video/plasma';
 
                         $tree = $this->getTree($path);
-
                         
+                        $x=0;
+
+                        foreach ($tree['children'] as $alex){
+                            $x++;
+                        }
+                        return $x;
                         $list_of_files = [];
-                       
+                      
                         foreach($tree["children"] as $child)
                         {
                                 $child_path = $pathname.$child;
