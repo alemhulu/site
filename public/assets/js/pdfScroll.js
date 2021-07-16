@@ -8,7 +8,7 @@ var myState = {
     zoom: 1
 }
 if (x.matches) { // If media query matches
-    myState.zoom = .8;
+    myState.zoom = 1;
 } else {
     myState.zoom = 1.7;
 }
