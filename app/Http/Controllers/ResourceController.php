@@ -13,6 +13,7 @@ class ResourceController extends Controller
 
     function getTree($path)
     {
+    $test;
     
     $tree = [];
     
