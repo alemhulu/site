@@ -13,20 +13,18 @@ class ResourceController extends Controller
 
     function getTree($path)
     {
+        $tree = [];
     
-    
-    $tree = [];
-    
-    $branch = [
-    'label' => basename($path)
-    ];
-    
-    foreach (File::files($path) as $file) {
-    $branch['children'][] = basename($file);
-    }
-    
-    foreach (File::directories($path) as $directory) {
-    $branch['children'][] = $this->getTree($directory);
+        $branch = [
+        'label' => basename($path)
+        ];
+        
+        foreach (File::files($path) as $file) {
+             $branch['children'][] = basename($file);
+        }
+        
+        foreach (File::directories($path) as $directory) {
+            $branch['children'][] = $this->getTree($directory);
     }
     
     return array_merge($tree, $branch);
