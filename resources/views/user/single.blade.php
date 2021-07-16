@@ -161,7 +161,7 @@
                                        <div class="col-sm-12 col-md-12 col-lg-5  blackColor flex-column p-2 " id="sidebarText"> 
                                        @if($resource1->unit_id=="" || $resource1->subunit_id=="" || $resource1->grade_id=="")
                                         <!-- <h5 class="card-title">{{$resource1->course->name}} </h5> -->
-                                        <h6 class="card-text " style="font-size:14px;">{{$resource1->description}} </h6>
+                                        <h6 class="card-text " style="font-size:13px; font-weight:bold;">{{$resource1->description}} </h6>
                                       
                                                                         
                                        
@@ -169,7 +169,7 @@
                                             <span class="icon icon-download "></span><span class=" id="downloadCount"> {{$resource->download}}</span>                         
                                           </button> -->
                                        
-                                        <div id="sidebarViewAndTime" style="font-size:12px;"><span class="date" >{{$resource1->view}} Views </span><span class="date float-right">{{$resource->created_at->diffForHumans() }}</span></div>
+                                        <div id="sidebarViewAndTime" style="font-size:12px; font-weight:bold;"><span class="date" >{{$resource1->view}} Views </span><span class="date float-right">{{$resource->created_at->diffForHumans() }}</span></div>
 
                                        
                                         @else
