@@ -169,7 +169,7 @@
                                             <span class="icon icon-download "></span><span class=" id="downloadCount"> {{$resource->download}}</span>                         
                                           </button> -->
                                        
-                                        <div id="sidebarViewAndTime"><span class="date" >{{$resource1->view}} Views </span><span class="date float-right">{{$resource->created_at->diffForHumans() }}</span></div>
+                                        <div id="sidebarViewAndTime" style="font-size:12px;"><span class="date" >{{$resource1->view}} Views </span><span class="date float-right">{{$resource->created_at->diffForHumans() }}</span></div>
 
                                        
                                         @else
