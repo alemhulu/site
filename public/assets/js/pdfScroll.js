@@ -9,7 +9,7 @@ var myState = {
 }
 
 if (x.matches) { // If media query matches
-    myState.zoom = 1;
+    myState.zoom = 1.2;
 } else {
     myState.zoom = 1.7;
 }
@@ -29,17 +29,6 @@ pdfjsLib.getDocument(url).then((pdf) => {
     pdf.getPage(1).then(handlePages);
    
     
-});
-document.getElementById('zoom_in').addEventListener('click', (e) => {
-    if(myState.pdf == null) return;
-    myState.zoom += 0.5;
- 
-});
-
-document.getElementById('zoom_out').addEventListener('click', (e) => {
-    if(myState.pdf == null) return;
-    myState.zoom -= 0.5;
-   
 });
 
 function handlePages(page) {
@@ -98,7 +87,7 @@ function fullMobile()
             if (x.matches) { // If media query matches
                 myState.zoom=1.2;
             } else {
-                myState.zoom=1.5;
+                myState.zoom=1.3;
             }
           }
           
