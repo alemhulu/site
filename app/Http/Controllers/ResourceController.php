@@ -10,7 +10,7 @@ use File;
 
 class ResourceController extends Controller
 {
-    alem
+    //alem
     function getTree($path)
     {
         $tree = [];
