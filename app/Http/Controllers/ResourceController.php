@@ -7,6 +7,7 @@ use App\Models\Resource;
 use App\Models\Grade;
 use App\Models\Course;
 use App\Models\Unit;
+use App\Models\Type;
 use Auth;
 use File;
 
@@ -111,7 +112,6 @@ class ResourceController extends Controller
                     'link'=> 'required',
                      'media_id'=> 'required',
                     'type_id'=> 'required',
-                    'tag'=> 'required',
                 ]);
                 //real path accessing the destination folder
                 $path = storage_path().'/app/public/'.$request->folderLocation;
@@ -122,6 +122,7 @@ class ResourceController extends Controller
                         
                     if(isset($grade_label['label'])){
                         $grade_level = substr($grade_label['label'],5);
+                        $type_name = Type::findorfail($request->type_id)->name;
                         $grade=Grade::where('name',$grade_level)->first();
                         $grade_id=(string)$grade->id;
                         $course=$grade->courses->where('name',$course_name)->first();
@@ -135,12 +136,14 @@ class ResourceController extends Controller
                                     if (isset($upload_files)){
                                         $description = substr($upload_files,0,-4);
                                         $fileLocation = '/storage/'.$request->folderLocation.'/'.$grade_label['label'].'/'.$unit_label['label'].'/'.$upload_files;
+                                        $tag = $grade_label['label'].' '.$course_name.' '.$type_name;
                                         $request->merge([
                                             'grade_id' => $grade_id,
                                             'course_id' => $course_id,
                                             'unit_id' => $unit_id,
                                             'description' => $description,
                                             'fileLocation' => $fileLocation,
+                                            'tag' => $tag,
                                         ]);
                                         $this->upload($request);
                                     }
