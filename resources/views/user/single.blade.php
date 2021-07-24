@@ -159,26 +159,14 @@
                                        </div> 
                                         
                                        <div class="col-sm-12 col-md-12 col-lg-5  blackColor flex-column p-2 " id="sidebarText"> 
-                                       @if($resource1->unit_id=="" || $resource1->subunit_id=="" || $resource1->grade_id=="")
-                                        <!-- <h5 class="card-title">{{$resource1->course->name}} </h5> -->
+                              
                                         <h6 class="card-text " style="font-size:12px; font-weight:bold;">{{$resource1->description}} </h6>
                                       
-                                                                        
-                                       
-                                          <!-- <button class="btn btn-sm download zoom border shadow" style="position:relative; top:20%; left:40%;" value="{{$resource->id}}" style="font-size:13px;"  >                          
+                                         <!-- <button class="btn btn-sm download zoom border shadow" style="position:relative; top:20%; left:40%;" value="{{$resource->id}}" style="font-size:13px;"  >                          
                                             <span class="icon icon-download "></span><span class=" id="downloadCount"> {{$resource->download}}</span>                         
-                                          </button> -->
-                                       
+                                          </button> -->                               
                                         <div id="sidebarViewAndTime" style="font-size:12px; font-weight:bold;"><span class="date" >{{$resource1->view}} Views </span><span class="date float-right">{{$resource->created_at->diffForHumans() }}</span></div>
 
-                                       
-                                        @else
-                                        <!-- <h5 class="card-title">G-{{$resource1->grade->name}} {{$resource1->course->name}}</h5> -->
-                                        <h6 class="card-text mt-auto">Unit {{$resource1->unit->name}}- {{$resource1->unit->title}}</h6> 
-                                        <h6 class="card-text">Sub-Unit {{$resource1->unit->name}}- {{$resource1->subunit->title}}</h6>
-                                        <div id="sidebarViewAndTime"><span class="date mt-5">{{$resource1->view}} Views </span><span class="date float-right">{{$resource->created_at->diffForHumans() }}</span></div>
-
-                                        @endif
                                       </div>
                                       </div>
                                   </div>  
