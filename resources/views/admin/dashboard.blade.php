@@ -64,11 +64,11 @@
                                           <strong><label class="float-left" for="name">Subject</label></strong>
                                     </div>
                                      <div class="col-8">
-                                        <select class="form-control formselect required" id="courseChange" name="course_id"   >
+                                        <select class="form-control formselect required"  name="course_id"   >
                                              @if(count($courses)>0)
                                             <option value="0" disabled selected>--Choose--</option>
                                              @foreach($courses as $course)
-                                             <option value="{{$course->id}}"> {{$course->name}} </option>
+                                             <option value="{{$course->name}}"> {{$course->name}} </option>
                                               @endforeach     
                                              @else
                                             <option value="0"> Add Subject </option>
@@ -236,16 +236,35 @@
                         </div>
 
                   </div>
-                            
+                  <ul class="nav mb-1">
+                    <li ><button data-toggle="tab" href="#uploadFile" id="upload_file" class="mx-2 active btn btn-outline-primary">File Upload</button></li>
+                    <li><button data-toggle="tab" href="#uploadFolder" id="upload_folder" class="mx-2  btn btn-outline-primary">Folder Upload</button></li>
+                  </ul>
+
+                  <div class="tab-content">
+                    <div id="uploadFile" class="tab-pane active">
+                    <h4 >  <strong ><label>Upload File</label></strong></h4>
+                        <div class="input-group">
+                            <div class="input-group-append">
+                              <button class="btn btn-primary" type="button" id="button-file">Upload File</button>
+                            </div>
+                            <input type="text" id="fileLocation" class="form-control" name="fileLocation" placeholder="File Location">
+                        </div>
+                  </div>
+                  <div id="uploadFolder" class="tab-pane fade">
+                  <h4 >  <strong ><label>Upload Folder</label></strong></h4>
+                        <div class="input-group">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button" id="button-folder">Upload Folder</button>
+                            </div>
+                            <input type="text" id="folderLocation" class="form-control" name="folderLocation" placeholder="Folder Location">
+                    </div>
+              </div>
+  
+</div>
                              
 
-                              <h4 class="mt-5">  <strong ><label>Upload File</label></strong></h4>
-                                <div class="input-group">
-                                    <div class="input-group-append">
-                                       <button class="btn btn-primary" type="button" id="button-file">Upload</button>
-                                    </div>
-                                   <input type="text" id="fileLocation" class="form-control" name="fileLocation" placeholder="File Location">
-                            </div>
+                             
                                <h4 class="mt-4">  <strong ><label>Select Thumbnail</label></strong></h4>
                             <div class="input-group">
                                     <button class="btn btn-primary" type="button" id="button-thumbnail">Select</button>

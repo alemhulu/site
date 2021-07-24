@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Resource;
+use App\Models\Grade;
+use App\Models\Course;
+use App\Models\Unit;
 use Auth;
 use File;
 
@@ -139,17 +142,65 @@ class ResourceController extends Controller
     public function store(Request $request)
     {
         
+        
+        if($request->fileLocation!="" & $request->folderLocation==""){
+            $this->validate($request,[
+                'course_id'=> 'required',
+                    'fileLocation'=> 'required',
+                    'thumbnailLocation'=> 'required',
+                    'link'=> 'required',
+                     'media_id'=> 'required',
+                    'type_id'=> 'required',
+                    'tag'=> 'required',
+                    'description'=> 'required',
+                ]);
+        }
+        else if($request->fileLocation=="" & $request->folderLocation!=""){
+            $this->validate($request,[
+                'course_id'=> 'required',
+                    'thumbnailLocation'=> 'required',
+                    'link'=> 'required',
+                     'media_id'=> 'required',
+                    'type_id'=> 'required',
+                    'tag'=> 'required',
+                ]);
+                //real path accessing the destination folder
+                $path = storage_path().'/app/public/'.$request->folderLocation;
+                $course_name=$request->course_id;
+                $tree = $this->getTree($path);
+                foreach($tree["children"] as $grade_label)
+                {
+                        
+                    if(isset($grade_label['label'])){
+                        $grade_level = substr($grade_label['label'],5);
+                        $grade=Grade::where('name',$grade_level)->first();
+                        $grade_id=$grade->id;
+                        $course=$grade->courses->where('name',$course_name)->first();
+                        $course_id=$course->id;
+                        foreach($grade_label['children'] as $unit_label){
+                            if(isset($unit_label['label'])){
+                                $unit_level = substr($unit_label['label'],5);
+                                $unit=$course->units->where('name',$unit_level)->first();
+                                $unit_id=$unit->id;
+                                foreach($unit_label['children'] as $upload_files){
+                                    if (isset($upload_files)){
+                                        return $upload_files;
+                                    }
 
-        $this->validate($request,[
-	    'course_id'=> 'required',
-            'fileLocation'=> 'required',
-            'thumbnailLocation'=> 'required',
-            'link'=> 'required',
-             'media_id'=> 'required',
-            'type_id'=> 'required',
-            'tag'=> 'required',
-            'description'=> 'required',
-        ]);
+                                }
+                        }
+                    }
+                    }
+                        
+                }
+        }
+        else{
+            abort(403, 'Please choose file or folder upload!');
+        }
+
+        
+        return $request;
+       
 
         $resource = new Resource;
         //if(request('unit_id')==0&&request('description')=='')

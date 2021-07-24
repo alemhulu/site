@@ -222,6 +222,7 @@
             document.getElementById('link2').value = 1;
             // document.getElementById("thumbnailLocation").value= "";
             document.getElementById("fileLocation").value= "";
+            document.getElementById("folderLocation").value= "";
             alert("Resource Uploaded");
           },
           error: function(error){
@@ -316,3 +317,17 @@
        });
   });
 </script> 
+
+<!-- clear file or folder location for error handling -->
+<script>
+  $(document).ready(function(){
+    document.getElementById('upload_file').addEventListener('click', function() {
+       document.getElementById('folderLocation').value="";
+    });
+  });
+  $(document).ready(function(){
+    document.getElementById('upload_folder').addEventListener('click', function() {
+       document.getElementById('fileLocation').value="";
+    });
+  });
+</script>

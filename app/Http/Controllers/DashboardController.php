@@ -23,8 +23,8 @@ class DashboardController extends Controller
     public function index()
     {
         $grades = Grade::orderBy('name','desc')->get();
-        $courses= Course::where('grade_id','=',null)->orderBy('name', 'asc')->get();
-        // $courses= Course::orderBy('name','asc')->get();
+        // $courses= Course::where('grade_id','=',null)->orderBy('name', 'asc')->get();
+        $courses= Course::select('name')->distinct()->orderBy('name','asc')->get();
         $units= Unit::orderBy('name','asc')->get();
         $subunits= Subunit::orderBy('name','asc')->get();
         $types=Type::orderBy('name','asc')->get();
