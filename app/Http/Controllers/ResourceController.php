@@ -33,6 +33,36 @@ class ResourceController extends Controller
     return array_merge($tree, $branch);
     }
 
+    public function upload($request){
+        $resource = new Resource;
+    //if(request('unit_id')==0&&request('description')=='')
+    //{
+    //return ('Error!!');
+    //}
+    $user_id            = Auth::user()->id;
+    $resource->fileLocation  = request('fileLocation');
+    $resource->thumbnailLocation = request('thumbnailLocation');
+    $resource->link = request('link');
+    if(request('grade_id')!=0)
+    $resource ->grade_id = request('grade_id');
+    if(request('course_id')!=0)
+    $resource ->course_id = request('course_id');
+    if(request('unit_id')!=0)
+    $resource ->unit_id = request('unit_id');
+    if(request('subunit_id')!=0)
+    $resource ->subunit_id = request('subunit_id');
+    if(request('type_id')!=0)
+    $resource ->type_id = request('type_id');
+    if(request('media_id')!=0)
+    $resource ->media_id = request('media_id');
+
+    $resource->user_id      = $user_id;
+    $resource ->description = request('description');
+    $resource ->tag = request('tag');
+    $resource -> save();
+
+    }
+
     public function great(Request $request){
 
          //real path accessing the destination folder
@@ -174,17 +204,26 @@ class ResourceController extends Controller
                     if(isset($grade_label['label'])){
                         $grade_level = substr($grade_label['label'],5);
                         $grade=Grade::where('name',$grade_level)->first();
-                        $grade_id=$grade->id;
+                        $grade_id=(string)$grade->id;
                         $course=$grade->courses->where('name',$course_name)->first();
-                        $course_id=$course->id;
+                        $course_id=(string)$course->id;
                         foreach($grade_label['children'] as $unit_label){
                             if(isset($unit_label['label'])){
                                 $unit_level = substr($unit_label['label'],5);
                                 $unit=$course->units->where('name',$unit_level)->first();
-                                $unit_id=$unit->id;
+                                $unit_id=(string)$unit->id;
                                 foreach($unit_label['children'] as $upload_files){
                                     if (isset($upload_files)){
-                                        return $upload_files;
+                                        $description = substr($upload_files,0,-4);
+                                        $fileLocation = '/storage/'.$request->folderLocation.'/'.$grade_label['label'].'/'.$unit_label['label'].'/'.$upload_files;
+                                        $request->merge([
+                                            'grade_id' => $grade_id,
+                                            'course_id' => $course_id,
+                                            'unit_id' => $unit_id,
+                                            'description' => $description,
+                                            'fileLocation' => $fileLocation,
+                                        ]);
+                                        $this->upload($request);
                                     }
 
                                 }
@@ -199,35 +238,9 @@ class ResourceController extends Controller
         }
 
         
-        return $request;
        
 
-        $resource = new Resource;
-        //if(request('unit_id')==0&&request('description')=='')
-        //{
-        //return ('Error!!');
-        //}
-        $user_id            = Auth::user()->id;
-        $resource->fileLocation  = request('fileLocation');
-        $resource->thumbnailLocation = request('thumbnailLocation');
-        $resource->link = request('link');
-        if(request('grade_id')!=0)
-        $resource ->grade_id = request('grade_id');
-        if(request('course_id')!=0)
-        $resource ->course_id = request('course_id');
-        if(request('unit_id')!=0)
-        $resource ->unit_id = request('unit_id');
-        if(request('subunit_id')!=0)
-        $resource ->subunit_id = request('subunit_id');
-        if(request('type_id')!=0)
-        $resource ->type_id = request('type_id');
-        if(request('media_id')!=0)
-        $resource ->media_id = request('media_id');
-
-        $resource->user_id      = $user_id;
-        $resource ->description = request('description');
-        $resource ->tag = request('tag');
-        $resource -> save();
+        
     }
 
     /**
