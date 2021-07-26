@@ -14,7 +14,7 @@ use File;
 
 class ResourceController extends Controller
 {
-    //alem
+    
     function getTree($path)
     {
         $tree = [];
