@@ -239,6 +239,7 @@
 <script >
   $(document).ready( function () {
       $('#gradeChange').on('change',function() {
+        
           let id = $(this).val();
            $.ajax({
               type:"GET",
@@ -268,6 +269,9 @@
   <script >
   $(document).ready( function () {
       $('#courseChange').on('change',function() {
+        var grade=document.getElementById("gradeChange");
+        if(grade.value==0)
+        return false;
           let id = $(this).val();
           $.ajax({
               type:"GET",

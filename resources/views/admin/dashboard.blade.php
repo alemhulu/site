@@ -64,7 +64,7 @@
                                           <strong><label class="float-left" for="name">Subject</label></strong>
                                     </div>
                                      <div class="col-8">
-                                        <select class="form-control formselect required"  name="course_id"   >
+                                        <select class="form-control formselect required"  name="course_id"  id="courseChange" >
                                              @if(count($courses)>0)
                                             <option value="0" disabled selected>--Choose--</option>
                                              @foreach($courses as $course)
@@ -264,7 +264,7 @@
 </div>
                              
 
-                             <div id="thumbnail_div" >
+                             <div id="thumbnail_div">
                                 <h4 class="mt-4">  <strong ><label>Select Thumbnail</label></strong></h4>
                                 <div class="input-group">
                                         <button class="btn btn-primary" type="button" id="button-thumbnail">Select</button>
