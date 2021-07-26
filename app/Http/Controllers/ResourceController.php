@@ -108,7 +108,6 @@ class ResourceController extends Controller
         else if($request->fileLocation=="" & $request->folderLocation!=""){
             $this->validate($request,[
                 'course_id'=> 'required',
-                    'thumbnailLocation'=> 'required',
                     'link'=> 'required',
                      'media_id'=> 'required',
                     'type_id'=> 'required',
@@ -119,8 +118,7 @@ class ResourceController extends Controller
                 $tree = $this->getTree($path);
                 foreach($tree["children"] as $grade_label)
                 {
-                        
-                    if(isset($grade_label['label'])){
+                        if(isset($grade_label['label'])){
                         $grade_level = substr($grade_label['label'],5);
                         $type_name = Type::findorfail($request->type_id)->name;
                         $grade=Grade::where('name',$grade_level)->first();
@@ -128,6 +126,11 @@ class ResourceController extends Controller
                         $course=$grade->courses->where('name',$course_name)->first();
                         $course_id=(string)$course->id;
                         foreach($grade_label['children'] as $unit_label){
+                            
+                            if(empty($unit_label['label'])){
+                                $thumbnail_name= $unit_label;
+                            } 
+                            
                             if(isset($unit_label['label'])){
                                 $unit_level = substr($unit_label['label'],5);
                                 $unit=$course->units->where('name',$unit_level)->first();
@@ -137,6 +140,7 @@ class ResourceController extends Controller
                                         $description = substr($upload_files,0,-4);
                                         $fileLocation = '/storage/'.$request->folderLocation.'/'.$grade_label['label'].'/'.$unit_label['label'].'/'.$upload_files;
                                         $tag = $grade_label['label'].' '.$course_name.' '.$type_name;
+                                        $thumbnailLocation='/storage/'.$request->folderLocation.'/'.$grade_label['label'].'/'.$thumbnail_name;
                                         $request->merge([
                                             'grade_id' => $grade_id,
                                             'course_id' => $course_id,
@@ -144,6 +148,7 @@ class ResourceController extends Controller
                                             'description' => $description,
                                             'fileLocation' => $fileLocation,
                                             'tag' => $tag,
+                                            'thumbnailLocation' => $thumbnailLocation,
                                         ]);
                                         $this->upload($request);
                                     }
