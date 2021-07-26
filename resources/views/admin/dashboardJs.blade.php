@@ -323,11 +323,13 @@
   $(document).ready(function(){
     document.getElementById('upload_file').addEventListener('click', function() {
        document.getElementById('folderLocation').value="";
+       document.getElementById('thumbnail_div').style.display="block";
     });
   });
   $(document).ready(function(){
     document.getElementById('upload_folder').addEventListener('click', function() {
        document.getElementById('fileLocation').value="";
+       document.getElementById('thumbnail_div').style.display="none";
     });
   });
 </script>

@@ -264,12 +264,15 @@
 </div>
                              
 
-                             
-                               <h4 class="mt-4">  <strong ><label>Select Thumbnail</label></strong></h4>
-                            <div class="input-group">
-                                    <button class="btn btn-primary" type="button" id="button-thumbnail">Select</button>
-                                    <input type="text" id="thumbnailLocation" class="form-control" name="thumbnailLocation" placeholder="Thumbnail Location">
-                            </div>
+                             <div id="thumbnail_div" >
+                                <h4 class="mt-4">  <strong ><label>Select Thumbnail</label></strong></h4>
+                                <div class="input-group">
+                                        <button class="btn btn-primary" type="button" id="button-thumbnail">Select</button>
+                                        <input type="text" id="thumbnailLocation" class="form-control" name="thumbnailLocation" placeholder="Thumbnail Location">
+                                </div>
+                             </div>
+                               
+                            
                            
                             
                              
