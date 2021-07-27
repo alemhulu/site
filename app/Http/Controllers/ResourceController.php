@@ -67,7 +67,22 @@ class ResourceController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
+        $course_id=[];
+    
+        
+        $courses=Course::where('name','mathematics')->get();
+        foreach ($courses as $key => $course) {
+            array_push($course_id,$course->id);
+        }
+      
+        $resources=Resource::where('type_id','4')->whereIn('course_id',$course_id)->get();
+         $count=count($resources);
+         
+        foreach($resources as $resource){
+            $resource->delete();
+        }
+        return $count.'--'.$resources;
         $resources=Resource::orderBy('created_at','desc')->get();
         return view('admin.index',compact('resources'));
     }
@@ -79,7 +94,7 @@ class ResourceController extends Controller
      */
    public function create()
     {
-        //
+        
     }
 
     /**
@@ -129,8 +144,7 @@ class ResourceController extends Controller
                             
                             if(empty($unit_label['label'])){
                                 $thumbnail_name= $unit_label;
-                            } 
-                            
+                            }
                             if(isset($unit_label['label'])){
                                 $unit_level = substr($unit_label['label'],5);
                                 $unit=$course->units->where('name',$unit_level)->first();
@@ -150,7 +164,6 @@ class ResourceController extends Controller
                                             'tag' => $tag,
                                             'thumbnailLocation' => $thumbnailLocation,
                                         ]);
-                                        return $request;
                                         $this->upload($request);
                                     }
 
