@@ -71,7 +71,7 @@ class ResourceController extends Controller
         $course_id=[];
     
         
-        $courses=Course::where('name','Civics')->get();
+        $courses=Course::where('name','Economics')->get();
         foreach ($courses as $key => $course) {
             array_push($course_id,$course->id);
         }
