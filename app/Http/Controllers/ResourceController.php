@@ -150,6 +150,7 @@ class ResourceController extends Controller
                                             'tag' => $tag,
                                             'thumbnailLocation' => $thumbnailLocation,
                                         ]);
+                                        return $request;
                                         $this->upload($request);
                                     }
 
