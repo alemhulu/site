@@ -206,7 +206,7 @@
                         @endif
                          </a>
                         <div class="p-1 shadow rounded text-black ">
-                          @if($resource->unit_id=="" || $resource->subunit_id=="" || $resource->grade_id=="")
+                          @if($resource->unit_id==""  || $resource->grade_id=="")
                           <h6 class="mb-0">{{$resource->course->name}} </h6>
                           <h6 class=" mb-2 text-truncate">{{$resource->description}} </h6>
                           <div class="d-flex justify-content-between">
@@ -220,7 +220,7 @@
                           </div>
                           
                           @else
-                          <h6 class="mb-0">{{$resource->course->name}} </h6>
+                          <h6 class="mb-0">Gr-{{$resource->grade->name}} {{$resource->course->name}} Unit-{{$resource->unit->name}}</h6>
                           <h6 class=" mb-2 text-truncate">{{$resource->description}} </h6>
                           <div class="d-flex justify-content-between">
                               <span class="date ">{{$resource->view}} Views </span>
@@ -260,7 +260,7 @@
       
       <div id="filter"></div>
   
- <!-- AddGrade Modal -->
+ <!-- Add feedback Modal -->
 
 <div class="modal fade" id="addFeedback" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
 <div class="modal-dialog" role="document">

@@ -53,7 +53,7 @@ class WelcomeController extends Controller
                         $resources4=Subunit::groupBy('title')->pluck('title');
                         $resources5=Media::groupBy('name')->pluck('name');
                         $resources6=Type::groupBy('name')->pluck('name');
-                        $resources7=Resource::where('published',1)->groupBy('description')->pluck('description');
+                        $resources7=Resource::groupBy('description')->pluck('description');
                         foreach($resources0 as $tags)
                         {
                         if($tags!=null)
@@ -459,9 +459,14 @@ class WelcomeController extends Controller
                                         }
                                 }
                                 $output.= '<div class="card-body p-1">';
-                               
-                                        $output.= '<h6 class="mb-0">'.$resource->course->name.'</h6>
-                                                  <h6 class=" mb-2 text-truncate">'.$resource->description.'</h6>
+                                        if( empty($resource->grade_id)) {
+                                                $output.= '<h6 class="mb-0">'.$resource->course->name.'</h6>';
+                                        }
+                                        else{
+
+                                                $output.= '<h6 class="mb-0"> Gr-'.$resource->grade->name.' '.$resource->course->name.' unit-'.$resource->unit->name.'</h6>';
+                                        }
+                                        $output.='<h6 class=" mb-2 text-truncate">'.$resource->description.'</h6>
                                                   <div class="d-flex justify-content-between">
                                                         <span class="date">'.  $resource->view  .'  Views </span>
                                                         <a href="'.$resource->fileLocation.'" download>
