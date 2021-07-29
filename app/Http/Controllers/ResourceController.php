@@ -68,6 +68,7 @@ class ResourceController extends Controller
      */
     public function index()
     {   
+        return  redirect('/');
         $course_id=[];
     
         

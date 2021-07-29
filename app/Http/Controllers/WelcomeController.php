@@ -46,7 +46,7 @@ class WelcomeController extends Controller
                         // $courses = Course::where('grade_id',null)->orderBy('name','asc')->get();
                         //$courses=Course::all();
                         $resources=Resource::orderBy('created_at','asc')->where('published',1)->get();
-                        $resources0=Resource::where('published',1)->groupBy('tag')->pluck('tag');
+                        $resources0=Resource::groupBy('tag')->pluck('tag');
                         $resources1=Grade::pluck('name');
                         $resources2=Course::groupBy('name')->pluck('name');
                         $resources3=Unit::groupBy('title')->pluck('title');
@@ -630,7 +630,9 @@ class WelcomeController extends Controller
                         $output.='<h4 class="mt-3 ml-2 bg-light text-center">Search Result</h4>';
                         $output.='<div class="container-fluid"><div class="row">';
                         foreach($types as $type){
+                
                         if($type_check[$type->id] > 0){
+                                $i=0;
                                 //$output.='<p>'.$type->name.'</p>';
                                 $output.='<h4><strong class="mt-3 ml-2 Button Button-outline zoom bg-white" id=ResutlTittle>'.$type->name.'</strong></h4>';
                                 $output.='<div class="container-fluid">';
@@ -638,8 +640,9 @@ class WelcomeController extends Controller
                                 foreach($resources as $resourceFiltered){
                                         //return $resourceFiltered;
                                         $type2 = Type::findorfail($resourceFiltered->type_id);
-                                        if($type2->id==$type->id){
+                                        if($type2->id==$type->id && $i<4){
                                                 //return $type;
+                                                $i++;
                                                 $output.='<div class="col-md-3 mb-3 blackColor " id="linkColor">';
                                                 $output.='<div class="card zoom shadow-lg">';
                                                 $resource=Resource::find($resourceFiltered->id);
