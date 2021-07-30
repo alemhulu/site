@@ -181,14 +181,14 @@ class WelcomeController extends Controller
                 $courses = Course::where('grade_id',null)->orderBy('name','asc')->get();
                 //$courses=Course::all();
                 $resources=Resource::orderBy('created_at','asc')->where('published',1)->get();
-                $resources0=Resource::where('published',1)->groupBy('tag')->pluck('tag');
+                $resources0=Resource::groupBy('tag')->pluck('tag');
                 $resources1=Grade::pluck('name');
                 $resources2=Course::groupBy('name')->pluck('name');
                 $resources3=Unit::groupBy('title')->pluck('title');
                 $resources4=Subunit::groupBy('title')->pluck('title');
                 $resources5=Media::groupBy('name')->pluck('name');
                 $resources6=Type::groupBy('name')->pluck('name');
-                $resources7=Resource::where('published',1)->groupBy('description')->pluck('description');
+                $resources7=Resource::groupBy('description')->pluck('description');
                 foreach($resources0 as $tags)
                 {
                 if($tags!=null)
