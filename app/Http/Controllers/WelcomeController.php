@@ -78,7 +78,23 @@ class WelcomeController extends Controller
                         $resources7=cache()->remember('resources7',60*60*6, function(){
                                 return Resource::groupBy('description')->pluck('description');
                         });
+                        $types = cache()->remember('types',60,function(){
+                                return Type::inRandomOrder()->paginate(3,['*'],'types');
+                        });
+                        // $types = Type::orderBy('created_at','asc')->paginate(3,['*'],'types');
+                        $types2= cache()->remember('type2',60*60*24,function(){
+                                return Type::orderBy('name','desc')->get();
+                        });
+                        $units=cache()->remember('units',60*60*12,function(){
+                                return Unit::orderBy('title','asc')->get();
+                        });
                         
+                        $subunits=cache()->remember('subunits',60*60*12,function(){
+                                return Subunit::orderBy('title','asc')->get();
+                        });
+                        $medias= cache()->remember('medias',60*60*12,function(){
+                                return Media::orderBy('name','asc')->get();
+                        });
                         // $courses = Course::where('grade_id',null)->orderBy('name','asc')->get();
                         //$courses=Course::all();
                         $tag = [];
@@ -130,33 +146,17 @@ class WelcomeController extends Controller
                         $tag = array_values(array_unique($tag));
                         //  $tag = [];
 
-                                $types=Type::orderBy('name','desc')->get();
+                        
                                 
-                                $paginatedResources = [];
-                                foreach($types as $type){
-                                        $paginatedResources[$type->id] = ($type->allresources($type->id));
-                                }
+                        $paginatedResources = [];
+                        foreach($types as $type){
+                                $paginatedResources[$type->id] = ($type->allresources($type->id));
+                        }
                                 
                                 // return $paginatedResources;
 
                                 
-                                $types = cache()->remember('types',60,function(){
-                                        return Type::inRandomOrder()->paginate(3,['*'],'types');
-                                });
-                                // $types = Type::orderBy('created_at','asc')->paginate(3,['*'],'types');
-                                $types2= cache()->remember('type2',60*60*24,function(){
-                                        return Type::orderBy('name','asc')->get();
-                                });
-                                $units=cache()->remember('units',60*60*12,function(){
-                                        return Unit::orderBy('title','asc')->get();
-                                });
-                                
-                                $subunits=cache()->remember('subunits',60*60*12,function(){
-                                        return Subunit::orderBy('title','asc')->get();
-                                });
-                                $medias= cache()->remember('medias',60*60*12,function(){
-                                        return Media::orderBy('name','asc')->get();
-                                });
+                              
                                 
                                 return view('user.welcome2',compact('grades','courses','types', 'resources','medias','units','subunits','tag','paginatedResources','types2'));
                 }
