@@ -39,21 +39,49 @@ class WelcomeController extends Controller
                         // $resource->save();
 
                         // return $resource;
+                    
+                        $grades=cache()->remember('grades', 60*60*24*30, function () {
+                                
+                                return Grade::orderBy('name','desc')->get();
+                            });
+                        $courses=cache()->remember('courses', 60*60*12, function () {
+                                
+                                return Course::select('name')->distinct()->orderBy('name','asc')->get();
+                         });
+
+                        $resources=cache()->remember('resources',60*60*6, function(){
+                                return Resource::orderBy('created_at','asc')->get();
+                        });
+                        $resources0=cache()->remember('resource0',60*60*6, function(){
+                                return Resource::groupBy('tag')->pluck('tag');
+                        });
+                        $resources1=cache()->remember('resources1',60*60*6, function(){
+                                return Grade::pluck('name');
+                        });
+                        $resources2=cache()->remember('resources2',60*60*6, function(){
+                                return Course::groupBy('name')->pluck('name');
+                        });
                         
-                        $tag = [];
-                        $grades=Grade::orderBy('name','desc')->get();
-                        $courses = Course::select('name')->distinct()->orderBy('name','asc')->get();
+                        $resources3=cache()->remember('resources3',60*60*6, function(){
+                                return Unit::groupBy('title')->pluck('title');
+                        });
+                        $resources4=cache()->remember('resources4',60*60*6, function(){
+                                return Subunit::groupBy('title')->pluck('title');
+                        });
+                        
+                        $resources5=cache()->remember('resources5',60*60*6, function(){
+                                return Media::groupBy('name')->pluck('name');
+                        });
+                        $resources6=cache()->remember('resources6',60*60*6, function(){
+                                return Type::groupBy('name')->pluck('name');
+                        });
+                        $resources7=cache()->remember('resources7',60*60*6, function(){
+                                return Resource::groupBy('description')->pluck('description');
+                        });
+                        
                         // $courses = Course::where('grade_id',null)->orderBy('name','asc')->get();
                         //$courses=Course::all();
-                        $resources=Resource::orderBy('created_at','asc')->where('published',1)->get();
-                        $resources0=Resource::groupBy('tag')->pluck('tag');
-                        $resources1=Grade::pluck('name');
-                        $resources2=Course::groupBy('name')->pluck('name');
-                        $resources3=Unit::groupBy('title')->pluck('title');
-                        $resources4=Subunit::groupBy('title')->pluck('title');
-                        $resources5=Media::groupBy('name')->pluck('name');
-                        $resources6=Type::groupBy('name')->pluck('name');
-                        $resources7=Resource::where('published',1)->groupBy('description')->pluck('description');
+                        $tag = [];
                         foreach($resources0 as $tags)
                         {
                         if($tags!=null)
@@ -111,12 +139,25 @@ class WelcomeController extends Controller
                                 
                                 // return $paginatedResources;
 
-                                $types = Type::inRandomOrder()->paginate(3,['*'],'types');
+                                
+                                $types = cache()->remember('types',60,function(){
+                                        return Type::inRandomOrder()->paginate(3,['*'],'types');
+                                });
                                 // $types = Type::orderBy('created_at','asc')->paginate(3,['*'],'types');
-                                $types2 = Type::orderBy('name','asc')->get();
-                                $units=Unit::orderBy('title','asc')->get();
-                                $subunits=Subunit::orderBy('title','asc')->get();
-                                $medias=Media::orderBy('name','asc')->get();
+                                $types2= cache()->remember('type2',60*60*24,function(){
+                                        return Type::orderBy('name','asc')->get();
+                                });
+                                $units=cache()->remember('units',60*60*12,function(){
+                                        return Unit::orderBy('title','asc')->get();
+                                });
+                                
+                                $subunits=cache()->remember('subunits',60*60*12,function(){
+                                        return Subunit::orderBy('title','asc')->get();
+                                });
+                                $medias= cache()->remember('medias',60*60*12,function(){
+                                        return Media::orderBy('name','asc')->get();
+                                });
+                                
                                 return view('user.welcome2',compact('grades','courses','types', 'resources','medias','units','subunits','tag','paginatedResources','types2'));
                 }
 
