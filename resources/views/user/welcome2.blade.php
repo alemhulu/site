@@ -206,36 +206,21 @@
                         @endif
                          </a>
                         <div class="p-1 shadow rounded text-black ">
-                          @if($resource->unit_id=="" || $resource->subunit_id=="" || $resource->grade_id=="")
-                          <h6 class="mb-0">{{$resource->course->name}} </h6>
-                          <h6 class=" mb-2 text-truncate">{{$resource->description}} </h6>
-                          <div class="d-flex justify-content-between">
-                            <span class="date ">{{$resource->view}} Views  </span>
-                             <a href="{{$resource->fileLocation}}" download>                             
-                            <button class="btn btn-sm download zoom border shadow" value="{{$resource->id}}" style="font-size:13px;"  >                          
-                              <span class="icon icon-download "></span><span class=" id="downloadCount"> {{$resource->download}}</span>                         
-                            </button>
-                            </a>
-                            <span class="date float-right">{{$resource->created_at->diffForHumans() }}</span>
-                          </div>
-                          
+                          @if($resource->unit_id==""|| $resource->grade_id=="")
+                            <h6 class="mb-0">{{$resource->course->name}} </h6>
                           @else
-                          <h6 class="mb-0">{{$resource->course->name}} </h6>
-                          <h6 class=" mb-2 text-truncate">{{$resource->description}} </h6>
-                          <div class="d-flex justify-content-between">
-                              <span class="date ">{{$resource->view}} Views </span>
-                              <a href="{{$resource->fileLocation}}" download>
-                             <button class="btn btn-sm download zoom border shadow" value="{{$resource->id}}" style="font-size:13px;"   >                          
-                              <span class="icon icon-download "></span><span class=" id="downloadCount"> {{$resource->download}}</span> 
-                                                      
-                            </button>
-                            </a>
-                            
-
-                              <span class="date float-right">{{$resource->created_at->diffForHumans() }}</span>
-                          </div>
-                          
+                          <h6 class="mb-0">G-{{$resource->grade->name}} {{$resource->course->name}} unit-{{$resource->unit->name}}</h6>
                           @endif
+                            <h6 class=" mb-2 text-truncate">{{$resource->description}} </h6>
+                            <div class="d-flex justify-content-between">
+                                <span class="date ">{{$resource->view}} Views  </span>
+                                <a href="{{$resource->fileLocation}}" download>
+                                <button class="btn btn-sm download zoom border shadow" value="{{$resource->id}}" style="font-size:13px;"   >                          
+                                <span class="icon icon-download "></span><span class="" id="downloadCount"> {{$resource->download}}</span> 
+                              </button>
+                              </a>
+                              <span class="date float-right">{{$resource->created_at->diffForHumans() }}</span>
+                            </div>
                         </div>
                        
                       </div>
