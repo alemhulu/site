@@ -33,15 +33,15 @@ use App\Http\Controllers\FeedbackController;
 */
 
 Auth::routes();
-Route::get('/about', function () {
-    return view('about');
-});
+// Route::get('/about', function () {
+//     return view('about');
+// });
 
-Route::get('/contact', function () {
-    return view('contact');
-});
+// Route::get('/contact', function () {
+//     return view('contact');
+// });
 
-// Route::get('/', [HomeController::class, 'index'])->name('home');
+ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/home/{id}', [HomeController::class, 'show']);
 
 Route::get('/admin', [AdminController::class, 'index']);
@@ -92,7 +92,7 @@ Route::delete('/Quize/{post}', [QuizeController::class, 'destroy']);
 //-----------------------------------------------------------------------------------------------------------------------------
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-Route::get('/alex', [ResourceController::class, 'great']);
+// Route::get('/alex', [ResourceController::class, 'great']);
 
 Route::get('/', [WelcomeController::class, 'index']);
 Route::get('/user/{id}/{type}',[WelcomeController::class, 'show'])->name('single');
