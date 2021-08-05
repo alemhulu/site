@@ -78,7 +78,7 @@ class WelcomeController extends Controller
                         $resources7=cache()->remember('resources7',60*60*6, function(){
                                 return Resource::groupBy('description')->pluck('description');
                         });
-                        $types = cache()->remember('types',60,function(){
+                        $types = cache()->remember('types',5,function(){
                                 return Type::inRandomOrder()->paginate(3,['*'],'types');
                         });
                         // $types = Type::orderBy('created_at','asc')->paginate(3,['*'],'types');
@@ -344,9 +344,18 @@ class WelcomeController extends Controller
                 $m=0;
          
                 // $commonCourses = Course::where('grade_id',null)->orderBy('name','asc')->get();
-                 $commonCourses = Course::select('name')->distinct()->orderBy('name','asc')->get();
-                $allUnits=Unit::orderBy('name','asc')->get();
-                $allSubunits=Subunit::orderBy('name','asc')->get();
+                
+                $commonCourses=cache()->remember('commonCourses',60,function(){
+                         return Course::select('name')->distinct()->orderBy('name','asc')->get();
+                 });
+                 
+                $allUnits = cache()->remember('allUnits',60,function(){
+                        return Unit::orderBy('name','asc')->get();
+                });
+
+                $allSubunits=cache()->remember('allSubunits',60,function(){
+                        return Subunit::orderBy('name','asc')->get();
+                }); 
                 if(isset($_POST['action']))
                 {
                         $sql ='';
@@ -500,9 +509,14 @@ class WelcomeController extends Controller
                                         }
                                 }
                                 $output.= '<div class="card-body p-1">';
-                               
-                                        $output.= '<h6 class="mb-0">'.$resource->course->name.'</h6>
-                                                  <h6 class=" mb-2 text-truncate">'.$resource->description.'</h6>
+                             
+                                        if($resource->grade_id===null || $resource->unit_id===null)
+                                                $output.= '<h6 class="mb-0">'.$resource->course->name.'</h6>';
+                                        else
+                                                $output.='<h6 class="mb-0">G-'.$resource->grade->name.' '.$resource->course->name.' unit-'.$resource->unit->name.'</h6>';
+                        
+                                
+                                        $output.= '<h6 class=" mb-2 text-truncate">'.$resource->description.'</h6>
                                                   <div class="d-flex justify-content-between">
                                                         <span class="date">'.  $resource->view  .'  Views </span>
                                                         <a href="'.$resource->fileLocation.'" download>
