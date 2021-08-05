@@ -481,10 +481,9 @@ class WelcomeController extends Controller
                         //return $resourceFiltered;
                         $type2 = Type::findorfail($resourceFiltered->type_id);
                         
-               if($type2->id==$type->id && $i<4 ){
-                        //return $type;
-                        $i++;
-                        $output.='<div class="col-md-3 mb-3 blackColor " id="linkColor">';
+                         if($type2->id==$type->id && $i<4 ){
+                                $i++;
+                                $output.='<div class="col-md-3 mb-3 blackColor " id="linkColor">';
                                 $output.='<div class="card zoom shadow-lg">';
                                 $resource=Resource::find($resourceFiltered->id);
                                 if($resource->media->name == "Document"||$resource->media->name == "document" ){
@@ -509,12 +508,17 @@ class WelcomeController extends Controller
                                         }
                                 }
                                 $output.= '<div class="card-body p-1">';
-                             
-                                        if($resource->grade_id===null || $resource->unit_id===null)
-                                                $output.= '<h6 class="mb-0">'.$resource->course->name.'</h6>';
+                                        
+                                        // return $resource->unit_id;
+                                        if($resource->media->name=="Document"|| $resource->media->name=="document" || $resource->unit_id==null)
+                                                if($resource->grade_id==null)
+                                                        $output.= '<h6 class="mb-0">'.$resource->course->name.'</h6>';  
+                                                else 
+                                                        $output.= '<h6 class="mb-0">Gr-'.$resource->grade->name.' '.$resource->course->name.'</h6>';
                                         else
-                                                $output.='<h6 class="mb-0">G-'.$resource->grade->name.' '.$resource->course->name.' unit-'.$resource->unit->name.'</h6>';
-                        
+                                               
+                                                $output.='<h6 class="mb-0">Gr-'.$resource->grade->name.' '.$resource->course->name.' unit-'.$resource->unit_id==null.'</h6>';
+                                                
                                 
                                         $output.= '<h6 class=" mb-2 text-truncate">'.$resource->description.'</h6>
                                                   <div class="d-flex justify-content-between">
