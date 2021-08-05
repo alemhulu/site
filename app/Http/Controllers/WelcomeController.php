@@ -78,7 +78,7 @@ class WelcomeController extends Controller
                         $resources7=cache()->remember('resources7',60*60*6, function(){
                                 return Resource::groupBy('description')->pluck('description');
                         });
-                        $types = cache()->remember('types',60,function(){
+                        $types = cache()->remember('types',5,function(){
                                 return Type::inRandomOrder()->paginate(3,['*'],'types');
                         });
                         // $types = Type::orderBy('created_at','asc')->paginate(3,['*'],'types');
@@ -344,9 +344,18 @@ class WelcomeController extends Controller
                 $m=0;
          
                 // $commonCourses = Course::where('grade_id',null)->orderBy('name','asc')->get();
-                 $commonCourses = Course::select('name')->distinct()->orderBy('name','asc')->get();
-                $allUnits=Unit::orderBy('name','asc')->get();
-                $allSubunits=Subunit::orderBy('name','asc')->get();
+                
+                $commonCourses=cache()->remember('commonCourses',60,function(){
+                         return Course::select('name')->distinct()->orderBy('name','asc')->get();
+                 });
+                 
+                $allUnits = cache()->remember('allUnits',60,function(){
+                        return Unit::orderBy('name','asc')->get();
+                });
+
+                $allSubunits=cache()->remember('allSubunits',60,function(){
+                        return Subunit::orderBy('name','asc')->get();
+                }); 
                 if(isset($_POST['action']))
                 {
                         $sql ='';
@@ -472,10 +481,9 @@ class WelcomeController extends Controller
                         //return $resourceFiltered;
                         $type2 = Type::findorfail($resourceFiltered->type_id);
                         
-               if($type2->id==$type->id && $i<4 ){
-                        //return $type;
-                        $i++;
-                        $output.='<div class="col-md-3 mb-3 blackColor " id="linkColor">';
+                         if($type2->id==$type->id && $i<4 ){
+                                $i++;
+                                $output.='<div class="col-md-3 mb-3 blackColor " id="linkColor">';
                                 $output.='<div class="card zoom shadow-lg">';
                                 $resource=Resource::find($resourceFiltered->id);
                                 if($resource->media->name == "Document"||$resource->media->name == "document" ){
@@ -500,14 +508,18 @@ class WelcomeController extends Controller
                                         }
                                 }
                                 $output.= '<div class="card-body p-1">';
-                                        if( empty($resource->grade_id)) {
-                                                $output.= '<h6 class="mb-0">'.$resource->course->name.'</h6>';
-                                        }
-                                        else{
-
-                                                $output.= '<h6 class="mb-0"> Gr-'.$resource->grade->name.' '.$resource->course->name.' unit-'.$resource->unit->name.'</h6>';
-                                        }
-                                        $output.='<h6 class=" mb-2 text-truncate">'.$resource->description.'</h6>
+                                        
+                                        // return $resource->unit_id;
+                                        if($resource->media->name=="Document"|| $resource->media->name=="document" || $resource->unit_id==null)
+                                                if($resource->grade_id==null)
+                                                        $output.= '<h6 class="mb-0">'.$resource->course->name.'</h6>';  
+                                                else 
+                                                        $output.= '<h6 class="mb-0">Gr-'.$resource->grade->name.' '.$resource->course->name.'</h6>';
+                                        else
+                                               $output.='<h6 class="mb-0">Gr-'.$resource->grade->name.' '.$resource->course->name.' unit-'.$resource->unit->name.'</h6>';
+                                                
+                                
+                                        $output.= '<h6 class=" mb-2 text-truncate">'.$resource->description.'</h6>
                                                   <div class="d-flex justify-content-between">
                                                         <span class="date">'.  $resource->view  .'  Views </span>
                                                         <a href="'.$resource->fileLocation.'" download>
@@ -715,19 +727,28 @@ class WelcomeController extends Controller
 
                                                 }
                                                 $output.= '<div class="card-body p-1">';
-                                               
-                                                $output.= '<h6 class="mb-0">'.$resource->course->name.'</h6>
-                                                <h6 class=" mb-2 text-truncate">'.$resource->description.'</h6>
-                                                <div class="d-flex justify-content-between">
-                                                        <span class="date">'.  $resource->view  .'  Views </span>
-                                                        <a href="'.$resource->fileLocation.'" download>
-                                                                 <button class="btn btn-sm download zoom border shadow" value="'.$resource->id.'" style="font-size:13px;"  >
-                                                                        <span class="icon icon-download "></span><span id="downloadCount">'.' '. $resource->download.'</span>
-                                                                </button>
-                                                        </a>
-                                                        <span class="date float-right">'.$resource->created_at->diffForHumans() .'</span>
-                                                </div>';
-                                        $output.='</div></div></div>';
+                                        
+                                                // return $resource->unit_id;
+                                                if($resource->media->name=="Document"|| $resource->media->name=="document" || $resource->unit_id==null)
+                                                        if($resource->grade_id==null)
+                                                                $output.= '<h6 class="mb-0">'.$resource->course->name.'</h6>';  
+                                                        else 
+                                                                $output.= '<h6 class="mb-0">Gr-'.$resource->grade->name.' '.$resource->course->name.'</h6>';
+                                                else
+                                                       $output.='<h6 class="mb-0">Gr-'.$resource->grade->name.' '.$resource->course->name.' unit-'.$resource->unit->name.'</h6>';
+                                                        
+                                        
+                                                $output.= '<h6 class=" mb-2 text-truncate">'.$resource->description.'</h6>
+                                                          <div class="d-flex justify-content-between">
+                                                                <span class="date">'.  $resource->view  .'  Views </span>
+                                                                <a href="'.$resource->fileLocation.'" download>
+                                                                         <button class="btn btn-sm download zoom border shadow" value="'.$resource->id.'" style="font-size:13px;"  >
+                                                                                <span class="icon icon-download "></span><span id="downloadCount">'.' '. $resource->download.'</span>
+                                                                        </button>
+                                                                </a>
+                                                                <span class="date float-right">'.$resource->created_at->diffForHumans() .'</span>
+                                                        </div>';
+                                                $output.='</div></div></div>';
                                         }
                                 }
                                 $output.='</div></div>';
@@ -851,13 +872,22 @@ class WelcomeController extends Controller
                                                         }
                                                 }
                                                 $output.= '<div class="card-body p-1">';
+                                        
+                                        // return $resource->unit_id;
+                                        if($resource->media->name=="Document"|| $resource->media->name=="document" || $resource->unit_id==null)
+                                                if($resource->grade_id==null)
+                                                        $output.= '<h6 class="mb-0">'.$resource->course->name.'</h6>';  
+                                                else 
+                                                        $output.= '<h6 class="mb-0">Gr-'.$resource->grade->name.' '.$resource->course->name.'</h6>';
+                                        else
+                                               $output.='<h6 class="mb-0">Gr-'.$resource->grade->name.' '.$resource->course->name.' unit-'.$resource->unit->name.'</h6>';
                                                 
-                                          $output.= '<h6 class="mb-0">'.$resource->course->name.'</h6>
-                                                  <h6 class=" mb-2 text-truncate">'.$resource->description.'</h6>
+                                
+                                        $output.= '<h6 class=" mb-2 text-truncate">'.$resource->description.'</h6>
                                                   <div class="d-flex justify-content-between">
                                                         <span class="date">'.  $resource->view  .'  Views </span>
                                                         <a href="'.$resource->fileLocation.'" download>
-                                                                 <button class="btn btn-sm download zoom border shadow" value="'.$resource->id.'" style="font-size:13px;" onclick="fileDownloadId()" >
+                                                                 <button class="btn btn-sm download zoom border shadow" value="'.$resource->id.'" style="font-size:13px;"  >
                                                                         <span class="icon icon-download "></span><span id="downloadCount">'.' '. $resource->download.'</span>
                                                                 </button>
                                                         </a>
@@ -996,18 +1026,27 @@ class WelcomeController extends Controller
                                                         }
                                                 }
                                                 $output.= '<div class="card-body p-1">';
-                                               
-                                                  $output.= '<h6 class="mb-0">'.$resource->course->name.'</h6>
-                                                  <h6 class=" mb-2 text-truncate">'.$resource->description.'</h6>
-                                                  <div class="d-flex justify-content-between">
-                                                        <span class="date">'.  $resource->view  .'  Views </span>
-                                                        <a href="'.$resource->fileLocation.'" download>
-                                                                 <button class="btn btn-sm download zoom border shadow" value="'.$resource->id.'" style="font-size:13px;" onclick="fileDownloadId()" >
-                                                                        <span class="icon icon-download "></span><span id="downloadCount">'.' '. $resource->download.'</span>
-                                                                </button>
-                                                        </a>
-                                                        <span class="date float-right">'.$resource->created_at->diffForHumans() .'</span>
-                                                </div>';
+                                        
+                                                // return $resource->unit_id;
+                                                if($resource->media->name=="Document"|| $resource->media->name=="document" || $resource->unit_id==null)
+                                                        if($resource->grade_id==null)
+                                                                $output.= '<h6 class="mb-0">'.$resource->course->name.'</h6>';  
+                                                        else 
+                                                                $output.= '<h6 class="mb-0">Gr-'.$resource->grade->name.' '.$resource->course->name.'</h6>';
+                                                else
+                                                       $output.='<h6 class="mb-0">Gr-'.$resource->grade->name.' '.$resource->course->name.' unit-'.$resource->unit->name.'</h6>';
+                                                        
+                                        
+                                                $output.= '<h6 class=" mb-2 text-truncate">'.$resource->description.'</h6>
+                                                          <div class="d-flex justify-content-between">
+                                                                <span class="date">'.  $resource->view  .'  Views </span>
+                                                                <a href="'.$resource->fileLocation.'" download>
+                                                                         <button class="btn btn-sm download zoom border shadow" value="'.$resource->id.'" style="font-size:13px;"  >
+                                                                                <span class="icon icon-download "></span><span id="downloadCount">'.' '. $resource->download.'</span>
+                                                                        </button>
+                                                                </a>
+                                                                <span class="date float-right">'.$resource->created_at->diffForHumans() .'</span>
+                                                        </div>';
                                                 $output.='</div></div></div>';
                                         }
                                 }
@@ -1069,20 +1108,29 @@ class WelcomeController extends Controller
                                                              </div>';  
                                                         }
                                                 }
-                                                $output.= '<div class="card-body p-1">';
-                                               
-                                                  $output.= '<h6 class="mb-0">'.$resource->course->name.'</h6>
-                                                  <h6 class=" mb-2 text-truncate">'.$resource->description.'</h6>
+                                               $output.= '<div class="card-body p-1">';
+                                        
+                                        // return $resource->unit_id;
+                                        if($resource->media->name=="Document"|| $resource->media->name=="document" || $resource->unit_id==null)
+                                                if($resource->grade_id==null)
+                                                        $output.= '<h6 class="mb-0">'.$resource->course->name.'</h6>';  
+                                                else 
+                                                        $output.= '<h6 class="mb-0">Gr-'.$resource->grade->name.' '.$resource->course->name.'</h6>';
+                                        else
+                                               $output.='<h6 class="mb-0">Gr-'.$resource->grade->name.' '.$resource->course->name.' unit-'.$resource->unit->name.'</h6>';
+                                                
+                                
+                                        $output.= '<h6 class=" mb-2 text-truncate">'.$resource->description.'</h6>
                                                   <div class="d-flex justify-content-between">
                                                         <span class="date">'.  $resource->view  .'  Views </span>
                                                         <a href="'.$resource->fileLocation.'" download>
-                                                                 <button class="btn btn-sm download zoom border shadow" value="'.$resource->id.'" style="font-size:13px;" onclick="fileDownloadId()" >
+                                                                 <button class="btn btn-sm download zoom border shadow" value="'.$resource->id.'" style="font-size:13px;"  >
                                                                         <span class="icon icon-download "></span><span id="downloadCount">'.' '. $resource->download.'</span>
                                                                 </button>
                                                         </a>
                                                         <span class="date float-right">'.$resource->created_at->diffForHumans() .'</span>
                                                 </div>';
-                                                $output.='</div></div></div>';
+                                        $output.='</div></div></div>';
                                         }
                                 }
                                 $output.='</div></div>';
@@ -1139,18 +1187,27 @@ class WelcomeController extends Controller
                                                         }
                                                 }
                                                 $output.= '<div class="card-body p-1">';
-                                               
-                                                  $output.= '<h6 class="mb-0">'.$resource->course->name.'</h6>
-                                                  <h6 class=" mb-2 text-truncate">'.$resource->description.'</h6>
-                                                  <div class="d-flex justify-content-between">
-                                                        <span class="date">'.  $resource->view  .'  Views </span>
-                                                        <a href="'.$resource->fileLocation.'" download>
-                                                                 <button class="btn btn-sm download zoom border shadow" value="'.$resource->id.'" style="font-size:13px;" onclick="fileDownloadId()" >
-                                                                        <span class="icon icon-download "></span><span id="downloadCount">'.' '. $resource->download.'</span>
-                                                                </button>
-                                                        </a>
-                                                        <span class="date float-right">'.$resource->created_at->diffForHumans() .'</span>
-                                                </div>';
+                                        
+                                                // return $resource->unit_id;
+                                                if($resource->media->name=="Document"|| $resource->media->name=="document" || $resource->unit_id==null)
+                                                        if($resource->grade_id==null)
+                                                                $output.= '<h6 class="mb-0">'.$resource->course->name.'</h6>';  
+                                                        else 
+                                                                $output.= '<h6 class="mb-0">Gr-'.$resource->grade->name.' '.$resource->course->name.'</h6>';
+                                                else
+                                                       $output.='<h6 class="mb-0">Gr-'.$resource->grade->name.' '.$resource->course->name.' unit-'.$resource->unit->name.'</h6>';
+                                                        
+                                        
+                                                $output.= '<h6 class=" mb-2 text-truncate">'.$resource->description.'</h6>
+                                                          <div class="d-flex justify-content-between">
+                                                                <span class="date">'.  $resource->view  .'  Views </span>
+                                                                <a href="'.$resource->fileLocation.'" download>
+                                                                         <button class="btn btn-sm download zoom border shadow" value="'.$resource->id.'" style="font-size:13px;"  >
+                                                                                <span class="icon icon-download "></span><span id="downloadCount">'.' '. $resource->download.'</span>
+                                                                        </button>
+                                                                </a>
+                                                                <span class="date float-right">'.$resource->created_at->diffForHumans() .'</span>
+                                                        </div>';
                                                 $output.='</div></div></div>';
                                         }
                                 }
