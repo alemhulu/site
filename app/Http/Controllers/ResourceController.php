@@ -68,7 +68,26 @@ class ResourceController extends Controller
      */
     public function index()
     {   
-        
+        $resources= Resource::where('media_id',2)->get();
+        foreach ($resources as $key => $resource) {
+            $type=$resource->type->name;
+            if($type == "Text Books"){
+                if($resource->grade->name=="9"){
+                    if($resource->course_id=="108"){
+                        // return $resource;
+                        $desc=substr($resource->description,10);
+                        $resource->description=$desc;
+                        $resource->save();
+                    }
+                    
+                }
+                else{
+                    //$desc=substr($resource->description,6);
+                    // return $resource->description."***".$desc;
+                }
+            }
+         
+        }
         return  redirect('/');
         $course_id=[];
     
