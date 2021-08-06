@@ -72,21 +72,77 @@ class ResourceController extends Controller
         foreach ($resources as $key => $resource) {
             $type=$resource->type->name;
             if($type == "Text Books"){
-                if($resource->grade->name=="9"){
-                    if($resource->course_id=="108"){
-                        // return $resource;
-                        $desc=substr($resource->description,10);
-                        $resource->description=$desc;
-                        $resource->save();
+                    if($resource->grade->name=="9"){
+                        if($resource->course_id=="108"){
+                            // return $resource;
+                            // $desc=substr($resource->description,5);
+                         
+                            $desc=str_replace('9ኛ ክፍል ', '', $resource->description);
+                            $resource->description=$desc;
+                            $resource->save();
+                        }
+                        else{
+                            $desc=str_replace('Gr-9 ', '', $resource->description);
+                            $resource->description=$desc;
+                            $resource->save();
+                        }
+                        // $desc=substr($resource->description,5);
+                        // $desc = explode (" ", $resource->description); 
+                        // return $desc;
+                        // $resource->description=$desc;
+                        // $resource->save();
                     }
-                    
-                }
-                else{
-                    //$desc=substr($resource->description,6);
-                    // return $resource->description."***".$desc;
-                }
-            }
-         
+                    else if($resource->grade->name=="10"){
+                        if($resource->course_id=="109"){
+                            $desc=str_replace('10ኛ ክፍል ', '', $resource->description);
+                            $resource->description=$desc;
+                            $resource->save();
+                        }
+                        else if($resource->course_id=="39"){
+                            $desc=str_replace('10ኛ ክፍል ', '', $resource->description);
+                            $resource->description=$desc;
+                            $resource->save();
+                        }
+                        else{
+                            $desc=str_replace('Gr-10 ', '', $resource->description);
+                            $resource->description=$desc;
+                            $resource->save();
+                        }
+                    }
+                    // for grade 11
+                    else if($resource->grade->name=="11"){
+                        if($resource->course_id=="110"||$resource->course_id=="46"){
+                            $desc=str_replace('11ኛ ክፍል ', '', $resource->description);
+                            $resource->description=$desc;
+                            $resource->save();
+                        }
+                       
+                        else{
+                            $desc=str_replace('Gr-11 ', '', $resource->description);
+                            $resource->description=$desc;
+                            $resource->save();
+                        }
+                    }
+                    //for grade 12
+                     else if($resource->grade->name=="12"){
+                        if($resource->course_id=="111"){
+                            $desc=str_replace('12ኛ ክፍል ', '', $resource->description);
+                            $resource->description=$desc;
+                            $resource->save();
+                        }
+                        else if($resource->course_id=="47"){
+                            $desc=str_replace('12 ክፍል ', '', $resource->description);
+                            $resource->description=$desc;
+                            $resource->save();
+                        }
+                        else{
+                            $desc=str_replace('Gr-12 ', '', $resource->description);
+                            $resource->description=$desc;
+                            $resource->save();
+                        }
+                    }
+            
+             }         
         }
         return  redirect('/');
         $course_id=[];
