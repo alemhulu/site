@@ -31,7 +31,11 @@
                                     <input type="text" id="path" value="{{$resource->fileLocation}}" hidden>
                                     <input type="text" id="content" value="{{$resource->media->name}}" hidden>
                      <div class="col-7 align-self-center py-1">
-                        <p class="h5">{{$resource->description}} </p>
+                       @if($resource->grade_id=="")
+                          <p class="h5"> {{$resource->description}} </p>
+                       @else
+                         <p class="h5">Gr-{{$resource->grade->name}} {{$resource->description}} </p>
+                       @endif
                      </div>
                       <div class="col-5 text-right px-3 align-self-center h4 text-secondary">
                         <button class="btn btn-sm likeDislike"  id="likeButton" ><span class="icon icon-thumbs-up text-secondary h4 likeGroup "></span><span class="h5 text-secondary likeGroup" id="likeCount"> {{$resource->like}}</span></button>
