@@ -81,6 +81,14 @@ class ResourceController extends Controller
                             $resource->description=$desc;
                             $resource->save();
                         }
+                        else if($resource->course_id=="33"){
+                            // return $resource;
+                            // $desc=substr($resource->description,5);
+                         
+                            $desc=str_replace('Gr-11 ', '', $resource->description);
+                            $resource->description=$desc;
+                            $resource->save();
+                        }
                         else{
                             $desc=str_replace('Gr-9 ', '', $resource->description);
                             $resource->description=$desc;
@@ -101,10 +109,18 @@ class ResourceController extends Controller
                         else if($resource->course_id=="39"){
                             $desc=str_replace('10ኛ ክፍል ', '', $resource->description);
                             $resource->description=$desc;
+                            $desc=str_replace('Gr-10 ', '', $resource->description);
+                            $resource->description=$desc;
                             $resource->save();
                         }
                         else{
                             $desc=str_replace('Gr-10 ', '', $resource->description);
+                            $resource->description=$desc;
+                            $resource->save();
+                            $desc=str_replace('Gr-11 ', '', $resource->description);
+                            $resource->description=$desc;
+                            $resource->save();
+                            $desc=str_replace('English ', '', $resource->description);
                             $resource->description=$desc;
                             $resource->save();
                         }
@@ -116,7 +132,7 @@ class ResourceController extends Controller
                             $resource->description=$desc;
                             $resource->save();
                         }
-                       
+                        
                         else{
                             $desc=str_replace('Gr-11 ', '', $resource->description);
                             $resource->description=$desc;
@@ -132,6 +148,9 @@ class ResourceController extends Controller
                         }
                         else if($resource->course_id=="47"){
                             $desc=str_replace('12 ክፍል ', '', $resource->description);
+                            $resource->description=$desc;
+                 
+                            $desc=str_replace('Gr-12', '', $resource->description);
                             $resource->description=$desc;
                             $resource->save();
                         }
