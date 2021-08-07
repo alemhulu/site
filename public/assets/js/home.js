@@ -168,6 +168,7 @@ function gradeTypeFunction(grade,type) {
          data: $('#addFeedbackForm').serialize(),
          success: function (response) {
              alert("Thank you for your Feedback!");
+             document.getElementById("addFeedbackForm").reset();
              
          },
          error: function (error) {
