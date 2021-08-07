@@ -160,6 +160,33 @@ class ResourceController extends Controller
                             $resource->save();
                         }
                     }
+                     //for grade 1-4
+                     else if($resource->grade->name=="1"||$resource->grade->name=="2"||$resource->grade->name=="3"||$resource->grade->name=="4"){
+                  
+                            $desc=str_replace('Gr-1 ', '', $resource->description);
+                            $resource->description=$desc;
+                            $desc=str_replace('Gr-2 ', '', $resource->description);
+                            $resource->description=$desc;
+                            $desc=str_replace('Gr-3 ', '', $resource->description);
+                            $resource->description=$desc;
+                            $desc=str_replace('Gr-4 ', '', $resource->description);
+                            $resource->description=$desc;
+                            $resource->save();
+                        
+                    }
+                    else if($resource->grade->name=="5"||$resource->grade->name=="6"||$resource->grade->name=="7"||$resource->grade->name=="8"){
+                  
+                        $desc=str_replace('Gr-5 ', '', $resource->description);
+                        $resource->description=$desc;
+                        $desc=str_replace('Gr-6 ', '', $resource->description);
+                        $resource->description=$desc;
+                        $desc=str_replace('Gr-7 ', '', $resource->description);
+                        $resource->description=$desc;
+                        $desc=str_replace('Gr-8 ', '', $resource->description);
+                        $resource->description=$desc;
+                        $resource->save();
+                    
+                }
             
              }         
         }
