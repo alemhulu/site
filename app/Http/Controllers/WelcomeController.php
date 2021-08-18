@@ -18,6 +18,38 @@ use DB;
 
 class WelcomeController extends Controller
 {
+
+        
+    protected $grades;
+    protected $courses;
+    protected $commonCourses;
+    protected $units;
+    protected $subunits;
+    protected $resources;
+    protected $types2;
+
+    public function __construct() 
+    {
+        // Fetch the Site Settings object
+        $this->grades=cache()->remember('grades', 60*60*24*30, function () {
+                                
+                return Grade::orderBy('name','desc')->get();
+            });
+        $this->commonCourses=cache()->remember('commonCourses', 60*60*6, function () {
+                                
+                return Course::select('name')->distinct()->orderBy('name','asc')->get();
+         });
+        $this->types2= cache()->remember('type2',60*60*24*30,function(){
+                return Type::orderBy('name','desc')->get();
+        });
+        $this->medias= cache()->remember('medias',60*60*24*30,function(){
+                return Media::orderBy('name','asc')->get();
+        });
+    
+        
+       
+    }
+
         /**
          * Display a listing of the resource.
          *
@@ -25,30 +57,8 @@ class WelcomeController extends Controller
          */
                 public function index()
                 { 
-                        //  update resource name
-                        // $resources=Resource::where('type_id',"9")->get();
-                        // foreach($resources as $resource){
-                        //         $resource->fileName="";
-                        //         $resource->save();
-                        // }
-                        // return $resources;
-
-                        // fileLocation change
-                        // $resource = Resource::find(47);
-                        // $resource->fileLocation="12";
-                        // $resource->save();
-
-                        // return $resource;
-                    
-                        $grades=cache()->remember('grades', 60*60*24*30, function () {
-                                
-                                return Grade::orderBy('name','desc')->get();
-                            });
-                        $courses=cache()->remember('courses', 60*60*12, function () {
-                                
-                                return Course::select('name')->distinct()->orderBy('name','asc')->get();
-                         });
-
+                                        
+                        // return $this->medias; 
                         $resources=cache()->remember('resources',60*60*6, function(){
                                 return Resource::orderBy('created_at','asc')->get();
                         });
@@ -82,9 +92,7 @@ class WelcomeController extends Controller
                                 return Type::inRandomOrder()->paginate(3,['*'],'types');
                         });
                         // $types = Type::orderBy('created_at','asc')->paginate(3,['*'],'types');
-                        $types2= cache()->remember('type2',60*60*24,function(){
-                                return Type::orderBy('name','desc')->get();
-                        });
+                      
                         $units=cache()->remember('units',60*60*12,function(){
                                 return Unit::orderBy('title','asc')->get();
                         });
@@ -92,9 +100,7 @@ class WelcomeController extends Controller
                         $subunits=cache()->remember('subunits',60*60*12,function(){
                                 return Subunit::orderBy('title','asc')->get();
                         });
-                        $medias= cache()->remember('medias',60*60*12,function(){
-                                return Media::orderBy('name','asc')->get();
-                        });
+                       
                         // $courses = Course::where('grade_id',null)->orderBy('name','asc')->get();
                         //$courses=Course::all();
                         $tag = [];
@@ -154,11 +160,13 @@ class WelcomeController extends Controller
                         }
                                 
                                 // return $paginatedResources;
-
-                                
+                        $grades=$this->grades;
+                        $commonCourses=$this->commonCourses;
+                        $types2=$this->types2;       
+                        $medias=$this->medias;
                               
                                 
-                                return view('user.welcome2',compact('grades','courses','types', 'resources','medias','units','subunits','tag','paginatedResources','types2'));
+                                return view('user.welcome2',compact('grades','commonCourses','types', 'resources','medias','units','subunits','tag','paginatedResources','types2'));
                 }
 
                 // // pagination function
@@ -182,7 +190,7 @@ class WelcomeController extends Controller
                 */
         public function create()
                 {
-                
+                 
                 }
 
                 /**
@@ -216,6 +224,7 @@ class WelcomeController extends Controller
                 */
         public function show( $id,$type)
         {   
+
                 $tag = [];
                         $grades=Grade::orderBy('name','asc')->get();
                 // $courses = Course::select('name')->distinct()->get();
@@ -331,6 +340,7 @@ class WelcomeController extends Controller
 
         public function moeuser(Request $request)
         {
+                
                 $this->x=0;
                 $output='';
                 $courses='';

@@ -54,9 +54,9 @@
           <div id="collapseTwo" class="collapse hide  shadow" aria-labelledby="headingTwo" >
                
                   <div id="courseFilter">
-                      @if(count($courses)>0) 
+                      @if(count($commonCourses)>0) 
                           <ul  style="color:black;"><br>
-                          @foreach($courses as $course)
+                          @foreach($commonCourses as $course)
                           <li><input type="radio" name="courses" class="form-check-input resource_check course" value="{{$course->id}}"  id="{{$course->name}}"  ><h6>{{$course->name}}</h6></li>
                           @endforeach
                           <br>
