@@ -27,6 +27,9 @@ class WelcomeController extends Controller
     protected $subunits;
     protected $resources;
     protected $types2;
+    protected $tag=[];
+    protected $resource0;
+    protected $resource1,$resource2,$resource3,$resource4,$resource5,$resource6,$resource7;
 
     public function __construct() 
     {
@@ -45,7 +48,72 @@ class WelcomeController extends Controller
         $this->medias= cache()->remember('medias',60*60*24*30,function(){
                 return Media::orderBy('name','asc')->get();
         });
-    
+        $this->resources0=cache()->remember('resource0',60*60*24*10, function(){
+                return Resource::groupBy('tag')->pluck('tag');
+        });
+        $this->resources1=cache()->remember('resources1',60*60*24*10, function(){
+                return Grade::pluck('name');
+        });
+        $this->resources2=cache()->remember('resources2',60*60*24*10, function(){
+                return Course::groupBy('name')->pluck('name');
+        });
+        
+        $this->resources3=cache()->remember('resources3',60*60*24*10, function(){
+                return Unit::groupBy('title')->pluck('title');
+        });
+        $this->resources4=cache()->remember('resources4',60*60*24*10, function(){
+                return Subunit::groupBy('title')->pluck('title');
+        });
+        
+        $this->resources5=cache()->remember('resources5',60*60*24*10, function(){
+                return Media::groupBy('name')->pluck('name');
+        });
+        $this->resources6=cache()->remember('resources6',60*60*24*10, function(){
+                return Type::groupBy('name')->pluck('name');
+        });
+        $this->resources7=cache()->remember('resources7',60*60*24*10, function(){
+                return Resource::groupBy('description')->pluck('description');
+        });
+        
+        $this->tag=cache()->remember('tag',60*60*24*11,function(){
+                foreach($this->resources0 as $tags){
+                        if($tags!=null)
+                        array_push($this->tag, $tags);
+                }
+                foreach($this->resources1 as $tags){
+                        $tags=(string)$tags;
+                                array_push($this->tag, $tags);
+                        }
+                foreach($this->resources2 as $tags){
+                        if($tags!=null)
+                                array_push($this->tag, $tags);
+                        }
+                foreach($this->resources3 as $tags){
+                        if($tags!=null)
+                                array_push($this->tag, $tags);
+                        }
+                foreach($this->resources4 as $tags){
+                        if($tags!=null)
+                                array_push($this->tag, $tags);
+                        }
+                foreach($this->resources4 as $tags){
+                        if($tags!=null)
+                                array_push($this->tag, $tags);
+                        }
+                foreach($this->resources5 as $tags){
+                        if($tags!=null)
+                                array_push($this->tag, $tags);
+                        }
+                foreach($this->resources6 as $tags){
+                        if($tags!=null)
+                                array_push($this->tag, $tags);
+                        }
+                foreach($this->resources7 as $tags){
+                        if($tags!=null)
+                                array_push($this->tag, $tags);
+                        }
+                return array_values(array_unique($this->tag));   
+        });
         
        
     }
@@ -58,36 +126,9 @@ class WelcomeController extends Controller
                 public function index()
                 { 
                                         
-                        // return $this->medias; 
-                        $resources=cache()->remember('resources',60*60*6, function(){
-                                return Resource::orderBy('created_at','asc')->get();
-                        });
-                        $resources0=cache()->remember('resource0',60*60*6, function(){
-                                return Resource::groupBy('tag')->pluck('tag');
-                        });
-                        $resources1=cache()->remember('resources1',60*60*6, function(){
-                                return Grade::pluck('name');
-                        });
-                        $resources2=cache()->remember('resources2',60*60*6, function(){
-                                return Course::groupBy('name')->pluck('name');
-                        });
+                      
+                       
                         
-                        $resources3=cache()->remember('resources3',60*60*6, function(){
-                                return Unit::groupBy('title')->pluck('title');
-                        });
-                        $resources4=cache()->remember('resources4',60*60*6, function(){
-                                return Subunit::groupBy('title')->pluck('title');
-                        });
-                        
-                        $resources5=cache()->remember('resources5',60*60*6, function(){
-                                return Media::groupBy('name')->pluck('name');
-                        });
-                        $resources6=cache()->remember('resources6',60*60*6, function(){
-                                return Type::groupBy('name')->pluck('name');
-                        });
-                        $resources7=cache()->remember('resources7',60*60*6, function(){
-                                return Resource::groupBy('description')->pluck('description');
-                        });
                         $types = cache()->remember('types',5,function(){
                                 return Type::inRandomOrder()->paginate(3,['*'],'types');
                         });
@@ -103,53 +144,9 @@ class WelcomeController extends Controller
                        
                         // $courses = Course::where('grade_id',null)->orderBy('name','asc')->get();
                         //$courses=Course::all();
-                        $tag = [];
-                        foreach($resources0 as $tags)
-                        {
-                        if($tags!=null)
-                                array_push($tag, $tags);
-                        }
-                        foreach($resources1 as $tags)
-                                {
-                                $tags=(string)$tags;
-                                        array_push($tag, $tags);
-                                }
-                        foreach($resources2 as $tags)
-                                {
-                                if($tags!=null)
-                                        array_push($tag, $tags);
-                                }
-                        foreach($resources3 as $tags)
-                                {
-                                if($tags!=null)
-                                        array_push($tag, $tags);
-                                }
-                        foreach($resources4 as $tags)
-                                {
-                                if($tags!=null)
-                                        array_push($tag, $tags);
-                                }
-                        foreach($resources4 as $tags)
-                                {
-                                if($tags!=null)
-                                        array_push($tag, $tags);
-                                }
-                        foreach($resources5 as $tags)
-                                {
-                                if($tags!=null)
-                                        array_push($tag, $tags);
-                                }
-                        foreach($resources6 as $tags)
-                                {
-                                if($tags!=null)
-                                        array_push($tag, $tags);
-                                }
-                        foreach($resources7 as $tags)
-                                {
-                                if($tags!=null)
-                                        array_push($tag, $tags);
-                                }
-                        $tag = array_values(array_unique($tag));
+                        
+                       
+                       
                         //  $tag = [];
 
                         
@@ -164,9 +161,10 @@ class WelcomeController extends Controller
                         $commonCourses=$this->commonCourses;
                         $types2=$this->types2;       
                         $medias=$this->medias;
+                        $tag=$this->tag;
                               
                                 
-                                return view('user.welcome2',compact('grades','commonCourses','types', 'resources','medias','units','subunits','tag','paginatedResources','types2'));
+                                return view('user.welcome2',compact('grades','commonCourses','types','medias','units','subunits','tag','paginatedResources','types2'));
                 }
 
                 // // pagination function
