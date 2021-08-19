@@ -74,7 +74,7 @@ class WelcomeController extends Controller
         $this->resources7=cache()->remember('resources7',60*60*24*10, function(){
                 return Resource::groupBy('description')->pluck('description');
         });
-        
+
         $this->tag=cache()->remember('tag',60*60*24*11,function(){
                 foreach($this->resources0 as $tags){
                         if($tags!=null)
@@ -126,29 +126,10 @@ class WelcomeController extends Controller
                 public function index()
                 { 
                                         
-                      
-                       
-                        
-                        $types = cache()->remember('types',5,function(){
+                       $types = cache()->remember('types',5,function(){
                                 return Type::inRandomOrder()->paginate(3,['*'],'types');
                         });
-                        // $types = Type::orderBy('created_at','asc')->paginate(3,['*'],'types');
-                      
-                        $units=cache()->remember('units',60*60*12,function(){
-                                return Unit::orderBy('title','asc')->get();
-                        });
-                        
-                        $subunits=cache()->remember('subunits',60*60*12,function(){
-                                return Subunit::orderBy('title','asc')->get();
-                        });
                        
-                        // $courses = Course::where('grade_id',null)->orderBy('name','asc')->get();
-                        //$courses=Course::all();
-                        
-                       
-                       
-                        //  $tag = [];
-
                         
                                 
                         $paginatedResources = [];
@@ -164,7 +145,7 @@ class WelcomeController extends Controller
                         $tag=$this->tag;
                               
                                 
-                                return view('user.welcome2',compact('grades','commonCourses','types','medias','units','subunits','tag','paginatedResources','types2'));
+                                return view('user.welcome2',compact('grades','commonCourses','types','medias','tag','paginatedResources','types2'));
                 }
 
                 // // pagination function

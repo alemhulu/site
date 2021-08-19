@@ -77,15 +77,7 @@
          
           <div id="collapseThree" class="collapse  shadow " aria-labelledby="headingThree" >
             <div id="unitFilter">
-              @if(count($units)>0) 
-              <ul style="color:black;" >
-              <br>
-              <!-- @foreach($units as $unit)
-              <li><input type="checkbox"class="form-check-input resource_check" value="{{$unit->id}}" id="unitId" onchange="filter()"><h6> {{$unit->title}}</h6></li>
-              @endforeach -->
-              <br>
-              </ul>
-              @endif
+              
             </div>
           </div>
         
@@ -98,15 +90,7 @@
             
           <div id="collapsefour" class="collapse shadow " aria-labelledby="headingfour" >
             <div id="subunitFilter">
-              @if(count($subunits)>0) 
-              <ul id="" style="color:black;">
-              <br>
-              <!-- @foreach($subunits as $subunit)
-              <li><input type="checkbox"class="form-check-input resource_check" onchange="filter()"  value="{{$subunit->id}}" id="subunitId"><h6> {{$subunit->title}}</h6></li>
-              @endforeach -->
-              <br>
-              </ul>
-              @endif
+              
            </div>
           </div>
        
