@@ -18,119 +18,136 @@ use DB;
 
 class WelcomeController extends Controller
 {
+        protected $grades;
+        protected $courses;
+        protected $commonCourses;
+        protected $units;
+        protected $subunits;
+        protected $resources;
+        protected $types;
+        protected $types2;
+        protected $tag=[];
+        protected $resource0;
+        protected $resource1,$resource2,$resource3,$resource4,$resource5,$resource6,$resource7;
 
-        
-    protected $grades;
-    protected $courses;
-    protected $commonCourses;
-    protected $units;
-    protected $subunits;
-    protected $resources;
-    protected $types;
-    protected $types2;
-    protected $tag=[];
-    protected $resource0;
-    protected $resource1,$resource2,$resource3,$resource4,$resource5,$resource6,$resource7;
-
-    public function __construct() 
-    {
-        // Fetch the Site Settings object
-        //Cache Grades
-        $this->grades=cache()->remember('grades', 60*60*24*30, function () {
-                                
-                return Grade::orderBy('name','desc')->get();
-            });
-        //Cache all unique subjects
-        $this->commonCourses=cache()->remember('commonCourses', 60*60*6, function () {
-                                
-                return Course::select('name')->distinct()->orderBy('name','asc')->get();
-         });
-         //Cache all types
-        $this->types2= cache()->remember('type2',60*60*24*30,function(){
-                return Type::orderBy('name','desc')->get();
-        });
-        //Cache all medias
-        $this->medias= cache()->remember('medias',60*60*24*30,function(){
-                return Media::orderBy('name','asc')->get();
-        });
-        //Cache resource tag
-        $this->resources0=cache()->remember('resource0',60*60*24*10, function(){
-                return Resource::groupBy('tag')->pluck('tag');
-        });
-        //Cache Grade level
-        $this->resources1=cache()->remember('resources1',60*60*24*10, function(){
-                return Grade::pluck('name');
-        });
-        //Cache Subject name
-        $this->resources2=cache()->remember('resources2',60*60*24*10, function(){
-                return Course::groupBy('name')->pluck('name');
-        });
-        //Cache unit title
-        $this->resources3=cache()->remember('resources3',60*60*24*10, function(){
-                return Unit::groupBy('title')->pluck('title');
-        });
-        //Cache subunit title
-        $this->resources4=cache()->remember('resources4',60*60*24*10, function(){
-                return Subunit::groupBy('title')->pluck('title');
-        });
-        //Cache media name
-        $this->resources5=cache()->remember('resources5',60*60*24*10, function(){
-                return Media::groupBy('name')->pluck('name');
-        });
-        //Cache content type
-        $this->resources6=cache()->remember('resources6',60*60*24*10, function(){
-                return Type::groupBy('name')->pluck('name');
-        });
-        //Cache Description
-        $this->resources7=cache()->remember('resources7',60*60*24*10, function(){
-                return Resource::groupBy('description')->pluck('description');
-        });
-        //Cache tag by making to one all the above
-        $this->tag=cache()->remember('tag',60*60*24*11,function(){
-                foreach($this->resources0 as $tags){
-                        if($tags!=null)
-                        array_push($this->tag, $tags);
-                }
-                foreach($this->resources1 as $tags){
-                        $tags=(string)$tags;
+        public function __construct()
+        {
+                // Fetch the Site Settings object
+                //Cache Grades
+                $this->grades=cache()->remember('grades', 60*60*24*30, function () 
+                {
+                        return Grade::orderBy('name','desc')->get();
+                });
+                //Cache all unique subjects
+                $this->commonCourses=cache()->remember('commonCourses', 60*60*6, function () 
+                {
+                        return Course::select('name')->distinct()->orderBy('name','asc')->get();
+                });
+                //Cache all types
+                $this->types2= cache()->remember('type2',60*60*24*30,function()
+                {
+                        return Type::orderBy('name','desc')->get();
+                });
+                //Cache all medias
+                $this->medias= cache()->remember('medias',60*60*24*30,function()
+                {
+                        return Media::orderBy('name','asc')->get();
+                });
+                //Cache resource tag
+                $this->resources0=cache()->remember('resource0',60*60*24*10, function()
+                {
+                        return Resource::groupBy('tag')->pluck('tag');
+                });
+                //Cache Grade level
+                $this->resources1=cache()->remember('resources1',60*60*24*10, function()
+                {
+                        return Grade::pluck('name');
+                });
+                //Cache Subject name
+                $this->resources2=cache()->remember('resources2',60*60*24*10, function()
+                {
+                        return Course::groupBy('name')->pluck('name');
+                });
+                //Cache unit title
+                $this->resources3=cache()->remember('resources3',60*60*24*10, function()
+                {
+                        return Unit::groupBy('title')->pluck('title');
+                });
+                //Cache subunit title
+                $this->resources4=cache()->remember('resources4',60*60*24*10, function()
+                {
+                        return Subunit::groupBy('title')->pluck('title');
+                });
+                //Cache media name
+                $this->resources5=cache()->remember('resources5',60*60*24*10, function()
+                {
+                        return Media::groupBy('name')->pluck('name');
+                });
+                //Cache content type
+                $this->resources6=cache()->remember('resources6',60*60*24*10, function()
+                {
+                        return Type::groupBy('name')->pluck('name');
+                });
+                //Cache Description
+                $this->resources7=cache()->remember('resources7',60*60*24*10, function()
+                {
+                        return Resource::groupBy('description')->pluck('description');
+                });
+                //Cache tag by making to one all the above
+                $this->tag=cache()->remember('tag',60*60*24*11,function()
+                {
+                        foreach($this->resources0 as $tags)
+                        {
+                                if($tags!=null)
                                 array_push($this->tag, $tags);
                         }
-                foreach($this->resources2 as $tags){
-                        if($tags!=null)
-                                array_push($this->tag, $tags);
-                        }
-                foreach($this->resources3 as $tags){
-                        if($tags!=null)
-                                array_push($this->tag, $tags);
-                        }
-                foreach($this->resources4 as $tags){
-                        if($tags!=null)
-                                array_push($this->tag, $tags);
-                        }
-                foreach($this->resources4 as $tags){
-                        if($tags!=null)
-                                array_push($this->tag, $tags);
-                        }
-                foreach($this->resources5 as $tags){
-                        if($tags!=null)
-                                array_push($this->tag, $tags);
-                        }
-                foreach($this->resources6 as $tags){
-                        if($tags!=null)
-                                array_push($this->tag, $tags);
-                        }
-                foreach($this->resources7 as $tags){
-                        if($tags!=null)
-                                array_push($this->tag, $tags);
-                        }
-                return array_values(array_unique($this->tag));   
-        });
-        $this->types = cache()->remember('types',60,function(){
-                return Type::inRandomOrder()->paginate(3,['*'],'types');
-        });
-       
-       
-    }
+                        foreach($this->resources1 as $tags)
+                        {
+                                $tags=(string)$tags;
+                                        array_push($this->tag, $tags);
+                                }
+                        foreach($this->resources2 as $tags)
+                        {
+                                if($tags!=null)
+                                        array_push($this->tag, $tags);
+                                }
+                        foreach($this->resources3 as $tags)
+                        {
+                                if($tags!=null)
+                                        array_push($this->tag, $tags);
+                                }
+                        foreach($this->resources4 as $tags)
+                        {
+                                if($tags!=null)
+                                        array_push($this->tag, $tags);
+                                }
+                        foreach($this->resources4 as $tags)
+                        {
+                                if($tags!=null)
+                                        array_push($this->tag, $tags);
+                                }
+                        foreach($this->resources5 as $tags)
+                        {
+                                if($tags!=null)
+                                        array_push($this->tag, $tags);
+                                }
+                        foreach($this->resources6 as $tags)
+                        {
+                                if($tags!=null)
+                                        array_push($this->tag, $tags);
+                                }
+                        foreach($this->resources7 as $tags)
+                        {
+                                if($tags!=null)
+                                        array_push($this->tag, $tags);
+                                }
+                        return array_values(array_unique($this->tag));   
+                });
+                $this->types = cache()->remember('types',60,function()
+                {
+                        return Type::inRandomOrder()->paginate(3,['*'],'types');
+                });
+        }
 
         /**
          * Display a listing of the resource.
@@ -140,7 +157,8 @@ class WelcomeController extends Controller
                 public function index()
                 { 
                         $paginatedResources = [];
-                        foreach($this->types as $type){
+                        foreach($this->types as $type)
+                        {
                                 $paginatedResources[$type->id] = ($type->allresources($type->id));
                         }
 
@@ -155,15 +173,14 @@ class WelcomeController extends Controller
                 }
 
 
-                /**
+        /**
          * Show the form for creating a new resource.
-                *
-                * @return \Illuminate\Http\Response
-                */
+        *
+        * @return \Illuminate\Http\Response
+        */
         public function create()
-                {
-                 
-                }
+        {
+        }
 
                 /**
                 * Store a newly created resource in storage.
@@ -175,7 +192,7 @@ class WelcomeController extends Controller
         {
                 //
         }
- 
+
         /**
          * Display the specified resource.
          *
@@ -185,20 +202,19 @@ class WelcomeController extends Controller
         public function view(Request $request)
         {
                 $resource=Resource::find($request->file_id);
-        $resource->increment('view', 1); 
+                $resource->increment('view', 1); 
         }
         
         /**
-                * show from the database.
-                *
-                * @param  \Illuminate\Http\Request  $request
-                * @return \Illuminate\Http\Response
-                */
+        * show from the database.
+        *
+        * @param  \Illuminate\Http\Request  $request
+        * @return \Illuminate\Http\Response
+        */
         public function show( $id,$type)
         {   
-
                 $tag = [];
-                        $grades=Grade::orderBy('name','asc')->get();
+                $grades=Grade::orderBy('name','asc')->get();
                 // $courses = Course::select('name')->distinct()->get();
                 $courses = Course::where('grade_id',null)->orderBy('name','asc')->get();
                 //$courses=Course::all();
@@ -213,60 +229,58 @@ class WelcomeController extends Controller
                 $resources7=Resource::groupBy('description')->pluck('description');
                 foreach($resources0 as $tags)
                 {
-                if($tags!=null)
+                        if($tags!=null)
                         array_push($tag, $tags);
                 }
-        foreach($resources1 as $tags)
+                foreach($resources1 as $tags){
+                        $tags=(string)$tags;
+                        array_push($tag, $tags);
+                }
+                foreach($resources2 as $tags)
                 {
-                $tags=(string)$tags;
+                        if($tags!=null)
                         array_push($tag, $tags);
                 }
-        foreach($resources2 as $tags)
+                foreach($resources3 as $tags)
                 {
-                if($tags!=null)
+                        if($tags!=null)
                         array_push($tag, $tags);
                 }
-        foreach($resources3 as $tags)
+                foreach($resources4 as $tags){
+                        if($tags!=null)
+                        array_push($tag, $tags);
+                }
+                foreach($resources4 as $tags)
                 {
-                if($tags!=null)
+                        if($tags!=null)
                         array_push($tag, $tags);
                 }
-        foreach($resources4 as $tags)
+                foreach($resources5 as $tags)
                 {
-                if($tags!=null)
+                        if($tags!=null)
                         array_push($tag, $tags);
                 }
-        foreach($resources4 as $tags)
+                foreach($resources6 as $tags)
                 {
-                if($tags!=null)
+                        if($tags!=null)
                         array_push($tag, $tags);
                 }
-        foreach($resources5 as $tags)
+                foreach($resources7 as $tags)
                 {
-                if($tags!=null)
+                        if($tags!=null)
                         array_push($tag, $tags);
                 }
-        foreach($resources6 as $tags)
-                {
-                if($tags!=null)
-                        array_push($tag, $tags);
-                }
-        foreach($resources7 as $tags)
-                {
-                if($tags!=null)
-                        array_push($tag, $tags);
-                }
-        $tag = array_values(array_unique($tag));
+                $tag = array_values(array_unique($tag));
                 $resource=Resource::find($id);
                 $like=$resource->like;
                 $dislike=$resource->deslike;
-                if($resource->media->name=="Document" || $resource->media->name=="document"){
-                $resource->increment('view', 1);
+                if($resource->media->name=="Document" || $resource->media->name=="document")
+                {
+                        $resource->increment('view', 1);
                 }
 
                 $type = Type::find($type);
                 $course_id=$resource->course_id;
-               
                 $paginatedResources = $type->resourcesPaginated($id,$course_id);
                 
                 $tag=Resource::groupBy('tag')->pluck('tag');
@@ -312,7 +326,6 @@ class WelcomeController extends Controller
 
         public function moeuser(Request $request)
         {
-                
                 $this->x=0;
                 $output='';
                 $courses='';
@@ -324,18 +337,19 @@ class WelcomeController extends Controller
                 $su=0;
                 $co=0;
                 $m=0;
-         
                 // $commonCourses = Course::where('grade_id',null)->orderBy('name','asc')->get();
                 
-                $commonCourses=cache()->remember('commonCourses',60,function(){
-                         return Course::select('name')->distinct()->orderBy('name','asc')->get();
-                 });
-                 
-                $allUnits = cache()->remember('allUnits',60,function(){
+                $commonCourses=cache()->remember('commonCourses',60,function()
+                {
+                        return Course::select('name')->distinct()->orderBy('name','asc')->get();
+                });
+                $allUnits = cache()->remember('allUnits',60,function()
+                {
                         return Unit::orderBy('name','asc')->get();
                 });
 
-                $allSubunits=cache()->remember('allSubunits',60,function(){
+                $allSubunits=cache()->remember('allSubunits',60,function()
+                {
                         return Subunit::orderBy('name','asc')->get();
                 }); 
                 if(isset($_POST['action']))
@@ -344,59 +358,58 @@ class WelcomeController extends Controller
                 if(isset($_POST['grade_id']))
                 {
                         $g=1;
-                                $grade_id = implode("','",$_POST['grade_id']);
-                                $sql .=" where grade_id In ('$grade_id') ";
-                                        //$sql = Resource::whereIn('grade_id',$_POST['grade_id']);
+                        $grade_id = implode("','",$_POST['grade_id']);
+                        $sql .=" where grade_id In ('$grade_id') ";
+                        //$sql = Resource::whereIn('grade_id',$_POST['grade_id']);
                         $this->x=1;
                         $courses=Course::whereIn('grade_id',$_POST['grade_id'])->orderBy('name','asc')->get();
                 }
                 if(isset($_POST['course_id']))
-                                {
+                {
                         $c=1;
-                                        $course_id = implode("','",$_POST['course_id']);
+                        $course_id = implode("','",$_POST['course_id']);
                         $units=Unit::whereIn('course_id',$_POST['course_id'])->orderBy('name','asc')->get();
                         if($this->x==0)
-                                        {
-                                                $sql .=" where course_id In ('$course_id') ";
-                                                $this->x=1;
-                                        }
-                                        else
-                                        {
-                                                $sql .=" AND course_id In('$course_id')";
-                                }
-                                }
+                        {
+                                $sql .=" where course_id In ('$course_id') ";
+                                $this->x=1;
+                        }
+                        else
+                        {
+                                $sql .=" AND course_id In('$course_id')";
+                        }
+                }
 
-                        if(isset($_POST['unit_id']))
+                if(isset($_POST['unit_id']))
                 {
                         $u=1;
-                                $unit_id = implode("','",$_POST['unit_id']);
+                        $unit_id = implode("','",$_POST['unit_id']);
                         $subunits=Subunit::whereIn('unit_id',$_POST['unit_id'])->orderBy('title','asc')->get();
-                                if($this->x==0)
+                        if($this->x==0)
                         {
-                                        $sql .=" where unit_id In ('$unit_id') ";
-                                        $this->x=1;
-                                }
-                                else
+                                $sql .=" where unit_id In ('$unit_id') ";
+                                $this->x=1;
+                        }
+                        else
                         {
-                                        $sql .=" AND unit_id In ('$unit_id')";
+                                $sql .=" AND unit_id In ('$unit_id')";
                         }
 
-                        }
+                }
                 if(isset($_POST['subunit_id']))
                 {
                         $su=1;
-                                $subunit_id = implode("','",$_POST['subunit_id']);
-                                if($this->x==0)
-                        {
-                                        $sql .=" where subunit_id In ('$subunit_id') ";
-                                        $this->x=1;
-                                }
-                                else
-                                $sql .=" AND subunit_id In ('$subunit_id')";
+                        $subunit_id = implode("','",$_POST['subunit_id']);
+                        if($this->x==0){
+                                $sql .=" where subunit_id In ('$subunit_id') ";
+                                $this->x=1;
                         }
+                        else
+                                $sql .=" AND subunit_id In ('$subunit_id')";
+                }
                 if(isset($_POST['type_id']))
                 {
-                        $co=1;
+                                $co=1;
                                 $type_id = implode("','",$_POST['type_id']);
                                 if($this->x==0)
                         {
@@ -405,7 +418,7 @@ class WelcomeController extends Controller
                                 }
                                 else
                                 $sql .=" AND type_id In ('$type_id')";
-                        }
+                }
                 if(isset($_POST['media_id']))
                 {
                         $m=1;
@@ -417,112 +430,114 @@ class WelcomeController extends Controller
                                 }
                         else
                                 $sql .=" AND media_id In ('$media_id')";
-                        }
+                }
                 }
                 $prefix = "SELECT * from resources";
                 $new_sql = $prefix.$sql;
-        $types = Type::orderBy('created_at','asc')->get();
+                $types = Type::orderBy('created_at','asc')->get();
                 $type_check = [];
 
-        //return $new_sql;
+                //return $new_sql;
                 $resources = DB::select($new_sql);
-        foreach($types as $type)
-        {
-                $type_check[$type->id] = 0;
-
-                foreach($resources as $resource)
-                {
-                if($resource->type_id == $type->id)
-                {
-                $type_check[$type->id] += 1;
-                }
-                }
-        }
-        //  $resources2 = array_map(function ($value) {
-        //  return (array)$value;
-        //}, $resources2);
-        //return $resources[0]->type;
-
-        if(count($resources)==0)
-                $output.="<h4 class='text-center bg-light '> No Resource is available for this selection! </h4>";
-
-        else{
-                $output.='<h4 class="mt-3 ml-2 bg-light text-center ">Filtered Result</h4>';
-                        $output.='<div class="container-fluid "><div class="row">';
                 foreach($types as $type)
                 {
-                   if($type_check[$type->id] > 0){
-                                $i = 0;
-                //$output.='<p>'.$type->name.'</p>';
-                $output.='<h4><strong class="mt-3 ml-2 Button Button-outline zoom bg-white gradeType" onclick="gradeTypeController()" value="'.$type->id.'" >'.$type->name.'</strong></h4>';
-                $output.='<div class="container-fluid">';
-                $output.='<div class="row ">';
-                foreach($resources as $resourceFiltered)
-                {
+                        $type_check[$type->id] = 0;
 
-                        //return $resourceFiltered;
-                        $type2 = Type::findorfail($resourceFiltered->type_id);
-                        
-                         if($type2->id==$type->id && $i<4 ){
-                                $i++;
-                                $output.='<div class="col-md-3 mb-3 blackColor " id="linkColor">';
-                                $output.='<div class="card zoom shadow-lg">';
-                                $resource=Resource::find($resourceFiltered->id);
-                                if($resource->media->name == "Document"||$resource->media->name == "document" ){
-                                        $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.'"  target="--blank">
-                                        <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
-
-                                        if($resource->link == 1){
-                                              $output.='<div class="text-warning py-1 px-2 font-weight-bold" 
-                                                style="background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.7); ">
-                                                External Resource  ( Non-MoE )</span>
-                                                </div>';  
-                                        }
+                        foreach($resources as $resource)
+                        {
+                                if($resource->type_id == $type->id)
+                                {
+                                        $type_check[$type->id] += 1;
                                 }
-                                else{
-                                        $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.'" target="--blank" >
-                                        <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
-                                        if($resource->link == 1){
-                                              $output.='<div class="text-warning py-1 px-2 font-weight-bold" 
-                                                style="background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.7); ">
-                                                External Resource  ( Non-MoE )</span>
-                                                </div>';  
-                                        }
-                                }
-                                $output.= '<div class="card-body p-1">';
-                                        
-                                        // return $resource->unit_id;
-                                        if($resource->media->name=="Document"|| $resource->media->name=="document" || $resource->unit_id==null)
-                                                if($resource->grade_id==null)
-                                                        $output.= '<h6 class="mb-0">'.$resource->course->name.'</h6>';  
-                                                else 
-                                                        $output.= '<h6 class="mb-0">Gr-'.$resource->grade->name.' '.$resource->course->name.'</h6>';
-                                        else
-                                               $output.='<h6 class="mb-0">Gr-'.$resource->grade->name.' '.$resource->course->name.' unit-'.$resource->unit->name.'</h6>';
-                                                
-                                
-                                        $output.= '<h6 class=" mb-2 text-truncate">'.$resource->description.'</h6>
-                                                  <div class="d-flex justify-content-between">
-                                                        <span class="date">'.  $resource->view  .'  Views </span>
-                                                        <a href="'.$resource->fileLocation.'" download>
-                                                                 <button class="btn btn-sm download zoom border shadow" value="'.$resource->id.'" style="font-size:13px;"  >
-                                                                        <span class="icon icon-download "></span><span id="downloadCount">'.' '. $resource->download.'</span>
-                                                                </button>
-                                                        </a>
-                                                        <span class="date float-right">'.$resource->created_at->diffForHumans() .'</span>
-                                                </div>';
-                                        $output.='</div></div></div>';
-                                         
+                        }
                 }
-        }
-        $output.='</div></div>';
-        }
-        }
-        $output.='</div></div>';
-        }
-        //End of fileter output
-        //course filter
-        return response()->json(['x'=>$this->x, 'g' => $g, 'c' => $c, 'u' => $u, 'su' => $su, 'co' => $co, 'm' => $m, 'commonCourses'=> $commonCourses, 'allUnits' => $allUnits, 'allSubunits'=> $allSubunits, 'output' => $output, 'courses' => $courses,  'units' => $units, 'subunits' => $subunits,]);
+                //  $resources2 = array_map(function ($value) {
+                //  return (array)$value;
+                //}, $resources2);
+                //return $resources[0]->type;
+
+                if(count($resources)==0)
+                        $output.="<h4 class='text-center bg-light '> No Resource is available for this selection! </h4>";
+
+                else
+                {
+                        $output.='<h4 class="mt-3 ml-2 bg-light text-center ">Filtered Result</h4>';
+                                $output.='<div class="container-fluid "><div class="row">';
+                        foreach($types as $type)
+                        {
+                                if($type_check[$type->id] > 0)
+                                {
+                                        $i = 0;
+                                        //$output.='<p>'.$type->name.'</p>';
+                                        $output.='<h4><strong class="mt-3 ml-2 Button Button-outline zoom bg-white gradeType" onclick="gradeTypeController()" value="'.$type->id.'" >'.$type->name.'</strong></h4>';
+                                        $output.='<div class="container-fluid">';
+                                        $output.='<div class="row ">';
+                                        foreach($resources as $resourceFiltered)
+                                        {
+                                                //return $resourceFiltered;
+                                                $type2 = Type::findorfail($resourceFiltered->type_id);
+                                                
+                                                if($type2->id==$type->id && $i<4 ){
+                                                        $i++;
+                                                        $output.='<div class="col-md-3 mb-3 blackColor " id="linkColor">';
+                                                        $output.='<div class="card zoom shadow-lg">';
+                                                        $resource=Resource::find($resourceFiltered->id);
+                                                        if($resource->media->name == "Document"||$resource->media->name == "document" )
+                                                        {
+                                                                $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.'"  target="--blank">
+                                                                <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
+
+                                                                if($resource->link == 1)
+                                                                {
+                                                                        $output.='<div class="text-warning py-1 px-2 font-weight-bold" 
+                                                                        style="background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.7); ">
+                                                                        External Resource  ( Non-MoE )</span>
+                                                                        </div>';  
+                                                                }
+                                                        }
+                                                        else
+                                                        {
+                                                                $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.'" target="--blank" >
+                                                                <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
+                                                                if($resource->link == 1)
+                                                                {
+                                                                        $output.='<div class="text-warning py-1 px-2 font-weight-bold" 
+                                                                        style="background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.7); ">
+                                                                        External Resource  ( Non-MoE )</span>
+                                                                        </div>';  
+                                                                }
+                                                        }
+                                                        $output.= '<div class="card-body p-1">';
+                                                                // return $resource->unit_id;
+                                                                if($resource->media->name=="Document"|| $resource->media->name=="document" || $resource->unit_id==null)
+                                                                        if($resource->grade_id==null)
+                                                                                $output.= '<h6 class="mb-0">'.$resource->course->name.'</h6>';  
+                                                                        else 
+                                                                                $output.= '<h6 class="mb-0">Gr-'.$resource->grade->name.' '.$resource->course->name.'</h6>';
+                                                                else
+                                                                        $output.='<h6 class="mb-0">Gr-'.$resource->grade->name.' '.$resource->course->name.' unit-'.$resource->unit->name.'</h6>';
+                                                                        
+                                                                $output.= '<h6 class=" mb-2 text-truncate">'.$resource->description.'</h6>
+                                                                <div class="d-flex justify-content-between">
+                                                                <span class="date">'.  $resource->view  .'  Views </span>
+                                                                <a href="'.$resource->fileLocation.'" download>
+                                                                <button class="btn btn-sm download zoom border shadow" value="'.$resource->id.'" style="font-size:13px;"  >
+                                                                <span class="icon icon-download "></span><span id="downloadCount">'.' '. $resource->download.'</span>
+                                                                </button>
+                                                                </a>
+                                                                <span class="date float-right">'.$resource->created_at->diffForHumans() .'</span>
+                                                                </div>';
+                                                                $output.='</div></div></div>';
+                                                }
+                                        }
+                                        $output.='</div></div>';
+                                }
+                        }
+                        $output.='</div></div>';
+                }
+                        //End of fileter output
+                        //course filter
+                        return response()->json(['x'=>$this->x, 'g' => $g, 'c' => $c, 'u' => $u, 'su' => $su, 'co' => $co, 'm' => $m, 'commonCourses'=> $commonCourses, 'allUnits' => $allUnits, 'allSubunits'=> $allSubunits, 'output' => $output, 'courses' => $courses,  'units' => $units, 'subunits' => $subunits,]);
         }
 
 
@@ -536,7 +551,6 @@ class WelcomeController extends Controller
 
         public function fileDownload(Request $request)
         {       
-                
                 $resource=Resource::find($request->file_id);
                 $resource->increment('download',1);
                 return $resource->download;
@@ -545,42 +559,42 @@ class WelcomeController extends Controller
         // like function
         public function likeDislike(Request $request)
         {
-        $like=$request->like;
-        $dislike=$request->dislike;
-        $resource=Resource::find($request->file_id);
+                $like=$request->like;
+                $dislike=$request->dislike;
+                $resource=Resource::find($request->file_id);
 
-        // if($like!=0)
-        // {
-        //     if($like==-1)
-        //     {
-        //         $resource->decrement('like',1);
-        //     }
-        //     elseif ($like==1)
-        //      {
-        //         $resource->increment('like',1);
-        //     }
-        // }
-        
-        // if($dislike!=0)
-        // {
-        //     if($dislike==-1)
-        //     {
-        //         $resource->decrement('deslike',1);
-        //     }
-        //      elseif ($dislike==1)
-        //      {
+                // if($like!=0)
+                // {
+                //     if($like==-1)
+                //     {
+                //         $resource->decrement('like',1);
+                //     }
+                //     elseif ($like==1)
+                //      {
+                //         $resource->increment('like',1);
+                //     }
+                // }
                 
-        //        $resource->increment('deslike',1);
-        //     }
-        // }
-        $resource->like=$like;
-        $resource->deslike=$dislike;
-        $resource->save();
-        $like=$resource->like;
-        $dislike=$resource->deslike;
+                // if($dislike!=0)
+                // {
+                //     if($dislike==-1)
+                //     {
+                //         $resource->decrement('deslike',1);
+                //     }
+                //      elseif ($dislike==1)
+                //      {
+                        
+                //        $resource->increment('deslike',1);
+                //     }
+                // }
+                $resource->like=$like;
+                $resource->deslike=$dislike;
+                $resource->save();
+                $like=$resource->like;
+                $dislike=$resource->deslike;
 
-        return response()->json([  'like' => $like, 'dislike' => $dislike]);
-        
+                return response()->json([  'like' => $like, 'dislike' => $dislike]);
+                
 
 
         }
@@ -589,12 +603,13 @@ class WelcomeController extends Controller
         // tag
         public function tag(Request $request)
         {
-        $tag=Resource::where("tag","LIKE","%{$request->input('query')}%")
-                        ->orwhere("description","LIKE","%{$request->input('query')}%")
-                        ->get();
+                $tag=Resource::where("tag","LIKE","%{$request->input('query')}%")
+                ->orwhere("description","LIKE","%{$request->input('query')}%")
+                ->get();
 
         }
-        public function search(Request $request){
+        public function search(Request $request)
+        {
                 $output='';
                 //$data=$request->query;
                 //return response()->json($data);
@@ -605,7 +620,7 @@ class WelcomeController extends Controller
         
                 $resources1 = Resource::where("tag","LIKE","%{$request->input('query')}%")
                         ->orwhere("description","LIKE","%{$request->input('query')}%")
-                                ->get();
+                        ->get();
                 $resources2 = Subunit::where("title","LIKE","%{$request->input('query')}%")->get();
                 $resources3 = Grade::where("name","LIKE","%{$request->input('query')}%")->get();
                 $resources4 = Course::where("name","LIKE","%{$request->input('query')}%")->get();
@@ -616,33 +631,39 @@ class WelcomeController extends Controller
                         array_push($resources, $resource);
                 }
                 foreach($resources2 as $subunit){
-                        foreach($subunit->resources as $subresource){
+                        foreach($subunit->resources as $subresource)
+                        {
                                 array_push($resources, $subresource);
                         }
                 }
                 foreach($resources3 as $grade)
                 {
-                        foreach($grade->resources as $graderesource){
+                        foreach($grade->resources as $graderesource)
+                        {
                                 array_push($resources,$graderesource);
                         }
                 }
                 foreach($resources4 as $course){
-                        foreach($course->resources as $courseresource){
+                        foreach($course->resources as $courseresource)
+                        {
                                 array_push($resources,$courseresource);
                         }
                 }
                 foreach($resources5 as $unit){
-                        foreach($unit->resources as $unitresource){
+                        foreach($unit->resources as $unitresource)
+                        {
                                 array_push($resources,$unitresource);
                         }
                 }
                 foreach($resources6 as $media){
-                        foreach($media->resources as $mediaresource){
+                        foreach($media->resources as $mediaresource)
+                        {
                                 array_push($resources,$mediaresource);
                         }
                 }
                 foreach($resources7 as $type){
-                        foreach($type->resources as $typeresource){
+                        foreach($type->resources as $typeresource)
+                        {
                                 array_push($resources,$typeresource);
                         }
                 }
@@ -656,117 +677,130 @@ class WelcomeController extends Controller
                 //return $resources;
                 
                 $type_check = [];
-                foreach($types as $type){
+                foreach($types as $type)
+                {
                         $type_check[$type->id] = 0;
-                        foreach($resources as $resource){
-                                if($resource->type_id == $type->id){
+                        foreach($resources as $resource)
+                        {
+                                if($resource->type_id == $type->id)
+                                {
                                         $type_check[$type->id] += 1;
                                 }
                         }
                 }
                 if(count($resources)==0)
                         $output.="<h4 class='text-center bg-light'> No Resource is available for this search! </h4>";
-                else{
+                else
+                {
                         $output.='<h4 class="mt-3 ml-2 bg-light text-center">Search Result</h4>';
                         $output.='<div class="container-fluid"><div class="row">';
-                        foreach($types as $type){
+                        foreach($types as $type)
+                        {
                 
-                        if($type_check[$type->id] > 0){
-                                $i=0;
-                                //$output.='<p>'.$type->name.'</p>';
-                                $output.='<h4><strong class="mt-3 ml-2 Button Button-outline zoom bg-white" id=ResutlTittle>'.$type->name.'</strong></h4>';
-                                $output.='<div class="container-fluid">';
-                                $output.='<div class="row">';
-                                foreach($resources as $resourceFiltered){
-                                        //return $resourceFiltered;
-                                        $type2 = Type::findorfail($resourceFiltered->type_id);
-                                        if($type2->id==$type->id && $i<4){
-                                                //return $type;
-                                                $i++;
-                                                $output.='<div class="col-md-3 mb-3 blackColor " id="linkColor">';
-                                                $output.='<div class="card zoom shadow-lg">';
-                                                $resource=Resource::find($resourceFiltered->id);
-                                                if($resource->media->name == "Document"||$resource->media->name == "document" ){
-                                                        $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.' " >
-                                                        <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
-                                                        if($resource->link == 1){
-                                                             $output.='<div class="text-warning py-1 px-2 font-weight-bold" 
-                                                             style="background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.7); ">
-                                                             External Resource  ( Non-MoE )</span>
-                                                             </div>';  
-                                                        }
+                                if($type_check[$type->id] > 0)
+                                {
+                                        $i=0;
+                                        //$output.='<p>'.$type->name.'</p>';
+                                        $output.='<h4><strong class="mt-3 ml-2 Button Button-outline zoom bg-white" id=ResutlTittle>'.$type->name.'</strong></h4>';
+                                        $output.='<div class="container-fluid">';
+                                        $output.='<div class="row">';
+                                        foreach($resources as $resourceFiltered)
+                                        {
+                                                //return $resourceFiltered;
+                                                $type2 = Type::findorfail($resourceFiltered->type_id);
+                                                if($type2->id==$type->id && $i<4)
+                                                {
+                                                        //return $type;
+                                                        $i++;
+                                                        $output.='<div class="col-md-3 mb-3 blackColor " id="linkColor">';
+                                                        $output.='<div class="card zoom shadow-lg">';
+                                                        $resource=Resource::find($resourceFiltered->id);
+                                                        if($resource->media->name == "Document"||$resource->media->name == "document" )
+                                                        {
+                                                                $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.' " >
+                                                                <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
+                                                                if($resource->link == 1)
+                                                                {
+                                                                        $output.='<div class="text-warning py-1 px-2 font-weight-bold" 
+                                                                        style="background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.7); ">
+                                                                        External Resource  ( Non-MoE )</span>
+                                                                        </div>';  
+                                                                }
 
-                                                }
-                                                else{
-                                                        $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.' "  >                                     
-                                                        <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
-                                                        if($resource->link == 1){
-                                                             $output.='<div class="text-warning py-1 px-2 font-weight-bold" 
-                                                             style="background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.7); ">
-                                                             External Resource  ( Non-MoE )</span>
-                                                             </div>';  
                                                         }
+                                                        else
+                                                        {
+                                                                $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.' "  >                                     
+                                                                <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
+                                                                if($resource->link == 1)
+                                                                {
+                                                                        $output.='<div class="text-warning py-1 px-2 font-weight-bold" 
+                                                                        style="background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.7); ">
+                                                                        External Resource  ( Non-MoE )</span>
+                                                                        </div>';  
+                                                                }
 
-                                                }
-                                                $output.= '<div class="card-body p-1">';
-                                        
-                                                // return $resource->unit_id;
-                                                if($resource->media->name=="Document"|| $resource->media->name=="document" || $resource->unit_id==null)
-                                                        if($resource->grade_id==null)
-                                                                $output.= '<h6 class="mb-0">'.$resource->course->name.'</h6>';  
-                                                        else 
-                                                                $output.= '<h6 class="mb-0">Gr-'.$resource->grade->name.' '.$resource->course->name.'</h6>';
-                                                else
-                                                       $output.='<h6 class="mb-0">Gr-'.$resource->grade->name.' '.$resource->course->name.' unit-'.$resource->unit->name.'</h6>';
-                                                        
-                                        
-                                                $output.= '<h6 class=" mb-2 text-truncate">'.$resource->description.'</h6>
-                                                          <div class="d-flex justify-content-between">
+                                                        }
+                                                        $output.= '<div class="card-body p-1">';
+                                                
+                                                        // return $resource->unit_id;
+                                                        if($resource->media->name=="Document"|| $resource->media->name=="document" || $resource->unit_id==null)
+                                                                if($resource->grade_id==null)
+                                                                        $output.= '<h6 class="mb-0">'.$resource->course->name.'</h6>';  
+                                                                else 
+                                                                        $output.= '<h6 class="mb-0">Gr-'.$resource->grade->name.' '.$resource->course->name.'</h6>';
+                                                        else
+                                                                $output.='<h6 class="mb-0">Gr-'.$resource->grade->name.' '.$resource->course->name.' unit-'.$resource->unit->name.'</h6>';
+                                                                
+                                                
+                                                        $output.= '<h6 class=" mb-2 text-truncate">'.$resource->description.'</h6>
+                                                                <div class="d-flex justify-content-between">
                                                                 <span class="date">'.  $resource->view  .'  Views </span>
                                                                 <a href="'.$resource->fileLocation.'" download>
-                                                                         <button class="btn btn-sm download zoom border shadow" value="'.$resource->id.'" style="font-size:13px;"  >
-                                                                                <span class="icon icon-download "></span><span id="downloadCount">'.' '. $resource->download.'</span>
-                                                                        </button>
+                                                                <button class="btn btn-sm download zoom border shadow" value="'.$resource->id.'" style="font-size:13px;"  >
+                                                                <span class="icon icon-download "></span><span id="downloadCount">'.' '. $resource->download.'</span>
+                                                                </button>
                                                                 </a>
                                                                 <span class="date float-right">'.$resource->created_at->diffForHumans() .'</span>
-                                                        </div>';
-                                                $output.='</div></div></div>';
+                                                                </div>';
+                                                        $output.='</div></div></div>';
+                                                }
                                         }
-                                }
-                                $output.='</div></div>';
-                        }       
+                                        $output.='</div></div>';
+                                }       
+                        }
+                        $output.='</div></div>';
                 }
-                $output.='</div></div>';
-                }
-                
-
                 return $output;
-                        //return response()->json($data);
+                //return response()->json($data);
         }
+
         //  Return More of Content Type
-        public function typeMore(Request $request){
+        public function typeMore(Request $request)
+        {
                 $output='';
                 //$data=$request->query;
                 //return response()->json($data);
                 //  $search=Resource::where('tag',$query)->orderBy('created_at','desc')->get();
-
                 $types = Type::orderBy('created_at','asc')->get();
                 $resources = [];
-        
                 $resources1 = Resource::where("tag","LIKE","%{$request->input('query')}%")
                         ->orwhere("description","LIKE","%{$request->input('query')}%")
-                                ->get();
+                        ->get();
                 $resources2 = Subunit::where("title","LIKE","%{$request->input('query')}%")->get();
                 $resources3 = Grade::where("name","LIKE","%{$request->input('query')}%")->get();
                 $resources4 = Course::where("name","LIKE","%{$request->input('query')}%")->get();
                 $resources5 = Unit::where("title","LIKE","%{$request->input('query')}%")->get();
                 $resources6 = Media::where("name","LIKE","%{$request->input('query')}%")->get();
                 $resources7 = Type::where("name","LIKE","%{$request->input('query')}%")->get();
-                foreach($resources1 as $resource){
+                foreach($resources1 as $resource)
+                {
                         array_push($resources, $resource);
                 }
-                foreach($resources2 as $subunit){
-                        foreach($subunit->resources as $subresource){
+                foreach($resources2 as $subunit)
+                {
+                        foreach($subunit->resources as $subresource)
+                        {
                                 array_push($resources, $subresource);
                         }
                 }
@@ -776,40 +810,41 @@ class WelcomeController extends Controller
                                 array_push($resources,$graderesource);
                         }
                 }
-                foreach($resources4 as $course){
+                foreach($resources4 as $course)
+                {
                         foreach($course->resources as $courseresource){
                                 array_push($resources,$courseresource);
                         }
                 }
                 foreach($resources5 as $unit){
-                        foreach($unit->resources as $unitresource){
+                        foreach($unit->resources as $unitresource)
+                        {
                                 array_push($resources,$unitresource);
                         }
                 }
                 foreach($resources6 as $media){
-                        foreach($media->resources as $mediaresource){
+                        foreach($media->resources as $mediaresource)
+                        {
                                 array_push($resources,$mediaresource);
                         }
                 }
                 foreach($resources7 as $type){
-                        foreach($type->resources as $typeresource){
+                        foreach($type->resources as $typeresource)
+                        {
                                 array_push($resources,$typeresource);
                         }
                 }
                 $resources = array_unique($resources);
-
-
-
-                
                 //$resources = collect($resources);
-
                 //return $resources;
                 
                 $type_check = [];
                 foreach($types as $type){
                         $type_check[$type->id] = 0;
-                        foreach($resources as $resource){
-                                if($resource->type_id == $type->id){
+                        foreach($resources as $resource)
+                        {
+                                if($resource->type_id == $type->id)
+                                {
                                         $type_check[$type->id] += 1;
                                 }
                         }
@@ -819,63 +854,68 @@ class WelcomeController extends Controller
                 else{
                         $output.='<h4 class="mt-3 ml-2 bg-light text-center">'.$resource->type->name.'</h4>';
                         $output.='<div class="container-fluid"><div class="row">';
-                        foreach($types as $type){
-                        if($type_check[$type->id] > 0){
+                        foreach($types as $type)
+                        {
+                        if($type_check[$type->id] > 0)
+                        {
                                 //$output.='<p>'.$type->name.'</p>';
                                 $output.='<h4><strong class="mt-3 ml-2 blackColor" id=ResutlTittle>'.$type->name.'</strong></h4>';
                                 $output.='<div class="container-fluid">';
                                 $output.='<div class="row">';
-                                foreach($resources as $resourceFiltered){
+                                foreach($resources as $resourceFiltered)
+                                {
                                         //return $resourceFiltered;
                                         $type2 = Type::findorfail($resourceFiltered->type_id);
-                                        if($type2->id==$type->id){
+                                        if($type2->id==$type->id)
+                                        {
                                                 //return $type;
                                                 $output.='<div class="col-md-3 mb-3 blackColor " id="linkColor">';
                                                 $output.='<div class="card zoom shadow-lg">';
                                                 $resource=Resource::find($resourceFiltered->id);
-                                                if($resource->media->name == "Document"||$resource->media->name == "document" ){
+                                                if($resource->media->name == "Document"||$resource->media->name == "document" )
+                                                {
                                                         $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.' " >
                                                         <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
-                                                        if($resource->link == 1){
-                                                             $output.='<div class="text-warning py-1 px-2 font-weight-bold" 
-                                                             style="background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.7); ">
-                                                             External Resource  ( Non-MoE )</span>
-                                                             </div>';  
+                                                        if($resource->link == 1)
+                                                        {
+                                                                $output.='<div class="text-warning py-1 px-2 font-weight-bold" 
+                                                                style="background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.7); ">
+                                                                External Resource  ( Non-MoE )</span>
+                                                                </div>';  
                                                         }
                                                 }
-                                                else{
+                                                else
+                                                {
                                                         $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.' " >
                                                         <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
-                                                        if($resource->link == 1){
-                                                             $output.='<div class="text-warning py-1 px-2 font-weight-bold" 
-                                                             style="background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.7); ">
-                                                             External Resource  ( Non-MoE )</span>
-                                                             </div>';  
+                                                        if($resource->link == 1)
+                                                        {
+                                                                $output.='<div class="text-warning py-1 px-2 font-weight-bold" 
+                                                                style="background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.7); ">
+                                                                External Resource  ( Non-MoE )</span>
+                                                                </div>';  
                                                         }
                                                 }
                                                 $output.= '<div class="card-body p-1">';
-                                        
-                                        // return $resource->unit_id;
-                                        if($resource->media->name=="Document"|| $resource->media->name=="document" || $resource->unit_id==null)
-                                                if($resource->grade_id==null)
-                                                        $output.= '<h6 class="mb-0">'.$resource->course->name.'</h6>';  
-                                                else 
-                                                        $output.= '<h6 class="mb-0">Gr-'.$resource->grade->name.' '.$resource->course->name.'</h6>';
-                                        else
-                                               $output.='<h6 class="mb-0">Gr-'.$resource->grade->name.' '.$resource->course->name.' unit-'.$resource->unit->name.'</h6>';
-                                                
-                                
-                                        $output.= '<h6 class=" mb-2 text-truncate">'.$resource->description.'</h6>
-                                                  <div class="d-flex justify-content-between">
+                                                // return $resource->unit_id;
+                                                if($resource->media->name=="Document"|| $resource->media->name=="document" || $resource->unit_id==null)
+                                                        if($resource->grade_id==null)
+                                                                $output.= '<h6 class="mb-0">'.$resource->course->name.'</h6>';  
+                                                        else 
+                                                                $output.= '<h6 class="mb-0">Gr-'.$resource->grade->name.' '.$resource->course->name.'</h6>';
+                                                else
+                                                $output.='<h6 class="mb-0">Gr-'.$resource->grade->name.' '.$resource->course->name.' unit-'.$resource->unit->name.'</h6>';
+                                                $output.= '<h6 class=" mb-2 text-truncate">'.$resource->description.'</h6>
+                                                        <div class="d-flex justify-content-between">
                                                         <span class="date">'.  $resource->view  .'  Views </span>
                                                         <a href="'.$resource->fileLocation.'" download>
-                                                                 <button class="btn btn-sm download zoom border shadow" value="'.$resource->id.'" style="font-size:13px;"  >
-                                                                        <span class="icon icon-download "></span><span id="downloadCount">'.' '. $resource->download.'</span>
-                                                                </button>
+                                                        <button class="btn btn-sm download zoom border shadow" value="'.$resource->id.'" style="font-size:13px;"  >
+                                                        <span class="icon icon-download "></span><span id="downloadCount">'.' '. $resource->download.'</span>
+                                                        </button>
                                                         </a>
                                                         <span class="date float-right">'.$resource->created_at->diffForHumans() .'</span>
-                                                </div>';
-                                        $output.='</div></div></div>';
+                                                        </div>';
+                                                $output.='</div></div></div>';
                                         }
                                 }
                                 $output.='</div></div>';
@@ -891,7 +931,8 @@ class WelcomeController extends Controller
         
         
         //   //  Return More of Content Type
-        public function searchCourse(Request $request){
+        public function searchCourse(Request $request)
+        {
                 $output='';
                 //$data=$request->query;
                 //return response()->json($data);
@@ -965,46 +1006,134 @@ class WelcomeController extends Controller
                 }
                 if(count($resources)==0)
                         $output.="<h4 class='text-center bg-light text-black'> No Resource is available for this Course! </h4>";
-                else{
+                else
+                {
                         $output.='<h4 class="mt-3 ml-2 bg-light text-center ">'.$resource->course->name.'</h4>';
                         $output.='<div class="container-fluid"><div class="row">';
-                       
-                        foreach($types as $type){
-                         
-                        if($type_check[$type->id] > 0){
-                                $i = 0;
-                                //$output.='<p>'.$type->name.'</p>';
-                                $output.='<h4><strong class="mt-3 ml-2 Button Button-outline zoom bg-white courseType"  id="'.$type->name.'" onclick="courseTypeFromController()">'.$type->name.'</strong></h4>';
-                                $output.='<div class="container-fluid">';
-                                $output.='<div class="row">';
-                                foreach($resources as $resourceFiltered){
-                                       
-                                        //return $resourceFiltered;
+                        foreach($types as $type)
+                        {
+                                if($type_check[$type->id] > 0)
+                                {
+                                        $i = 0;
+                                        //$output.='<p>'.$type->name.'</p>';
+                                        $output.='<h4><strong class="mt-3 ml-2 Button Button-outline zoom bg-white courseType"  id="'.$type->name.'" onclick="courseTypeFromController()">'.$type->name.'</strong></h4>';
+                                        $output.='<div class="container-fluid">';
+                                        $output.='<div class="row">';
+                                        foreach($resources as $resourceFiltered)
+                                        {
+                                                //return $resourceFiltered;
+                                                $type2 = Type::findorfail($resourceFiltered->type_id);
+                                                if($type2->id==$type->id && $i<4)
+                                                {
+                                                        //return $type;
+                                                        $i++;
+                                                        $output.='<div class="col-md-3 mb-3 blackColor " id="linkColor">';
+                                                        $output.='<div class="card zoom shadow-lg">';
+                                                        $resource=Resource::find($resourceFiltered->id);
+                                                        if($resource->media->name == "Document"||$resource->media->name == "document" )
+                                                        {
+                                                                $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.'  " >
+                                                                <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
+                                                                if($resource->link == 1)
+                                                                {
+                                                                        $output.='<div class="text-warning py-1 px-2 font-weight-bold" 
+                                                                                style="background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.7); ">
+                                                                                External Resource  ( Non-MoE )</span>
+                                                                                </div>';  
+                                                                }
+                                                        }
+                                                        else
+                                                        {
+                                                                $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.' " >
+                                                                <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
+                                                                if($resource->link == 1)
+                                                                {
+                                                                        $output.='<div class="text-warning py-1 px-2 font-weight-bold" 
+                                                                        style="background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.7); ">
+                                                                        External Resource  ( Non-MoE )</span>
+                                                                        </div>';  
+                                                                }
+                                                        }
+                                                        $output.= '<div class="card-body p-1">';
+                                                        // return $resource->unit_id;
+                                                        if($resource->media->name=="Document"|| $resource->media->name=="document" || $resource->unit_id==null)
+                                                                if($resource->grade_id==null)
+                                                                        $output.= '<h6 class="mb-0">'.$resource->course->name.'</h6>';  
+                                                                else 
+                                                                        $output.= '<h6 class="mb-0">Gr-'.$resource->grade->name.' '.$resource->course->name.'</h6>';
+                                                        else
+                                                                $output.='<h6 class="mb-0">Gr-'.$resource->grade->name.' '.$resource->course->name.' unit-'.$resource->unit->name.'</h6>';
+                                                                
+                                                
+                                                        $output.= '<h6 class=" mb-2 text-truncate">'.$resource->description.'</h6>
+                                                                <div class="d-flex justify-content-between">
+                                                                <span class="date">'.  $resource->view  .'  Views </span>
+                                                                <a href="'.$resource->fileLocation.'" download>
+                                                                <button class="btn btn-sm download zoom border shadow" value="'.$resource->id.'" style="font-size:13px;"  >
+                                                                <span class="icon icon-download "></span><span id="downloadCount">'.' '. $resource->download.'</span>
+                                                                </button>
+                                                                </a>
+                                                                <span class="date float-right">'.$resource->created_at->diffForHumans() .'</span>
+                                                                </div>';
+                                                        $output.='</div></div></div>';
+                                                }
+                                        }
+                                        $output.='</div></div>';
+                                }       
+                        }
+                        $output.='</div></div>';
+                }
+                return $output;
+                //return response()->json($data);
+        }
+
+        //  Return All resources for a choosen content type
+        public function courseType(Request $request)
+        {
+                $type=Type::where('name', $request->type)->first();
+                $course=Course::select('id')->where('name',$request->course)->get();
+                $resources=Resource::where('type_id',$type->id)
+                ->whereIn('course_id', $course)
+                ->get();
+                $output='';
+                $output.='<h4 class="mt-3 ml-2 bg-light text-center ">'.$request->name.'</h4>';
+                        $output.='<div class="container-fluid"><div class="row">';
+                        //$output.='<p>'.$type->name.'</p>';
+                        $output.='<h4><strong class="mt-3 ml-2 blackColor courseType" id="'.$type->name.'">'.$request->course.' '.$type->name.'</strong></h4>';
+                        $output.='<div class="container-fluid">';
+                        $output.='<div class="row">';
+                                foreach($resources as $resourceFiltered)
+                                {
+                                       //return $resourceFiltered;
                                         $type2 = Type::findorfail($resourceFiltered->type_id);
-                                        if($type2->id==$type->id && $i<4){
+                                        if($type2->id==$type->id)
+                                        {
                                                 //return $type;
-                                                 $i++;
                                                 $output.='<div class="col-md-3 mb-3 blackColor " id="linkColor">';
                                                 $output.='<div class="card zoom shadow-lg">';
                                                 $resource=Resource::find($resourceFiltered->id);
-                                                if($resource->media->name == "Document"||$resource->media->name == "document" ){
-                                                        $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.'  " >
-                                                        <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
-                                                        if($resource->link == 1){
-                                                             $output.='<div class="text-warning py-1 px-2 font-weight-bold" 
-                                                             style="background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.7); ">
-                                                             External Resource  ( Non-MoE )</span>
-                                                             </div>';  
-                                                        }
-                                                }
-                                                else{
+                                                if($resource->media->name == "Document"||$resource->media->name == "document" )
+                                                {
                                                         $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.' " >
                                                         <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
-                                                        if($resource->link == 1){
-                                                             $output.='<div class="text-warning py-1 px-2 font-weight-bold" 
-                                                             style="background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.7); ">
-                                                             External Resource  ( Non-MoE )</span>
-                                                             </div>';  
+                                                        if($resource->link == 1)
+                                                        {
+                                                                $output.='<div class="text-warning py-1 px-2 font-weight-bold" 
+                                                                style="background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.7); ">
+                                                                External Resource  ( Non-MoE )</span>
+                                                                </div>';  
+                                                        }
+                                                }
+                                                else
+                                                {
+                                                        $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.' " >
+                                                        <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
+                                                        if($resource->link == 1)
+                                                        {
+                                                                $output.='<div class="text-warning py-1 px-2 font-weight-bold" 
+                                                                style="background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.7); ">
+                                                                External Resource  ( Non-MoE )</span>
+                                                                </div>';  
                                                         }
                                                 }
                                                 $output.= '<div class="card-body p-1">';
@@ -1016,185 +1145,99 @@ class WelcomeController extends Controller
                                                         else 
                                                                 $output.= '<h6 class="mb-0">Gr-'.$resource->grade->name.' '.$resource->course->name.'</h6>';
                                                 else
-                                                       $output.='<h6 class="mb-0">Gr-'.$resource->grade->name.' '.$resource->course->name.' unit-'.$resource->unit->name.'</h6>';
+                                                        $output.='<h6 class="mb-0">Gr-'.$resource->grade->name.' '.$resource->course->name.' unit-'.$resource->unit->name.'</h6>';
                                                         
                                         
                                                 $output.= '<h6 class=" mb-2 text-truncate">'.$resource->description.'</h6>
-                                                          <div class="d-flex justify-content-between">
-                                                                <span class="date">'.  $resource->view  .'  Views </span>
-                                                                <a href="'.$resource->fileLocation.'" download>
-                                                                         <button class="btn btn-sm download zoom border shadow" value="'.$resource->id.'" style="font-size:13px;"  >
-                                                                                <span class="icon icon-download "></span><span id="downloadCount">'.' '. $resource->download.'</span>
-                                                                        </button>
-                                                                </a>
-                                                                <span class="date float-right">'.$resource->created_at->diffForHumans() .'</span>
+                                                        <div class="d-flex justify-content-between">
+                                                        <span class="date">'.  $resource->view  .'  Views </span>
+                                                        <a href="'.$resource->fileLocation.'" download>
+                                                        <button class="btn btn-sm download zoom border shadow" value="'.$resource->id.'" style="font-size:13px;"  >
+                                                        <span class="icon icon-download "></span><span id="downloadCount">'.' '. $resource->download.'</span>
+                                                        </button>
+                                                        </a>
+                                                        <span class="date float-right">'.$resource->created_at->diffForHumans() .'</span>
                                                         </div>';
                                                 $output.='</div></div></div>';
                                         }
                                 }
                                 $output.='</div></div>';
-                        }       
-                }
-                $output.='</div></div>';
-                }
-                
-
-                return $output;
-                        //return response()->json($data);
-        }
-
-           //  Return All resources for a choosen content type
-        public function courseType(Request $request){
-               $type=Type::where('name', $request->type)->first();
-               $course=Course::select('id')->where('name',$request->course)->get();
-               $resources=Resource::where('type_id',$type->id)
-               ->whereIn('course_id', $course)
-               ->get();
-               $output='';
-              
-                $output.='<h4 class="mt-3 ml-2 bg-light text-center ">'.$request->name.'</h4>';
-                        $output.='<div class="container-fluid"><div class="row">';
-                       
-                        
-                                //$output.='<p>'.$type->name.'</p>';
-                                $output.='<h4><strong class="mt-3 ml-2 blackColor courseType" id="'.$type->name.'">'.$request->course.' '.$type->name.'</strong></h4>';
-                                $output.='<div class="container-fluid">';
-                                $output.='<div class="row">';
-                                foreach($resources as $resourceFiltered){
-                                       
-                                        //return $resourceFiltered;
-                                        $type2 = Type::findorfail($resourceFiltered->type_id);
-                                        if($type2->id==$type->id){
-                                                //return $type;
-                                       
-                                                $output.='<div class="col-md-3 mb-3 blackColor " id="linkColor">';
-                                                $output.='<div class="card zoom shadow-lg">';
-                                                $resource=Resource::find($resourceFiltered->id);
-                                                if($resource->media->name == "Document"||$resource->media->name == "document" ){
-                                                        $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.' " >
-                                                        <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
-                                                        if($resource->link == 1){
-                                                             $output.='<div class="text-warning py-1 px-2 font-weight-bold" 
-                                                             style="background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.7); ">
-                                                             External Resource  ( Non-MoE )</span>
-                                                             </div>';  
-                                                        }
-                                                }
-                                                else{
-                                                        $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.' " >
-                                                        <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
-                                                        if($resource->link == 1){
-                                                             $output.='<div class="text-warning py-1 px-2 font-weight-bold" 
-                                                             style="background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.7); ">
-                                                             External Resource  ( Non-MoE )</span>
-                                                             </div>';  
-                                                        }
-                                                }
-                                               $output.= '<div class="card-body p-1">';
-                                        
-                                        // return $resource->unit_id;
-                                        if($resource->media->name=="Document"|| $resource->media->name=="document" || $resource->unit_id==null)
-                                                if($resource->grade_id==null)
-                                                        $output.= '<h6 class="mb-0">'.$resource->course->name.'</h6>';  
-                                                else 
-                                                        $output.= '<h6 class="mb-0">Gr-'.$resource->grade->name.' '.$resource->course->name.'</h6>';
-                                        else
-                                               $output.='<h6 class="mb-0">Gr-'.$resource->grade->name.' '.$resource->course->name.' unit-'.$resource->unit->name.'</h6>';
-                                                
-                                
-                                        $output.= '<h6 class=" mb-2 text-truncate">'.$resource->description.'</h6>
-                                                  <div class="d-flex justify-content-between">
-                                                        <span class="date">'.  $resource->view  .'  Views </span>
-                                                        <a href="'.$resource->fileLocation.'" download>
-                                                                 <button class="btn btn-sm download zoom border shadow" value="'.$resource->id.'" style="font-size:13px;"  >
-                                                                        <span class="icon icon-download "></span><span id="downloadCount">'.' '. $resource->download.'</span>
-                                                                </button>
-                                                        </a>
-                                                        <span class="date float-right">'.$resource->created_at->diffForHumans() .'</span>
-                                                </div>';
-                                        $output.='</div></div></div>';
-                                        }
-                                }
-                                $output.='</div></div>';
-                   
                 $output.='</div></div>';
                 return $output;
         }
 
         // For choosed Grade return all resources by selected content type
-        public function gradeType(Request $request){
+        public function gradeType(Request $request)
+        {
                 $type=Type::where('name', $request->type)->first();
                 $grade=Grade::findorfail($request->grade);
-               $resources=Resource::where('type_id',$type->id)
-               ->where('grade_id', $request->grade)
-               ->get();
+                $resources=Resource::where('type_id',$type->id)
+                        ->where('grade_id', $request->grade)
+                        ->get();
                 $output='';
-              
                 $output.='<h4 class="mt-3 ml-2 bg-light text-center "> Grade - '.$grade->name.' '.$type->name.'</h4>';
-                        $output.='<div class="container-fluid"><div class="row">';
-                       
-                        
-                                //$output.='<p>'.$type->name.'</p>';
-                                $output.='<h4><strong class="mt-3 ml-2 blackColor courseType" id="'.$type->name.'">'.$request->course.' '.$type->name.'</strong></h4>';
-                                $output.='<div class="container-fluid">';
-                                $output.='<div class="row">';
-                                foreach($resources as $resourceFiltered){
-                                       
-                                        //return $resourceFiltered;
-                                        $type2 = Type::findorfail($resourceFiltered->type_id);
-                                        if($type2->id==$type->id){
-                                                //return $type;
-                                       
-                                                $output.='<div class="col-md-3 mb-3 blackColor " id="linkColor">';
-                                                $output.='<div class="card ">';
-                                                $resource=Resource::find($resourceFiltered->id);
-                                                if($resource->media->name == "Document"||$resource->media->name == "document" ){
-                                                        $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.' " >
-                                                        <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
-                                                        if($resource->link == 1){
-                                                             $output.='<div class="text-warning py-1 px-2 font-weight-bold" 
-                                                             style="background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.7); ">
-                                                             External Resource  ( Non-MoE )</span>
-                                                             </div>';  
-                                                        }
-                                                }
-                                                else{
-                                                        $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.' " >
-                                                        <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
-                                                        if($resource->link == 1){
-                                                             $output.='<div class="text-warning py-1 px-2 font-weight-bold" 
-                                                             style="background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.7); ">
-                                                             External Resource  ( Non-MoE )</span>
-                                                             </div>';  
-                                                        }
-                                                }
-                                                $output.= '<div class="card-body p-1">';
-                                        
-                                                // return $resource->unit_id;
-                                                if($resource->media->name=="Document"|| $resource->media->name=="document" || $resource->unit_id==null)
-                                                        if($resource->grade_id==null)
-                                                                $output.= '<h6 class="mb-0">'.$resource->course->name.'</h6>';  
-                                                        else 
-                                                                $output.= '<h6 class="mb-0">Gr-'.$resource->grade->name.' '.$resource->course->name.'</h6>';
-                                                else
-                                                       $output.='<h6 class="mb-0">Gr-'.$resource->grade->name.' '.$resource->course->name.' unit-'.$resource->unit->name.'</h6>';
-                                                        
-                                        
-                                                $output.= '<h6 class=" mb-2 text-truncate">'.$resource->description.'</h6>
-                                                          <div class="d-flex justify-content-between">
-                                                                <span class="date">'.  $resource->view  .'  Views </span>
-                                                                <a href="'.$resource->fileLocation.'" download>
-                                                                         <button class="btn btn-sm download zoom border shadow" value="'.$resource->id.'" style="font-size:13px;"  >
-                                                                                <span class="icon icon-download "></span><span id="downloadCount">'.' '. $resource->download.'</span>
-                                                                        </button>
-                                                                </a>
-                                                                <span class="date float-right">'.$resource->created_at->diffForHumans() .'</span>
-                                                        </div>';
-                                                $output.='</div></div></div>';
+                $output.='<div class="container-fluid"><div class="row">';
+                //$output.='<p>'.$type->name.'</p>';
+                $output.='<h4><strong class="mt-3 ml-2 blackColor courseType" id="'.$type->name.'">'.$request->course.' '.$type->name.'</strong></h4>';
+                $output.='<div class="container-fluid">';
+                $output.='<div class="row">';
+                foreach($resources as $resourceFiltered)
+                {
+                        //return $resourceFiltered;
+                        $type2 = Type::findorfail($resourceFiltered->type_id);
+                        if($type2->id==$type->id)
+                        {
+                                //return $type;
+                                $output.='<div class="col-md-3 mb-3 blackColor " id="linkColor">';
+                                $output.='<div class="card ">';
+                                $resource=Resource::find($resourceFiltered->id);
+                                if($resource->media->name == "Document"||$resource->media->name == "document" )
+                                {
+                                        $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.' " >
+                                        <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
+                                        if($resource->link == 1)
+                                        {
+                                                $output.='<div class="text-warning py-1 px-2 font-weight-bold" 
+                                                        style="background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.7); ">
+                                                        External Resource  ( Non-MoE )</span>
+                                                        </div>';  
                                         }
                                 }
-                                $output.='</div></div>';
-                   
+                                else
+                                {
+                                        $output.= '<a href="/user/'.$resource->id.'/'.$resource->type_id.' " >
+                                        <img src="'.$resource->thumbnailLocation.'" width="100%" height="150px"></a>';
+                                        if($resource->link == 1)
+                                        {
+                                                $output.='<div class="text-warning py-1 px-2 font-weight-bold" 
+                                                        style="background: rgb(0, 0, 0);background: rgba(0, 0, 0, 0.7); ">
+                                                        External Resource  ( Non-MoE )</span>
+                                                        </div>';  
+                                        }
+                                }
+                                $output.= '<div class="card-body p-1">';
+                                // return $resource->unit_id;
+                                if($resource->media->name=="Document"|| $resource->media->name=="document" || $resource->unit_id==null)
+                                        if($resource->grade_id==null)
+                                                $output.= '<h6 class="mb-0">'.$resource->course->name.'</h6>';  
+                                        else 
+                                                $output.= '<h6 class="mb-0">Gr-'.$resource->grade->name.' '.$resource->course->name.'</h6>';
+                                else
+                                        $output.='<h6 class="mb-0">Gr-'.$resource->grade->name.' '.$resource->course->name.' unit-'.$resource->unit->name.'</h6>';
+                                        $output.= '<h6 class=" mb-2 text-truncate">'.$resource->description.'</h6>
+                                                <div class="d-flex justify-content-between">
+                                                <span class="date">'.  $resource->view  .'  Views </span>
+                                                <a href="'.$resource->fileLocation.'" download>
+                                                <button class="btn btn-sm download zoom border shadow" value="'.$resource->id.'" style="font-size:13px;"  >
+                                                <span class="icon icon-download "></span><span id="downloadCount">'.' '. $resource->download.'</span>
+                                                </button>
+                                                </a>
+                                                <span class="date float-right">'.$resource->created_at->diffForHumans().'</span>
+                                                </div>';
+                                $output.='</div></div></div>';
+                        }
+                }
+                $output.='</div></div>';
                 $output.='</div></div>';
                 return $output;
         }
