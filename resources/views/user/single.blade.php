@@ -5,21 +5,25 @@
 <link rel="stylesheet" type="text/css" href="/assets/css/singleStyle.css"> 
 @endsection
 @if($resource->media->name == "Document" )
-<div id="load"></div>
-    <div id="contents">
-      
-    </div>
-    @endif
+  <div id="load">
+
+  </div>
+  <div id="contents">
+    
+  </div>
+@endif
 <div id="wrapper m-0 p-0" >
-<div class="view" style="display:none;"><h2>Alemhulu Awekelgne Asfaw</h2></div>
-        <nav class="navbar navbar-light align-items-start sidebar sidebar-dark shadow accordion p-0 sidenav" style="background-color: white;" id="sideMenu" >
-            <div class="container-fluid d-flex flex-column p-0 ">
-              <hr class="sidebar-divider my-0">
-              <div class="text-center d-none d-md-inline "><button class="btn rounded-circle dblue border-0 " id="sidebarToggle" type="button"></button></div>
-            </div>
-        </nav>
-       
-  <div id="filter"></div>
+  <div class="view" style="display:none;"><h2>Alemhulu Awekelgne Asfaw</h2>
+  </div>
+  <nav class="navbar navbar-light align-items-start sidebar sidebar-dark shadow accordion p-0 sidenav" style="background-color: white;" id="sideMenu" >
+    <div class="container-fluid d-flex flex-column p-0 ">
+      <hr class="sidebar-divider my-0">
+      <div class="text-center d-none d-md-inline "><button class="btn rounded-circle dblue border-0 " id="sidebarToggle" type="button"></button></div>
+    </div>
+  </nav>
+  <div id="filter">
+
+  </div>
         <div class="container-fluid" id="singleMainContainer">
           <div class="row m-0 p-0 mt-3"> 
           
