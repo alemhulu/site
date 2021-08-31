@@ -33,9 +33,9 @@ use App\Http\Controllers\FeedbackController;
 */
 
 Auth::routes();
-// Route::get('/about', function () {
-//     return view('about');
-// });
+Route::get('/about', function () {
+    return view('about');
+});
 
 // Route::get('/contact', function () {
 //     return view('contact');
