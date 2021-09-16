@@ -152,7 +152,7 @@ class WelcomeController extends Controller
          * @return \Illuminate\Http\Response
          */
                 public function index()
-                { 
+                {      return $gradess;
                         $paginatedResources = [];
                         foreach($this->types as $type)
                         {
