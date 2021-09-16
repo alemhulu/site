@@ -143,10 +143,7 @@ class WelcomeController extends Controller
                                 }
                         return array_values(array_unique($this->tag));   
                 });
-                $this->types = cache()->remember('types',60,function()
-                {
-                        return Type::inRandomOrder()->paginate(3,['*'],'types');
-                });
+                $this->types = Type::inRandomOrder()->paginate(3,['*'],'types');
         }
 
         /**
