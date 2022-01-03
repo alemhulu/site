@@ -23,4 +23,9 @@ class Course extends Model
     public function resources(){
     	return $this->hasMany('App\Models\Resource');
     }
+    // public static function find($slug){
+    //     return cache()->remember('grade',50,function() use ($slug){
+    //         return $slug+4;
+    //     });
+    // }
 }

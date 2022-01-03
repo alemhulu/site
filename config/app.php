@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'env' => env('APP_ENV', 'production'),
+    'env' => env('APP_ENV', 'localhost'),
 
     /*
     |--------------------------------------------------------------------------
@@ -52,6 +52,7 @@ return [
     */
 
     'url' => env('APP_URL', 'http://localhost'),
+    'debug'=> env('APP_dEBUG',false),
 
     'asset_url' => env('ASSET_URL', null),
 
