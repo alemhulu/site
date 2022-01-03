@@ -229,8 +229,6 @@ class ResourceController extends Controller
      */
     public function store(Request $request)
     {
-        
-
         if($request->fileLocation!="" & $request->folderLocation==""){
             $this->validate($request,[
                 'course_id'=> 'required',
