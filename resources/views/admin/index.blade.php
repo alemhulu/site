@@ -1,4 +1,11 @@
 @extends('admin.layouts.dashboard')
+@section('style')
+@livewireStyle
+@endsection
+
+@section('script')
+@livewireScript
+@endsection
 
 @section('content')
 
@@ -9,7 +16,12 @@
     </li>
     <li class="breadcrumb-item active">Overview</li>
   </ol>
-
+  <div class="row">
+    <div class="col-6">@livewire('monthly-views-chart')</div>
+    <div class="col-6">@livewire('monthly-views-chart')</div>
+  </div>
+  
+  
   <!-- Icon Cards-->
   <div class="row">
     <div class="col-xl-3 col-sm-6 mb-3">
