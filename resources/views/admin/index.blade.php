@@ -1,11 +1,5 @@
 @extends('admin.layouts.dashboard')
-@section('style')
-@livewireStyle
-@endsection
 
-@section('script')
-@livewireScript
-@endsection
 
 @section('content')
 

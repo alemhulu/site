@@ -31,7 +31,6 @@
   
 
   @yield('css_role_page')
-  @yield('style')
 
 </head>
 
@@ -202,7 +201,6 @@
   @yield('js_post_page')
   @yield('js_user_page') 
   @yield('js_role_page') 
-  @yield('script')
   </body>
     
 </html>
