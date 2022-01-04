@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Grade;
 use App\Models\course;
 use App\Models\Resource;
+
 class GradeController extends Controller
 {
     /**
@@ -22,8 +23,8 @@ class GradeController extends Controller
             $resource = Resource::find(94);
             $resource->fileName='<iframe width="560" height="315" src="https://www.youtube.com/embed/SiNHMWkJYs0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 ';
-            $resource->save();
-             return $resource;
+        $resource->save();
+        return $resource;
     }
 
     /**
@@ -44,8 +45,7 @@ class GradeController extends Controller
      */
     public function store(Request $request)
     {
-
-           $this->validate($request,[
+        $this->validate($request, [
             'name' => 'required'
         ]);
 
@@ -53,7 +53,7 @@ class GradeController extends Controller
         $grade->name = request('name');
         $grade->save();
         $x=0;
-        $grades = Grade::orderBy('name','asc')->get();
+        $grades = Grade::orderBy('name', 'asc')->get();
         return $grades;
     }
 

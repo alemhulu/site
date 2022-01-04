@@ -15,10 +15,9 @@ class CourseController extends Controller
      */
     public function index(Request $request)
     {
-       
         $grades=Grade::find(request('id'));
-       $courses=$grades->courses;
-       return $courses;
+        $courses=$grades->courses;
+        return $courses;
     }
 
     /**
@@ -39,26 +38,22 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-    
-          $this->validate($request,[
+        $this->validate($request, [
             'name' => 'required'
         ]);
 
         $course = new Course;
-        if($request->grade_id!=''){
-                $course -> name = request('name');
-                $course -> grade_id = request('grade_id');
-                $course -> save();
-                $grade=Grade::find(request('grade_id'));
-                $courses= $grade->courses;
+        if ($request->grade_id!='') {
+            $course -> name = request('name');
+            $course -> grade_id = request('grade_id');
+            $course -> save();
+            $grade=Grade::find(request('grade_id'));
+            $courses= $grade->courses;
+        } elseif ($request->grade_id=='') {
+            $course ->name = request('name');
+            $course->save();
+            $courses= Course::where('grade_id', '=', null)->orderBy('name', 'asc')->get();
         }
-        elseif($request->grade_id==''){
-            
-                $course ->name = request('name');
-                $course->save();
-                $courses= Course::where('grade_id','=',null)->orderBy('name', 'asc')->get();
-                
-            }
         return $courses;
     }
 
