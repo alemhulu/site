@@ -9,6 +9,6 @@ class Media extends Model
 {
     use HasFactory;
     public function resources(){
-    	return $this->hasMany('App\Models\Resource');
+    	return $this->hasMany(Resource::class,'media_id');
     }
 }

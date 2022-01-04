@@ -3,6 +3,8 @@
 namespace App\Charts;
 
 use ArielMejiaDev\LarapexCharts\LarapexChart;
+use App\Models\Resource;
+use App\Models\Media;
 
 class MonthlyViewsChart
 {
@@ -14,11 +16,19 @@ class MonthlyViewsChart
     }
 
     public function build(): \ArielMejiaDev\LarapexCharts\PieChart
-    {
+    {   
+        $video=Media::where('name','Video')->first()->resources;
+        $document=Media::where('name','Document')->first()->resources;
+        $audio=Media::where('name','Audio')->first();
+        if($audio==null){
+            $audio=0;
+        }else{
+            $audio=count($audio->resources);
+        }
         return $this->chart->pieChart()
-            ->setTitle('Top 3 scorers of the team.')
-            ->setSubtitle('Season 2021.')
-            ->addData([40, 50, 30])
-            ->setLabels(['Player 7', 'Player 10', 'Player 9']);
+            ->setTitle('Available Resources')
+            ->setSubtitle('By Media type')
+            ->addData([count($video), count($document), $audio])
+            ->setLabels(['Video', 'Document', 'Audio']);
     }
 }
