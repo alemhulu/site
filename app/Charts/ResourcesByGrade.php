@@ -6,6 +6,7 @@ use ArielMejiaDev\LarapexCharts\LarapexChart;
 use App\Models\Resource;
 use App\Models\Media;
 use App\Models\Grade;
+use App\Models\Report;
 
 class ResourcesByGrade
 {
@@ -20,7 +21,6 @@ class ResourcesByGrade
     {
         /* Grade 12 */
         $grade12=Grade::where('name','12')->first();
-
         
         if(Media::where('name','Document')->first()==Null){
             $documentId=0;
@@ -39,6 +39,13 @@ class ResourcesByGrade
         }else{
             $audioId=Media::where('name','Audio')->first()->id;
         }
+        /* 
+        Grade report insert by media type
+        */
+        
+        $datas[]=[];
+        
+
         if($grade12==Null){
             $grade12Document=0;
             $grade12Video=0;
@@ -47,7 +54,30 @@ class ResourcesByGrade
             $grade12Document=count($grade12->resources->where('media_id',$documentId));
             $grade12Video=count($grade12->resources->where('media_id',$videoId));
             $grade12Audio=count($grade12->resources->where('media_id',$audioId));
+            
+            /* 
+            Grade 12 Resource available data
+            */
+            $datas[0][0]=[
+                'grade_id'=> $grade12->id,
+                'media_id'=> $documentId,
+                'totalAvailableResources'=> $grade12Document
+            ];
+            $datas[0][1]=[
+                'grade_id'=> $grade12->id,
+                'media_id'=> $videoId,
+                'totalAvailableResources'=> $grade12Video
+            ];
+            $datas[0][2]=[
+                'grade_id'=> $grade12->id,
+                'media_id'=> $audioId,
+                'totalAvailableResources'=> $grade12Audio
+            ];
+            
         }
+       
+       
+        
 
         /* Grade 11 */
         $grade11=Grade::where('name','11')->first();
@@ -78,6 +108,25 @@ class ResourcesByGrade
             $grade11Document=count($grade11->resources->where('media_id',$documentId));
             $grade11Video=count($grade11->resources->where('media_id',$videoId));
             $grade11Audio=count($grade11->resources->where('media_id',$audioId));
+
+            /* 
+            Grade 11 Resource available data
+            */
+            $datas[1][0]=[
+                'grade_id'=> $grade11->id,
+                'media_id'=> $documentId,
+                'totalAvailableResources'=> $grade11Document
+            ];
+            $datas[1][1]=[
+                'grade_id'=> $grade11->id,
+                'media_id'=> $videoId,
+                'totalAvailableResources'=> $grade11Video
+            ];
+            $datas[1][2]=[
+                'grade_id'=> $grade11->id,
+                'media_id'=> $audioId,
+                'totalAvailableResources'=> $grade11Audio
+            ];
         }
 
         /* Grade 10 */
@@ -109,6 +158,25 @@ class ResourcesByGrade
             $grade10Document=count($grade10->resources->where('media_id',$documentId));
             $grade10Video=count($grade10->resources->where('media_id',$videoId));
             $grade10Audio=count($grade10->resources->where('media_id',$audioId));
+
+            /* 
+            Grade 11 Resource available data
+            */
+            $datas[2][0]=[
+                'grade_id'=> $grade10->id,
+                'media_id'=> $documentId,
+                'totalAvailableResources'=> $grade10Document
+            ];
+            $datas[2][1]=[
+                'grade_id'=> $grade10->id,
+                'media_id'=> $videoId,
+                'totalAvailableResources'=> $grade10Video
+            ];
+            $datas[2][2]=[
+                'grade_id'=> $grade10->id,
+                'media_id'=> $audioId,
+                'totalAvailableResources'=> $grade10Audio
+            ];
         }
 
         /* Grade 9 */
@@ -140,6 +208,25 @@ class ResourcesByGrade
             $grade9Document=count($grade9->resources->where('media_id',$documentId));
             $grade9Video=count($grade9->resources->where('media_id',$videoId));
             $grade9Audio=count($grade9->resources->where('media_id',$audioId));
+
+            /* 
+            Grade 9 Resource available data
+            */
+            $datas[3][0]=[
+                'grade_id'=> $grade9->id,
+                'media_id'=> $documentId,
+                'totalAvailableResources'=> $grade9Document
+            ];
+            $datas[3][1]=[
+                'grade_id'=> $grade9->id,
+                'media_id'=> $videoId,
+                'totalAvailableResources'=> $grade9Video
+            ];
+            $datas[3][2]=[
+                'grade_id'=> $grade9->id,
+                'media_id'=> $audioId,
+                'totalAvailableResources'=> $grade9Audio
+            ];
         }
 
         /* Grade 8 */
@@ -171,6 +258,25 @@ class ResourcesByGrade
             $grade8Document=count($grade8->resources->where('media_id',$documentId));
             $grade8Video=count($grade8->resources->where('media_id',$videoId));
             $grade8Audio=count($grade8->resources->where('media_id',$audioId));
+
+            /* 
+            Grade 8 Resource available data
+            */
+            $datas[4][0]=[
+                'grade_id'=> $grade8->id,
+                'media_id'=> $documentId,
+                'totalAvailableResources'=> $grade8Document
+            ];
+            $datas[4][1]=[
+                'grade_id'=> $grade8->id,
+                'media_id'=> $videoId,
+                'totalAvailableResources'=> $grade8Video
+            ];
+            $datas[4][2]=[
+                'grade_id'=> $grade8->id,
+                'media_id'=> $audioId,
+                'totalAvailableResources'=> $grade8Audio
+            ];
         }
 
         /* Grade 7 */
@@ -202,6 +308,25 @@ class ResourcesByGrade
             $grade7Document=count($grade7->resources->where('media_id',$documentId));
             $grade7Video=count($grade7->resources->where('media_id',$videoId));
             $grade7Audio=count($grade7->resources->where('media_id',$audioId));
+
+            /* 
+            Grade 7 Resource available data
+            */
+            $datas[5][0]=[
+                'grade_id'=> $grade7->id,
+                'media_id'=> $documentId,
+                'totalAvailableResources'=> $grade7Document
+            ];
+            $datas[5][1]=[
+                'grade_id'=> $grade7->id,
+                'media_id'=> $videoId,
+                'totalAvailableResources'=> $grade7Video
+            ];
+            $datas[5][2]=[
+                'grade_id'=> $grade7->id,
+                'media_id'=> $audioId,
+                'totalAvailableResources'=> $grade7Audio
+            ];
         }
 
         /* Grade 6 */
@@ -233,6 +358,25 @@ class ResourcesByGrade
             $grade6Document=count($grade6->resources->where('media_id',$documentId));
             $grade6Video=count($grade6->resources->where('media_id',$videoId));
             $grade6Audio=count($grade6->resources->where('media_id',$audioId));
+
+            /* 
+            Grade 6 Resource available data
+            */
+            $datas[6][0]=[
+                'grade_id'=> $grade6->id,
+                'media_id'=> $documentId,
+                'totalAvailableResources'=> $grade6Document
+            ];
+            $datas[6][1]=[
+                'grade_id'=> $grade6->id,
+                'media_id'=> $videoId,
+                'totalAvailableResources'=> $grade6Video
+            ];
+            $datas[6][2]=[
+                'grade_id'=> $grade6->id,
+                'media_id'=> $audioId,
+                'totalAvailableResources'=> $grade6Audio
+            ];
         }
 
         /* Grade 5 */
@@ -264,6 +408,25 @@ class ResourcesByGrade
             $grade5Document=count($grade5->resources->where('media_id',$documentId));
             $grade5Video=count($grade5->resources->where('media_id',$videoId));
             $grade5Audio=count($grade5->resources->where('media_id',$audioId));
+
+            /* 
+            Grade 5 Resource available data
+            */
+            $datas[7][0]=[
+                'grade_id'=> $grade5->id,
+                'media_id'=> $documentId,
+                'totalAvailableResources'=> $grade5Document
+            ];
+            $datas[7][1]=[
+                'grade_id'=> $grade5->id,
+                'media_id'=> $videoId,
+                'totalAvailableResources'=> $grade5Video
+            ];
+            $datas[7][2]=[
+                'grade_id'=> $grade5->id,
+                'media_id'=> $audioId,
+                'totalAvailableResources'=> $grade5Audio
+            ];
         }
 
         /* Grade 4 */
@@ -295,6 +458,25 @@ class ResourcesByGrade
             $grade4Document=count($grade4->resources->where('media_id',$documentId));
             $grade4Video=count($grade4->resources->where('media_id',$videoId));
             $grade4Audio=count($grade4->resources->where('media_id',$audioId));
+
+              /* 
+            Grade 4 Resource available data
+            */
+            $datas[8][0]=[
+                'grade_id'=> $grade4->id,
+                'media_id'=> $documentId,
+                'totalAvailableResources'=> $grade4Document
+            ];
+            $datas[8][1]=[
+                'grade_id'=> $grade4->id,
+                'media_id'=> $videoId,
+                'totalAvailableResources'=> $grade4Video
+            ];
+            $datas[8][2]=[
+                'grade_id'=> $grade4->id,
+                'media_id'=> $audioId,
+                'totalAvailableResources'=> $grade4Audio
+            ];
         }
 
         /* Grade 3 */
@@ -326,6 +508,25 @@ class ResourcesByGrade
             $grade3Document=count($grade3->resources->where('media_id',$documentId));
             $grade3Video=count($grade3->resources->where('media_id',$videoId));
             $grade3Audio=count($grade3->resources->where('media_id',$audioId));
+
+              /* 
+            Grade 3 Resource available data
+            */
+            $datas[9][0]=[
+                'grade_id'=> $grade3->id,
+                'media_id'=> $documentId,
+                'totalAvailableResources'=> $grade3Document
+            ];
+            $datas[9][1]=[
+                'grade_id'=> $grade3->id,
+                'media_id'=> $videoId,
+                'totalAvailableResources'=> $grade3Video
+            ];
+            $datas[9][2]=[
+                'grade_id'=> $grade3->id,
+                'media_id'=> $audioId,
+                'totalAvailableResources'=> $grade3Audio
+            ];
         }
 
         /* Grade 2 */
@@ -357,6 +558,25 @@ class ResourcesByGrade
             $grade2Document=count($grade2->resources->where('media_id',$documentId));
             $grade2Video=count($grade2->resources->where('media_id',$videoId));
             $grade2Audio=count($grade2->resources->where('media_id',$audioId));
+
+                /* 
+            Grade 2 Resource available data
+            */
+            $datas[10][0]=[
+                'grade_id'=> $grade2->id,
+                'media_id'=> $documentId,
+                'totalAvailableResources'=> $grade2Document
+            ];
+            $datas[10][1]=[
+                'grade_id'=> $grade2->id,
+                'media_id'=> $videoId,
+                'totalAvailableResources'=> $grade2Video
+            ];
+            $datas[10][2]=[
+                'grade_id'=> $grade2->id,
+                'media_id'=> $audioId,
+                'totalAvailableResources'=> $grade2Audio
+            ];
         }
 
         /* Grade 1 */
@@ -388,6 +608,34 @@ class ResourcesByGrade
             $grade1Document=count($grade1->resources->where('media_id',$documentId));
             $grade1Video=count($grade1->resources->where('media_id',$videoId));
             $grade1Audio=count($grade1->resources->where('media_id',$audioId));
+                  /* 
+            Grade 1 Resource available data
+            */
+            $datas[11][0]=[
+                'grade_id'=> $grade1->id,
+                'media_id'=> $documentId,
+                'totalAvailableResources'=> $grade1Document
+            ];
+            $datas[11][1]=[
+                'grade_id'=> $grade1->id,
+                'media_id'=> $videoId,
+                'totalAvailableResources'=> $grade1Video
+            ];
+            $datas[11][2]=[
+                'grade_id'=> $grade1->id,
+                'media_id'=> $audioId,
+                'totalAvailableResources'=> $grade1Audio
+            ];
+        }
+
+        foreach($datas as $data1){
+            foreach($data1 as $data){
+                $report=new Report;
+                $report->grade_id=$data['grade_id'];
+                $report->media_id=$data['media_id'];
+                $report->totalAvailableResources=$data['totalAvailableResources'];
+                $report->save();
+            }
         }
 
         return $this->chart->barChart()

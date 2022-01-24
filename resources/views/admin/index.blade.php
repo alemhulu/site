@@ -97,63 +97,6 @@
     <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
   </div> -->
 
-  <!-- DataTables Example -->
-  <div class="card mb-3">
-    <!-- <div class="card-header">
-      <i class="fas fa-table"></i>
-      Data Table Example</div> -->
-    <div class="card-body">
-      <div class="table-responsive">
-        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-          <thead>
-            <tr>
-              <th>Descripition</th>
-              <th>Thumbnail</th>
 
-              <th>Grade</th>
-              <th>Course</th>
-              <th>Download</th>
-              <th>View</th>
-              <th>Like</th>
-              <th>Deslike</th>
-              
-            </tr>
-          </thead>
-          <tfoot>
-            <tr>
-              <th>Descripition</th>
-              <th>Thumbnail</th>
-              <th>Grade</th>
-              <th>Course</th>
-              <th>Download</th>
-              <th>View</th>
-              <th>Like</th>
-               <th>Deslike</th>
-               
-            </tr>
-          </tfoot>
-          <tbody>
-          @foreach($resources as $resource)
-            <tr>
-              <td >{{$resource->description}}</td>
-               <td><img src="{{$resource->thumbnailLocation}}" alt="{{ $resource['image_url'] }}" width="100" height="60px"></td>
-              @if($resource->grade_id!=null)
-              <td>G-{{$resource->grade->name}}</td>
-              @else
-              <td>All</td>
-              @endif
-              <td>{{$resource->course->name}}</td>
-              <td class="yellow">{{$resource->download}}</td>
-              <td class="red">{{$resource->view}}</td>
-              <td class="lblue">{{$resource->like}}</td>
-              <td class="dblue">{{$resource->deslike}}</td>
-            </tr>
-          @endforeach
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-  </div>
 
 @endsection
