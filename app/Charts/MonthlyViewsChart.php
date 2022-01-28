@@ -20,6 +20,7 @@ class MonthlyViewsChart
         $video=Media::where('name','Video')->first()->resources;
         $document=Media::where('name','Document')->first()->resources;
         $audio=Media::where('name','Audio')->first();
+        $resources=count(Resource::all());
         if($audio==null){
             $audio=0;
         }else{
@@ -27,7 +28,7 @@ class MonthlyViewsChart
         }
         return $this->chart->pieChart()
             ->setTitle('Available Resources')
-            ->setSubtitle('By Media type')
+            ->setSubtitle('Total available resources : '.$resources)
             ->addData([count($video), count($document), $audio])
             ->setLabels(['Video', 'Document', 'Audio']);
     }

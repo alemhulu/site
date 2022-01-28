@@ -21,14 +21,16 @@ class videoStatus
         $resources=Media::where('name','Video')->first()->resources;
         $viewCount=0;
         $downloadCount=0;
+        $total=0;
         $this->totalVideo=count($resources);
         foreach($resources as $resource){
             $viewCount+=$resource->view;
             $downloadCount+=$resource->download;
         }
+        $total=$viewCount+$downloadCount;
         return $this->chart->donutChart()
             ->setTitle('Video Status')
-            ->setSubtitle('By views and downloaded')
+            ->setSubtitle('Total amount of video viewed and downloaded : '. $total)
             ->addData([$viewCount, $downloadCount])
             ->setLabels(['Viewed', 'Downloaded']);
     }

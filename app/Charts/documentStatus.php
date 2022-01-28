@@ -21,14 +21,16 @@ class documentStatus
         $resources=Media::where('name','Document')->first()->resources;
         $viewCount=0;
         $downloadCount=0;
+        $total=0;
         $this->totalDocument=count($resources);
         foreach($resources as $resource){
             $viewCount+=$resource->view;
             $downloadCount+=$resource->download;
         }
+        $total=$viewCount+$downloadCount;
         return $this->chart->donutChart()
             ->setTitle('Document Status')
-            ->setSubtitle('By views and downloaded')
+            ->setSubtitle('Total amount of Document viewed and downloaded : '. $total)
             ->addData([$viewCount, $downloadCount])
             ->setLabels(['Viewed', 'Downloaded']);
     }
