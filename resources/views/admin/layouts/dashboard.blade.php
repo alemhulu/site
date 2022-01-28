@@ -28,7 +28,7 @@
   <!--CKEditor Plugin-->
   <script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
   <script src="{{ @asset('vendor/larapex-charts/apexcharts.js') }}"></script>
-  
+   
 
   @yield('css_role_page')
 
